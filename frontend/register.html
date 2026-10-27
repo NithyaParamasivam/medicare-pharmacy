@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare Pharmacy | Create Account</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:linear-gradient(120deg,#06392f,#08765d);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:#123e35}
+.card{background:white;width:100%;max-width:440px;padding:35px;border-radius:22px;box-shadow:0 20px 55px #001b1440}
+.logo{text-align:center;color:#008b6a;font-size:30px;font-weight:bold;margin-bottom:25px}
+h1{text-align:center;font-size:28px;margin-bottom:10px}
+.intro{text-align:center;color:#71867c;font-size:14px;margin-bottom:25px;line-height:1.6}
+label{display:block;font-size:13px;font-weight:bold;margin:17px 0 8px}
+input{width:100%;padding:14px;border:1px solid #dcebe3;border-radius:10px;font-size:15px;outline:none}
+input:focus{border-color:#00bd90;box-shadow:0 0 0 3px #00c99a18}
+button{width:100%;margin-top:23px;padding:15px;border:0;border-radius:10px;background:linear-gradient(100deg,#00c99a,#00a77d);color:#043c30;font-weight:bold;font-size:15px;cursor:pointer}
+button:disabled{opacity:.65;cursor:wait}
+#message{text-align:center;font-size:13px;line-height:1.5;margin-top:15px}
+.bottom{text-align:center;font-size:14px;margin-top:22px;color:#71867c}
+a{color:#008b6a;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+<main class="card">
+    <div class="logo">💊 MediCare+</div>
+    <h1>Create Account</h1>
+    <p class="intro">Register to access your MediCare Pharmacy account.</p>
+
+    <form id="registerForm">
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" placeholder="Enter your full name" autocomplete="name" required maxlength="100">
+
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="150">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required>
+
+        <button id="submitBtn" type="submit">Create My Account</button>
+        <p id="message" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="bottom">Already have an account? <a href="/login.html">Login</a></p>
+</main>
+
+<script>
+const form = document.getElementById("registerForm");
+const message = document.getElementById("message");
+const button = document.getElementById("submitBtn");
+
+form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    button.disabled = true;
+    message.style.color = "#008b6a";
+    message.textContent = "Creating your account...";
+
+    try {
+        const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "same-origin",
+            body: JSON.stringify({
+                name: document.getElementById("name").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                password: document.getElementById("password").value
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            message.textContent = "Account created successfully! Opening login...";
+            form.reset();
+            setTimeout(() => {
+                window.location.href = "/login.html";
+            }, 1200);
+        } else {
+            message.style.color = "#d93025";
+            message.textContent = result.message || "Registration failed.";
+        }
+    } catch (error) {
+        message.style.color = "#d93025";
+        message.textContent = "Server connection failed. Check that your backend is running.";
+    } finally {
+        button.disabled = false;
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="MediCare Pharmacy - Your trusted online pharmacy for medicines, wellness and Ayurvedic products.">
+
+    <title>MediCare Pharmacy | Online Pharmacy</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="top-bar">
+
+        <div class="top-left">
+            <span>
+                <i class="fa-solid fa-truck-fast"></i>
+                Fast & Safe Delivery
+            </span>
+
+            <span>
+                <i class="fa-solid fa-shield-heart"></i>
+                Trusted Pharmacy
+            </span>
+        </div>
+
+        <div class="top-right">
+            <span>
+                <i class="fa-solid fa-phone"></i>
+                +91 98765 43210
+            </span>
+
+            <span>
+                <i class="fa-solid fa-clock"></i>
+                Open 24/7
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>PHARMACY</span>
+            </div>
+
+        </div>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html" class="active">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="medicines.html">
+                <i class="fa-solid fa-pills"></i>
+                Medicines
+            </a>
+
+            <a href="categories.html">
+                <i class="fa-solid fa-layer-group"></i>
+                Categories
+            </a>
+
+            <a href="medicines.html#ayurvedic">
+                <i class="fa-solid fa-leaf"></i>
+                Ayurvedic
+            </a>
+
+            <a href="orders.html">
+                <i class="fa-solid fa-box"></i>
+                Orders
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <button class="icon-btn" title="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <a href="cart.html" class="cart-btn">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span>Cart</span>
+
+                <b id="cart-count">0</b>
+
+            </a>
+
+            <a href="login.html" class="login-btn">
+
+                <i class="fa-solid fa-user"></i>
+
+                Login
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <span class="hero-small-title">
+                💚 YOUR HEALTH, OUR PRIORITY
+            </span>
+
+            <h1>
+                Your Trusted
+                <span>Online Pharmacy</span>
+            </h1>
+
+            <p>
+                Shop medicines, healthcare essentials,
+                vitamins and Ayurvedic products from the
+                comfort of your home.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="medicines.html" class="primary-btn">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    Shop Medicines
+
+                </a>
+
+
+                <a href="categories.html" class="secondary-btn">
+
+                    <i class="fa-solid fa-list"></i>
+
+                    Explore Categories
+
+                </a>
+
+            </div>
+
+
+            <!-- Trust Features -->
+
+            <div class="hero-features">
+
+                <div>
+                    <i class="fa-solid fa-truck"></i>
+
+                    <span>
+                        <strong>Fast Delivery</strong>
+                        <small>At your doorstep</small>
+                    </span>
+                </div>
+
+
+                <div>
+                    <i class="fa-solid fa-certificate"></i>
+
+                    <span>
+                        <strong>Genuine Products</strong>
+                        <small>Quality assured</small>
+                    </span>
+                </div>
+
+
+                <div>
+                    <i class="fa-solid fa-headset"></i>
+
+                    <span>
+                        <strong>24/7 Support</strong>
+                        <small>Always here for you</small>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SEARCH SECTION ================= -->
+
+    <section class="search-section">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="medicineSearch"
+                placeholder="Search medicines, tablets, capsules, vitamins..."
+            >
+
+            <button onclick="searchMedicine()">
+                Search
+            </button>
+
+        </div>
+
+        <p>
+            🔎 Search by medicine name, category or health product
+        </p>
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="categories-section">
+
+        <div class="section-heading">
+
+            <span>EXPLORE</span>
+
+            <h2>
+                Shop By <strong>Category</strong>
+            </h2>
+
+            <p>
+                Find everything you need for your health and wellness.
+            </p>
+
+        </div>
+
+
+        <div class="category-container">
+
+
+            <!-- Category 1 -->
+
+            <a href="medicines.html" class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/tablets.jpg"
+                        alt="Tablets and Medicines"
+                    >
+
+                </div>
+
+                <div class="category-info">
+
+                    <div class="category-icon">
+                        💊
+                    </div>
+
+                    <h3>Tablets</h3>
+
+                    <p>Essential medicines</p>
+
+                </div>
+
+            </a>
+
+
+            <!-- Category 2 -->
+
+            <a href="medicines.html" class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/capsules.jpg"
+                        alt="Capsules"
+                    >
+
+                </div>
+
+                <div class="category-info">
+
+                    <div class="category-icon">
+                        💊
+                    </div>
+
+                    <h3>Capsules</h3>
+
+                    <p>Quality capsules</p>
+
+                </div>
+
+            </a>
+
+
+            <!-- Category 3 -->
+
+            <a href="medicines.html" class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/syrups.jpg"
+                        alt="Medicine Syrups"
+                    >
+
+                </div>
+
+                <div class="category-info">
+
+                    <div class="category-icon">
+                        🧴
+                    </div>
+
+                    <h3>Syrups</h3>
+
+                    <p>Liquid medicines</p>
+
+                </div>
+
+            </a>
+
+
+            <!-- Category 4 -->
+
+            <a href="medicines.html" class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/vitamins.jpg"
+                        alt="Vitamins and Supplements"
+                    >
+
+                </div>
+
+                <div class="category-info">
+
+                    <div class="category-icon">
+                        🍊
+                    </div>
+
+                    <h3>Vitamins</h3>
+
+                    <p>Health supplements</p>
+
+                </div>
+
+            </a>
+
+
+            <!-- Category 5 -->
+
+            <a href="medicines.html#ayurvedic" class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/ayurvedic.jpg"
+                        alt="Ayurvedic Medicines"
+                    >
+
+                </div>
+
+                <div class="category-info">
+
+                    <div class="category-icon">
+                        🌿
+                    </div>
+
+                    <h3>Ayurvedic</h3>
+
+                    <p>Natural wellness</p>
+
+                </div>
+
+            </a>
+
+
+            <!-- Category 6 -->
+
+            <a href="medicines.html" class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/first-aid-box.jpg"
+                        alt="First Aid"
+                    >
+
+                </div>
+
+                <div class="category-info">
+
+                    <div class="category-icon">
+                        🩹
+                    </div>
+
+                    <h3>First Aid</h3>
+
+                    <p>Emergency essentials</p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= OFFER BANNER ================= -->
+
+    <section class="offer-section">
+
+        <div class="offer-content">
+
+            <span>
+                🔥 SPECIAL OFFER
+            </span>
+
+            <h2>
+                Stay Healthy.
+                <br>
+                Save More.
+            </h2>
+
+            <p>
+                Get amazing offers on selected healthcare
+                products and wellness essentials.
+            </p>
+
+            <a href="medicines.html" class="offer-btn">
+
+                Shop Now
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+        <div class="offer-icons">
+
+            <span>💊</span>
+            <span>🌿</span>
+            <span>🩺</span>
+            <span>💚</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WHY US ================= -->
+
+    <section class="why-section">
+
+        <div class="section-heading">
+
+            <span>WHY MEDICARE?</span>
+
+            <h2>
+                Your Health Is Our
+                <strong>Priority</strong>
+            </h2>
+
+        </div>
+
+
+        <div class="why-container">
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    🚚
+                </div>
+
+                <h3>Fast Delivery</h3>
+
+                <p>
+                    Get your healthcare products delivered
+                    safely to your doorstep.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    🛡️
+                </div>
+
+                <h3>100% Genuine</h3>
+
+                <p>
+                    We focus on authentic and quality
+                    healthcare products.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    💳
+                </div>
+
+                <h3>Secure Payment</h3>
+
+                <p>
+                    Easy and secure payment options
+                    for your orders.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    👩‍⚕️
+                </div>
+
+                <h3>Pharmacy Support</h3>
+
+                <p>
+                    Get assistance whenever you need
+                    help with your order.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta-section">
+
+        <div class="cta-content">
+
+            <span>💚 TAKE CARE OF YOUR HEALTH</span>
+
+            <h2>
+                Everything You Need,
+                <br>
+                <strong>All In One Place.</strong>
+            </h2>
+
+            <p>
+                Explore medicines, wellness products
+                and Ayurvedic essentials.
+            </p>
+
+            <a href="medicines.html" class="primary-btn">
+
+                Explore Medicines
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-about">
+
+                <div class="footer-logo">
+
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+
+                    <div>
+                        <h2>MediCare</h2>
+                        <span>PHARMACY</span>
+                    </div>
+
+                </div>
+
+                <p>
+                    Your trusted online pharmacy for
+                    medicines, wellness and Ayurvedic
+                    healthcare products.
+                </p>
+
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+
+                <a href="medicines.html">Medicines</a>
+
+                <a href="categories.html">Categories</a>
+
+                <a href="orders.html">Orders</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Healthcare</h3>
+
+                <a href="medicines.html">Tablets</a>
+
+                <a href="medicines.html">Capsules</a>
+
+                <a href="medicines.html">Vitamins</a>
+
+                <a href="medicines.html#ayurvedic">
+                    Ayurvedic
+                </a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>Contact Us</h3>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    +91 98765 43210
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    support@medicare.com
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Tamil Nadu, India
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 MediCare Pharmacy.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                Made with 💚 for better healthcare
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function searchMedicine() {
+
+            const search =
+                document.getElementById("medicineSearch").value.trim();
+
+            if (search === "") {
+
+                alert("Please enter a medicine name.");
+
+                return;
+
+            }
+
+            window.location.href =
+                "medicines.html?search=" +
+                encodeURIComponent(search);
+
+        }
+
+
+        // Enter key search
+
+        document
+            .getElementById("medicineSearch")
+            .addEventListener("keypress", function (event) {
+
+                if (event.key === "Enter") {
+
+                    searchMedicine();
+
+                }
+
+            });
+
+
+        // Cart count
+
+        const cart =
+            JSON.parse(localStorage.getItem("cart")) || [];
+
+        document.getElementById("cart-count").textContent =
+            cart.length;
+
+    </script>
+
+</body>
+
+</html>

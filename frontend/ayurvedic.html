@@ -1,0 +1,4494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MediCare Pharmacy | Ayurvedic Products</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color:#243b25;
+
+    background:
+
+        linear-gradient(
+            rgba(245,250,242,.86),
+            rgba(245,250,242,.86)
+        ),
+
+        url("images/ayurvedic.jpg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:3000;
+
+    min-height:75px;
+
+    padding:12px 4%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:
+        rgba(255,255,255,.97);
+
+    box-shadow:
+        0 5px 22px
+        rgba(0,0,0,.15);
+
+    backdrop-filter:blur(12px);
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:27px;
+
+    font-weight:800;
+
+    color:#246329;
+}
+
+
+.logo img{
+
+    width:52px;
+
+    height:52px;
+
+    object-fit:contain;
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:25px;
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#294b2c;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+
+.nav-links a:hover{
+
+    color:#168021;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   CART BUTTON
+========================================================= */
+
+.cart-button{
+
+    position:relative;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #398d3d,
+            #1f6725
+        );
+
+    color:white;
+
+    padding:13px 21px;
+
+    border-radius:30px;
+
+    font-size:17px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 6px 15px
+        rgba(40,100,43,.25);
+
+    transition:.3s;
+}
+
+
+.cart-button:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 10px 22px
+        rgba(40,100,43,.35);
+}
+
+
+.cart-count{
+
+    position:absolute;
+
+    top:-9px;
+
+    right:-8px;
+
+    min-width:25px;
+
+    height:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#e53935;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    border:2px solid white;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:450px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    background:
+
+        linear-gradient(
+            rgba(25,85,30,.60),
+            rgba(20,70,25,.65)
+        ),
+
+        url("images/ayurvedic-hero.jpg")
+        center /
+        cover
+        no-repeat;
+
+    box-shadow:
+        inset 0 -10px 30px
+        rgba(0,0,0,.12);
+}
+
+
+.hero-content{
+
+    max-width:950px;
+
+    color:white;
+}
+
+
+.hero h1{
+
+    font-size:64px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+        0 4px 15px
+        rgba(0,0,0,.4);
+
+    animation:
+        heroTitle .9s ease;
+}
+
+
+.hero p{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    text-shadow:
+        0 2px 8px
+        rgba(0,0,0,.35);
+
+    animation:
+        heroText 1.1s ease;
+}
+
+
+.hero-btn{
+
+    display:inline-block;
+
+    margin-top:28px;
+
+    padding:15px 32px;
+
+    border-radius:35px;
+
+    text-decoration:none;
+
+    background:#f5ce64;
+
+    color:#244426;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.25);
+
+    transition:.35s;
+}
+
+
+.hero-btn:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+    box-shadow:
+        0 13px 28px
+        rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area{
+
+    width:92%;
+
+    max-width:1000px;
+
+    margin:35px auto 20px;
+
+    text-align:center;
+}
+
+
+.search-box{
+
+    width:100%;
+
+    padding:19px 25px;
+
+    border-radius:40px;
+
+    border:2px solid #9bc69d;
+
+    outline:none;
+
+    background:white;
+
+    font-size:19px;
+
+    color:#294d2d;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.09);
+
+    transition:.3s;
+}
+
+
+.search-box:focus{
+
+    border-color:#32823a;
+
+    box-shadow:
+        0 8px 25px
+        rgba(45,125,52,.18);
+}
+
+
+/* =========================================================
+   CATEGORY BUTTONS
+========================================================= */
+
+.category-nav{
+
+    width:94%;
+
+    margin:20px auto 40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+
+.category-btn{
+
+    border:2px solid #9bc89e;
+
+    background:white;
+
+    color:#28622e;
+
+    padding:12px 20px;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,.06);
+
+    transition:.3s;
+}
+
+
+.category-btn:hover{
+
+    background:#2e7d32;
+
+    color:white;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(40,100,43,.25);
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.product-section{
+
+    width:95%;
+
+    margin:0 auto 55px;
+
+    padding:32px;
+
+    border-radius:32px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    border:
+        2px solid
+        rgba(102,157,105,.25);
+
+    box-shadow:
+
+        0 15px 45px
+        rgba(25,75,30,.13);
+
+    scroll-margin-top:100px;
+}
+
+.login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    background: #06392f;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+
+.section-title h2{
+
+    font-size:38px;
+
+    color:#25652c;
+
+    font-weight:900;
+
+    margin-bottom:10px;
+}
+
+
+.section-title p{
+
+    font-size:18px;
+
+    color:#657265;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.product-track{
+
+    display:flex;
+
+    flex-direction:row;
+
+    flex-wrap:nowrap;
+
+    gap:28px;
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    padding:8px 5px 25px;
+
+    scroll-behavior:smooth;
+
+    scroll-snap-type:x proximity;
+
+    scrollbar-width:none;
+
+    cursor:grab;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+    touch-action:pan-x;
+
+    overscroll-behavior-x:contain;
+}
+
+.product-track::-webkit-scrollbar{
+    display:none;
+}
+
+.product-track.dragging{
+
+    cursor:grabbing;
+
+    scroll-behavior:auto;
+
+    scroll-snap-type:none;
+}
+
+/* Keep every card at a proper readable width inside the horizontal row. */
+.product-track .product-card{
+    flex:0 0 290px;
+    width:290px;
+    min-width:290px;
+    max-width:290px;
+}
+
+
+/* =========================================================
+   HORIZONTAL CAROUSEL ARROWS
+========================================================= */
+
+.slider-wrapper{
+
+    position:relative;
+
+    width:100%;
+}
+
+.carousel-arrow{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:20;
+
+    width:52px;
+
+    height:52px;
+
+    border:2px solid #ffffff;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #398d3d,
+            #236829
+        );
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    display:none !important;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+}
+
+.carousel-arrow:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            #4cae50,
+            #2d7833
+        );
+
+    transform:
+        translateY(-50%)
+        scale(1.10);
+
+    box-shadow:
+        0 12px 25px
+        rgba(0,0,0,.32);
+}
+
+.carousel-arrow:active{
+
+    transform:
+        translateY(-50%)
+        scale(.96);
+}
+
+.left-arrow{
+
+    left:-24px;
+}
+
+.right-arrow{
+
+    right:-24px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.product-card{
+
+    flex:0 0 290px;
+
+    width:290px;
+
+    min-width:290px;
+
+    max-width:290px;
+
+    position:relative;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #f8fbf7
+        );
+
+    border:
+
+        2px solid
+        #c8ddc9;
+
+    border-radius:24px;
+
+    padding:15px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(30,75,34,.14),
+
+        0 2px 5px
+        rgba(0,0,0,.08);
+
+    transition:
+
+        transform .4s ease,
+
+        box-shadow .4s ease,
+
+        border-color .4s ease;
+}
+
+
+.product-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #398d3d,
+            #8bc34a,
+            #d6b64b
+        );
+
+    transform:
+        scaleX(0);
+
+    transform-origin:left;
+
+    transition:
+        transform .4s ease;
+}
+
+
+.product-card:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.015);
+
+    border-color:
+        #6eaa72;
+
+    box-shadow:
+
+        0 20px 42px
+        rgba(31,91,36,.23),
+
+        0 5px 12px
+        rgba(0,0,0,.12);
+}
+
+
+.product-card:hover::before{
+
+    transform:
+        scaleX(1);
+}
+
+
+/* =========================================================
+   BIG PRODUCT IMAGE
+========================================================= */
+
+.product-image{
+
+    width:100%;
+
+    height:285px;
+
+    border-radius:19px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef7ed,
+            #ffffff
+        );
+
+    border:
+        2px solid
+        #d2e3d2;
+
+    box-shadow:
+
+        inset 0 0 12px
+        rgba(50,100,50,.08),
+
+        0 7px 17px
+        rgba(0,0,0,.12);
+
+    position:relative;
+}
+
+
+.product-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            transparent 35%,
+            rgba(255,255,255,.35),
+            transparent 65%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform .8s ease;
+}
+
+
+.product-card:hover
+.product-image::after{
+
+    transform:
+        translateX(120%);
+}
+
+
+.product-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+
+        transform .6s
+        cubic-bezier(.2,.8,.2,1),
+
+        filter .5s ease;
+}
+
+
+.product-card:hover
+.product-image img{
+
+    transform:
+        scale(1.13)
+        rotate(1deg);
+
+    filter:
+        saturate(1.08)
+        brightness(1.04);
+}
+
+
+/* =========================================================
+   PRODUCT NAME
+========================================================= */
+
+.product-card h3{
+
+    min-height:62px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 4px;
+
+    margin:12px 0 10px;
+
+    color:#214f26;
+
+    font-size:20px;
+
+    line-height:1.3;
+
+    font-weight:900;
+}
+
+
+/* =========================================================
+   CARD BUTTONS
+========================================================= */
+
+.card-buttons{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+}
+
+
+.view-btn,
+.add-cart-btn{
+
+    border:none;
+
+    padding:13px 8px;
+
+    border-radius:25px;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+
+.view-btn{
+
+    color:#28612d;
+
+    background:#edf6ed;
+
+    border:
+        2px solid
+        #a8cba9;
+}
+
+
+.view-btn:hover{
+
+    color:white;
+
+    background:#3f8844;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 7px 15px
+        rgba(50,120,55,.25);
+}
+
+
+.add-cart-btn{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #398d3d,
+            #236829
+        );
+
+    box-shadow:
+        0 5px 12px
+        rgba(40,100,43,.2);
+}
+
+
+.add-cart-btn:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.02);
+
+    box-shadow:
+        0 8px 18px
+        rgba(40,100,43,.3);
+}
+
+
+/* =========================================================
+   MODAL BACKGROUND
+========================================================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:6000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    background:
+        rgba(10,30,12,.72);
+
+    backdrop-filter:
+        blur(9px);
+}
+
+
+.modal.show{
+
+    display:flex;
+
+    animation:
+        modalBackground .35s ease;
+}
+
+
+/* =========================================================
+   MODAL BOX
+========================================================= */
+
+.modal-box{
+
+    width:96%;
+
+    max-width:950px;
+
+    max-height:93vh;
+
+    overflow-y:auto;
+
+    position:relative;
+
+    padding:35px;
+
+    border-radius:32px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f5faf3
+        );
+
+    border:
+        3px solid
+        #8db791;
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.40),
+
+        0 0 0 7px
+        rgba(126,178,130,.14);
+
+    animation:
+        modalBoxOpen .55s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+.close-modal{
+
+    position:absolute;
+
+    top:15px;
+
+    right:18px;
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#e8f2e7;
+
+    color:#28572d;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:10;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.12);
+
+    transition:.3s;
+}
+
+
+.close-modal:hover{
+
+    background:#d84a42;
+
+    color:white;
+
+    transform:
+        rotate(90deg)
+        scale(1.08);
+}
+
+
+/* =========================================================
+   MODAL TOP
+========================================================= */
+
+.modal-top{
+
+    display:grid;
+
+    grid-template-columns:
+        370px 1fr;
+
+    gap:38px;
+
+    align-items:center;
+
+    margin-top:10px;
+}
+
+
+/* =========================================================
+   MODAL PRODUCT IMAGE
+========================================================= */
+
+.modal-image-wrapper{
+
+    width:370px;
+
+    height:370px;
+
+    padding:10px;
+
+    border-radius:28px;
+
+    background:white;
+
+    border:
+        3px solid
+        #82aa85;
+
+    box-shadow:
+
+        0 15px 35px
+        rgba(34,82,38,.22),
+
+        0 0 0 6px
+        rgba(113,167,117,.10);
+
+    overflow:hidden;
+
+    animation:
+        modalImageAppear
+        .75s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+.modal-product-image{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    display:block;
+
+    border:
+        2px solid
+        #d3e3d3;
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(0,0,0,.08);
+
+    animation:
+        modalImageZoom
+        1s
+        ease;
+
+    transition:
+
+        transform .5s ease,
+
+        filter .5s ease;
+}
+
+
+.modal-image-wrapper:hover
+.modal-product-image{
+
+    transform:
+        scale(1.08)
+        rotate(1deg);
+
+    filter:
+        saturate(1.08);
+}
+
+
+/* =========================================================
+   MODAL TITLE
+========================================================= */
+
+.modal-title{
+
+    color:#225c28;
+
+    font-size:38px;
+
+    font-weight:900;
+
+    line-height:1.25;
+
+    margin-bottom:15px;
+
+    animation:
+        titleAppear .65s ease;
+}
+
+
+.modal-price{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    background:#fff4cf;
+
+    color:#9a6909;
+
+    border:
+        2px solid
+        #e5ca76;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 5px 12px
+        rgba(170,130,30,.15);
+
+    animation:
+        priceAppear .8s ease;
+}
+
+
+/* =========================================================
+   MODAL INFO
+========================================================= */
+
+.modal-info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
+
+    margin-top:32px;
+}
+
+
+.info-box{
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:white;
+
+    border:
+        2px solid
+        #d4e4d4;
+
+    box-shadow:
+
+        0 7px 17px
+        rgba(0,0,0,.07);
+
+    animation:
+        infoAppear .6s
+        ease both;
+
+    transition:.3s;
+}
+
+
+.info-box:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #8fba92;
+
+    box-shadow:
+        0 11px 23px
+        rgba(40,90,44,.13);
+}
+
+
+.info-box:nth-child(1){
+    animation-delay:.10s;
+}
+
+.info-box:nth-child(2){
+    animation-delay:.18s;
+}
+
+.info-box:nth-child(3){
+    animation-delay:.26s;
+}
+
+.info-box:nth-child(4){
+    animation-delay:.34s;
+}
+
+.info-box:nth-child(5){
+    animation-delay:.42s;
+}
+
+.info-box:nth-child(6){
+    animation-delay:.50s;
+}
+
+
+.info-box h4{
+
+    color:#2d7134;
+
+    font-size:19px;
+
+    margin-bottom:9px;
+
+    font-weight:900;
+}
+
+
+.info-box p{
+
+    color:#526053;
+
+    font-size:16px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   MODAL CART BUTTON
+========================================================= */
+
+.modal-cart-btn{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #398d3d,
+            #236629
+        );
+
+    color:white;
+
+    font-size:19px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 18px
+        rgba(40,100,43,.25);
+
+    transition:.35s;
+}
+
+
+.modal-cart-btn:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 13px 25px
+        rgba(40,100,43,.35);
+}
+
+
+/* =========================================================
+   CART OVERLAY
+========================================================= */
+
+.cart-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:4000;
+
+    display:none;
+
+    background:
+        rgba(0,0,0,.48);
+
+    backdrop-filter:
+        blur(4px);
+}
+
+
+.cart-overlay.show{
+
+    display:block;
+}
+
+
+/* =========================================================
+   CART PANEL
+========================================================= */
+
+.cart-panel{
+
+    position:fixed;
+
+    top:0;
+
+    right:-500px;
+
+    width:470px;
+
+    max-width:95vw;
+
+    height:100vh;
+
+    z-index:5000;
+
+    background:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:
+        -15px 0 40px
+        rgba(0,0,0,.25);
+
+    transition:
+        right .45s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+.cart-panel.show{
+
+    right:0;
+}
+
+
+.cart-header{
+
+    padding:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:
+        linear-gradient(
+            135deg,
+            #398d3d,
+            #205e25
+        );
+
+    color:white;
+}
+
+
+.cart-header h2{
+
+    font-size:27px;
+
+    font-weight:900;
+}
+
+
+.close-cart{
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:32px;
+
+    cursor:pointer;
+}
+
+
+.cart-items{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+}
+
+
+.empty-cart{
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    color:#687268;
+}
+
+
+.empty-cart div{
+
+    font-size:65px;
+
+    margin-bottom:15px;
+}
+
+
+.empty-cart h3{
+
+    font-size:23px;
+
+    color:#315834;
+
+    margin-bottom:8px;
+}
+
+
+.cart-item{
+
+    display:grid;
+
+    grid-template-columns:
+        80px 1fr auto;
+
+    gap:13px;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:
+        1px solid
+        #dce5dc;
+}
+
+
+.cart-item img{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    border:
+        2px solid
+        #bdd4be;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,.1);
+}
+
+
+.cart-item-info h4{
+
+    color:#315d35;
+
+    font-size:16px;
+
+    line-height:1.3;
+
+    margin-bottom:5px;
+}
+
+
+.cart-item-price{
+
+    color:#9a6909;
+
+    font-size:16px;
+
+    font-weight:900;
+}
+
+
+.qty-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:8px;
+}
+
+
+.qty-controls button{
+
+    width:29px;
+
+    height:29px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#e6f0e5;
+
+    color:#28632d;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+
+.qty-controls button:hover{
+
+    background:#398d3d;
+
+    color:white;
+}
+
+
+.remove-btn{
+
+    margin-top:6px;
+
+    border:none;
+
+    background:none;
+
+    color:#d13e35;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+
+.cart-footer{
+
+    padding:22px;
+
+    border-top:
+        1px solid
+        #d9e1d9;
+
+    background:#fafcf9;
+}
+
+
+.subtotal{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    color:#294f2d;
+
+    margin-bottom:17px;
+}
+
+
+.clear-cart{
+
+    width:100%;
+
+    padding:13px;
+
+    margin-bottom:10px;
+
+    border:
+        2px solid
+        #dc807a;
+
+    border-radius:28px;
+
+    background:white;
+
+    color:#c33d35;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+.checkout-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #398d3d,
+            #236629
+        );
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    padding:45px 20px;
+
+    background:#1f5025;
+
+    color:white;
+
+    text-align:center;
+}
+
+
+footer h3{
+
+    font-size:29px;
+
+    margin-bottom:12px;
+}
+
+
+footer p{
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    opacity:.9;
+
+    margin:5px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes heroTitle{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(-35px)
+            scale(.95);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes heroText{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes modalBackground{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+
+@keyframes modalBoxOpen{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(60px)
+            scale(.78)
+            rotateX(8deg);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotateX(0);
+    }
+}
+
+
+@keyframes modalImageAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(-50px)
+            scale(.75)
+            rotate(-6deg);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0)
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+@keyframes modalImageZoom{
+
+    0%{
+
+        transform:
+            scale(.72)
+            rotate(-5deg);
+    }
+
+    60%{
+
+        transform:
+            scale(1.06)
+            rotate(2deg);
+    }
+
+    100%{
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+@keyframes titleAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(40px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+@keyframes priceAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(15px)
+            scale(.85);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes infoAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(20px)
+            scale(.95);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1250px){
+
+    .product-track{
+
+        gap:24px;
+    }
+
+    .product-card{
+
+        flex:0 0 300px;
+
+        width:300px;
+    }
+
+}
+
+
+@media(max-width:1000px){
+
+    .nav-links{
+
+        display:none;
+    }
+
+
+    .product-track{
+
+        gap:22px;
+    }
+
+    .product-card{
+
+        flex:0 0 300px;
+
+        width:300px;
+    }
+
+
+    .modal-top{
+
+        grid-template-columns:
+            1fr;
+
+        text-align:center;
+    }
+
+
+    .modal-image-wrapper{
+
+        margin:auto;
+    }
+
+}
+
+
+@media(max-width:750px){
+
+    .hero{
+
+        min-height:400px;
+    }
+
+
+    .hero h1{
+
+        font-size:44px;
+    }
+
+
+    .hero p{
+
+        font-size:18px;
+    }
+
+
+    .product-section{
+
+        padding:20px;
+    }
+
+
+    .product-track{
+
+        gap:20px;
+    }
+
+    .product-card{
+
+        flex:0 0 290px;
+
+        width:290px;
+    }
+
+
+    .product-image{
+
+        height:240px;
+    }
+
+
+    .product-card h3{
+
+        font-size:18px;
+    }
+
+
+    .modal-box{
+
+        padding:22px;
+    }
+
+
+    .modal-image-wrapper{
+
+        width:280px;
+
+        height:280px;
+    }
+
+
+    .modal-title{
+
+        font-size:29px;
+    }
+
+
+    .modal-info-grid{
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .logo{
+
+        font-size:19px;
+    }
+
+
+    .logo img{
+
+        width:42px;
+
+        height:42px;
+    }
+
+
+    .cart-button{
+
+        padding:
+            10px 13px;
+
+        font-size:14px;
+    }
+
+
+    .hero h1{
+
+        font-size:35px;
+    }
+
+
+    .section-title h2{
+
+        font-size:28px;
+    }
+
+
+    .product-track{
+
+        gap:16px;
+    }
+
+    .product-card{
+
+        flex:0 0 285px;
+
+        width:285px;
+    }
+
+    .slider-wrapper{
+
+        padding:0 10px;
+    }
+
+    .carousel-arrow{
+
+        width:44px;
+
+        height:44px;
+
+        font-size:23px;
+    }
+
+    .left-arrow{
+
+        left:-8px;
+    }
+
+    .right-arrow{
+
+        right:-8px;
+    }
+
+
+    .product-image{
+
+        height:300px;
+    }
+
+
+    .product-card h3{
+
+        font-size:21px;
+    }
+
+
+    .card-buttons{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .modal-image-wrapper{
+
+        width:230px;
+
+        height:230px;
+    }
+
+
+    .modal-title{
+
+        font-size:25px;
+    }
+
+
+    .cart-panel{
+
+        width:100%;
+
+        max-width:100%;
+    }
+
+}
+
+
+/* =========================================================
+   MEDICARE SHARED HEADER - MATCHES INDEX / MEDICINES PAGES
+========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+.topbar{background:#06483d;color:#fff;min-height:38px;padding:8px 6%;display:flex;align-items:center;justify-content:space-between;gap:15px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600}
+.topbar-left,.topbar-right{display:flex;align-items:center;gap:25px}
+.topbar i{color:#00c99a;margin-right:5px}
+.navbar{position:sticky;top:0;z-index:3000;min-height:78px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.05);font-family:'Poppins',sans-serif}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Playfair Display',serif;color:#063b32;flex-shrink:0}
+.brand-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#00dfa6,#00b987);display:flex;align-items:center;justify-content:center;color:white;font-family:'Poppins',sans-serif;font-size:25px;box-shadow:0 5px 15px #00c99a35;transform:rotate(-6deg)}
+.brand-name{font-size:25px;font-weight:700;line-height:1.1}.brand-subtitle{font-family:'Poppins',sans-serif;color:#00ad85;font-size:9px;font-weight:800;letter-spacing:4px;margin-top:4px}
+.nav-links{display:flex;align-items:center;list-style:none;gap:8px;margin:0;padding:0}
+.nav-links a{display:block;text-decoration:none;color:#48645d;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;padding:11px 13px;border-radius:12px;white-space:nowrap;transition:.25s}
+.nav-links a i{color:#00a982;margin-right:7px}.nav-links a:hover,.nav-links a.active{background:#eafff7;color:#008e70}
+.nav-links a.active{position:relative}.nav-links a.active:after{content:'';position:absolute;bottom:4px;left:25%;width:50%;height:3px;background:#00c99a;border-radius:5px}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.icon-btn{width:43px;height:43px;border:1px solid #dceee7;border-radius:13px;background:#fff;color:#008e70;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px}
+.cart-btn{position:relative;display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:0;background:#eafff7;color:#007e63;padding:12px 16px;border-radius:13px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;white-space:nowrap;transition:.25s}
+.cart-btn:hover{background:#d6fff0;transform:translateY(-1px)}.cart-wrap{position:relative;display:inline-flex;align-items:center}
+.cart-count{position:absolute;top:-11px;right:-14px;min-width:21px;height:21px;padding:0 5px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#ff5475;color:white;font-size:11px;font-weight:bold;border:0}
+.login-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 17px;border:0;border-radius:13px;background:#062f29;color:white;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;transition:.25s}
+.login-btn:hover{background:#08483c;transform:translateY(-1px)}
+@media(max-width:1200px){.navbar{flex-wrap:wrap}.nav-links{gap:4px}.nav-links a{padding:10px 9px;font-size:12px}.brand-name{font-size:23px}}
+@media(max-width:1000px){.navbar{gap:12px}.nav-links{order:3;width:100%;justify-content:center;flex-wrap:wrap}.nav-actions{margin-left:auto}.topbar-right{display:none}}
+@media(max-width:650px){.topbar{justify-content:center}.topbar-left{gap:12px;font-size:10px}.navbar{padding:12px 4%;gap:10px}.brand-name{font-size:21px}.brand-icon{width:40px;height:40px}.nav-links{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;width:100%}.nav-links a{font-size:11px;padding:10px}.nav-actions{width:100%;justify-content:flex-end}.icon-btn{width:38px;height:38px}.cart-btn,.login-btn{padding:10px 12px;font-size:12px}}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<div class="topbar">
+    <div class="topbar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Fast &amp; Safe Delivery</span>
+        <span><i class="fa-solid fa-shield-heart"></i> Trusted Pharmacy</span>
+    </div>
+    <div class="topbar-right">
+        <span><i class="fa-solid fa-phone"></i> +91 98765 43210</span>
+        <span><i class="fa-solid fa-clock"></i> Open 24/7</span>
+    </div>
+</div>
+
+<header class="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-icon"><i class="fa-solid fa-plus"></i></div>
+    <div>
+      <div class="brand-name">MediCare</div>
+      <div class="brand-subtitle">PHARMACY</div>
+    </div>
+  </a>
+
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="medicines.html"><i class="fa-solid fa-capsules"></i> Medicines</a>
+    <a href="categories.html"><i class="fa-solid fa-layer-group"></i> Categories</a>
+    <a href="ayurvedic.html" class="active"><i class="fa-solid fa-leaf"></i> Ayurvedic</a>
+    <a href="orders.html"><i class="fa-solid fa-calendar-check"></i> Orders</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button class="icon-btn" onclick="document.getElementById('searchBox').focus()" aria-label="Search Ayurvedic products">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <a href="cart.html" class="cart-btn">
+      <span class="cart-wrap">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </span> Cart
+    </a>
+    <a href="login.html" class="login-btn"><i class="fa-solid fa-user"></i> Login</a>
+
+<button type="button" class="login-btn" id="logoutBtn"
+        style="display:none;" onclick="logoutUser()">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+</button>
+
+  </div>
+</header>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            🌿 Ayurvedic Wellness
+        </h1>
+
+        <p>
+            Discover traditional Ayurvedic formulations
+            including tablets, syrups, lehyam, powders,
+            kashayam, herbal oils and Asava & Arishta.
+        </p>
+
+        <a
+            href="#productsContainer"
+            class="hero-btn">
+
+            Explore Products
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-area">
+
+    <input
+        id="searchBox"
+        class="search-box"
+        type="text"
+        placeholder="🔍 Search Ayurvedic products..."
+        oninput="searchProducts()">
+
+</div>
+
+
+<!-- =====================================================
+     CATEGORY NAV
+===================================================== -->
+
+<div class="category-nav">
+
+    <button
+        class="category-btn"
+        onclick="goTo('tablets')">
+
+        💊 Tablets
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="goTo('syrups')">
+
+        🥤 Syrups
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="goTo('lehyam')">
+
+        🍯 Lehyam
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="goTo('powders')">
+
+        🌿 Powders
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="goTo('kashayam')">
+
+        🫖 Kashayam
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="goTo('oils')">
+
+        🪔 Herbal Oils
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="goTo('asava')">
+
+        🌱 Asava & Arishta
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     PRODUCT CONTAINER
+===================================================== -->
+
+<div id="productsContainer"></div>
+
+
+<!-- =====================================================
+     PRODUCT MODAL
+===================================================== -->
+
+<div
+    id="productModal"
+    class="modal">
+
+
+    <div class="modal-box">
+
+
+        <button
+            class="close-modal"
+            onclick="closeModal()">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-top">
+
+
+            <div class="modal-image-wrapper">
+
+                <img
+                    id="modalImage"
+                    class="modal-product-image"
+                    src=""
+                    alt="Product">
+
+            </div>
+
+
+            <div>
+
+                <h2
+                    id="modalTitle"
+                    class="modal-title">
+                </h2>
+
+
+                <div
+                    id="modalPrice"
+                    class="modal-price">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-info-grid">
+
+
+            <div class="info-box">
+
+                <h4>
+                    🌿 Benefits
+                </h4>
+
+                <p id="modalBenefits"></p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    📝 Uses
+                </h4>
+
+                <p id="modalUses"></p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    📦 Availability
+                </h4>
+
+                <p id="modalAvailability"></p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    🥄 Dosage / How to Take
+                </h4>
+
+                <p id="modalDosage"></p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    ⚠️ Side Effects / Precautions
+                </h4>
+
+                <p id="modalSideEffects"></p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    ℹ️ Product Information
+                </h4>
+
+                <p>
+                    Always follow the product label.
+                    For individual medical or health
+                    questions, consult a qualified
+                    healthcare professional.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            id="modalCartButton"
+            class="modal-cart-btn">
+
+            🛒 Add to Cart
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CART OVERLAY
+===================================================== -->
+
+<div
+    id="cartOverlay"
+    class="cart-overlay"
+    onclick="closeCart()">
+</div>
+
+
+<!-- =====================================================
+     CART
+===================================================== -->
+
+<div
+    id="cartPanel"
+    class="cart-panel">
+
+
+    <div class="cart-header">
+
+        <h2>
+            🛒 My Cart
+        </h2>
+
+
+        <button
+            class="close-cart"
+            onclick="closeCart()">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="cartItems"
+        class="cart-items">
+    </div>
+
+
+    <div class="cart-footer">
+
+
+        <div class="subtotal">
+
+            <span>
+                Subtotal
+            </span>
+
+            <span id="cartSubtotal">
+                ₹0
+            </span>
+
+        </div>
+
+
+        <button
+            class="clear-cart"
+            onclick="clearCart()">
+
+            🗑 Clear Cart
+
+        </button>
+
+
+        <button
+            class="checkout-btn"
+            onclick="checkout()">
+
+            Proceed to Checkout →
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <h3>
+        🌿 MediCare Pharmacy
+    </h3>
+
+    <p>
+        Ayurvedic product catalogue
+        and pharmacy shopping interface.
+    </p>
+
+    <p>
+        © 2026 MediCare Pharmacy
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   PRODUCT DATA
+========================================================= */
+
+/*
+YOUR IMAGE FOLDERS:
+
+images/
+│
+├── tablets/
+│   ├── tablet01.jpg
+│   ├── tablet02.jpg
+│   ...
+│   └── tablet15.jpg
+│
+├── syrups/
+├── lehyam/
+├── powders/
+├── oils/
+
+*/
+
+
+function makeProduct(
+    id,
+    name,
+    image,
+    price,
+    benefits,
+    uses
+){
+
+    return {
+
+        id:id,
+
+        name:name,
+
+        image:image,
+
+        price:price,
+
+        benefits:benefits,
+
+        uses:uses,
+
+        availability:"In Stock",
+
+        dosage:
+            "Follow the dosage and directions printed on the product label.",
+
+        sideEffects:
+            "Check the ingredients and product label. Individual suitability may vary."
+
+    };
+
+}
+
+
+/* =========================================================
+   TABLETS - 15
+========================================================= */
+
+const tablets = [
+
+makeProduct(
+"t01",
+"Ashwagandha Tablets",
+"images/ayurvedhic/tablets/ashwagandha-tablet.jpg",
+180,
+"Traditional Ashwagandha-based wellness preparation.",
+"Used traditionally as part of general vitality and wellness routines."
+),
+
+makeProduct(
+"t02",
+"Triphala Tablets",
+"images/ayurvedhic/tablets/triphala-tablet.jpg",
+150,
+"Traditional three-fruit herbal formulation.",
+"Used traditionally in digestive wellness routines."
+),
+
+makeProduct(
+"t03",
+"Brahmi Tablets",
+"images/ayurvedhic/tablets/brahmi-tablet.jpg",
+175,
+"Traditional Brahmi-based herbal preparation.",
+"Used traditionally in daily mental wellness routines."
+),
+
+makeProduct(
+"t04",
+"Guduchi Tablets",
+"images/ayurvedhic/tablets/guduchi-tablet.jpg",
+190,
+"Traditional Guduchi-based formulation.",
+"Used traditionally as part of general herbal wellness routines."
+),
+
+makeProduct(
+"t05",
+"Neem Tablets",
+"images/ayurvedhic/tablets/neem-tablet.jpg",
+165,
+"Traditional Neem-based herbal preparation.",
+"Used traditionally in selected herbal wellness routines."
+),
+
+makeProduct(
+"t06",
+"Turmeric Tablets",
+"images/ayurvedhic/tablets/turmeric-tablet.jpg",
+160,
+"Traditional turmeric-based preparation.",
+"Used traditionally in dietary and wellness routines."
+),
+
+makeProduct(
+"t07",
+"Shatavari Tablets",
+"images/ayurvedhic/tablets/shatavari-tablet.jpg",
+210,
+"Traditional Shatavari-based herbal preparation.",
+"Used traditionally in women's wellness routines."
+),
+
+makeProduct(
+"t08",
+"Arjuna Tablets",
+"images/ayurvedhic/tablets/arjuna-tablet.jpg",
+220,
+"Traditional Arjuna-based herbal preparation.",
+"Used traditionally in selected cardiovascular wellness routines."
+),
+
+makeProduct(
+"t09",
+"Punarnava Tablets",
+"images/ayurvedhic/tablets/punarnava-tablet.jpg",
+195,
+"Traditional Punarnava-based herbal preparation.",
+"Used traditionally in selected herbal wellness routines."
+),
+
+makeProduct(
+"t10",
+"Haritaki Tablets",
+"images/ayurvedhic/tablets/haritaki-tablet.jpg",
+145,
+"Traditional Haritaki-based formulation.",
+"Used traditionally in digestive wellness routines."
+),
+
+makeProduct(
+"t11",
+"Amalaki Tablets",
+"images/ayurvedhic/tablets/amalaki-tablet.jpg",
+170,
+"Traditional Amla-based herbal preparation.",
+"Used traditionally in dietary and general wellness routines."
+),
+
+makeProduct(
+"t12",
+"Giloy Ghanvati",
+"images/ayurvedhic/tablets/giloy-tablet.jpg",
+185,
+"Traditional concentrated Guduchi tablet preparation.",
+"Used traditionally as part of herbal wellness routines."
+),
+
+makeProduct(
+"t13",
+"Kanchanara Guggulu",
+"images/ayurvedhic/tablets/kanchanara guggulu-tablet.jpg",
+240,
+"Classical multi-herbal tablet formulation.",
+"Used traditionally in selected Ayurvedic wellness routines."
+),
+
+makeProduct(
+"t14",
+"Yashtimadhu Tablets",
+"images/ayurvedhic/tablets/yashtimadhu-tablet.jpg",
+155,
+"Traditional licorice-root based preparation.",
+"Used traditionally in throat and digestive wellness routines."
+),
+
+makeProduct(
+"t15",
+"Chandraprabha Vati",
+"images/ayurvedhic/tablets/chandraprabhavati-tablet.jpg",
+230,
+"Classical multi-herbal Ayurvedic tablet formulation.",
+"Used traditionally in selected Ayurvedic wellness routines."
+)
+
+];
+
+
+/* =========================================================
+   SYRUPS - 15
+========================================================= */
+
+const syrups = [
+
+makeProduct("s01","Vasaka Syrup","images/ayurvedhic/syrups/vasaka.jpg",145,
+"Traditional Vasaka-based herbal liquid preparation.",
+"Used traditionally in seasonal wellness routines."),
+
+makeProduct("s02","Tulsi Herbal Syrup","images/ayurvedhic/syrups/tulsi.jpg",135,
+"Tulsi-based traditional herbal syrup.",
+"Used traditionally in seasonal herbal wellness routines."),
+
+makeProduct("s03","Amla Syrup","images/ayurvedhic/syrups/amla.jpg",150,
+"Amla-based herbal liquid preparation.",
+"Used traditionally as part of general wellness routines."),
+
+makeProduct("s04","Dashamoola Syrup","images/ayurvedhic/syrups/dashamoola.jpg",180,
+"Traditional Dashamoola-based liquid preparation.",
+"Used traditionally in selected wellness routines."),
+
+makeProduct("s05","Draksharishta Syrup","images/ayurvedhic/syrups/draksharishta.jpg",210,
+"Traditional fermented herbal preparation.",
+"Used traditionally in digestive and general wellness routines."),
+
+makeProduct("s06","Sitopaladi Syrup","images/ayurvedhic/syrups/sitopaladi.jpg",165,
+"Traditional Sitopaladi-based liquid preparation.",
+"Used traditionally in seasonal wellness routines."),
+
+makeProduct("s07","Khadi Herbal Syrup","images/ayurvedhic/syrups/khadi.jpg",140,
+"Multi-herbal traditional liquid preparation.",
+"Used traditionally as part of daily herbal routines."),
+
+makeProduct("s08","Arjuna Herbal Syrup","images/ayurvedhic/syrups/arjuna.jpg",175,
+"Traditional Arjuna-based herbal liquid.",
+"Used traditionally in selected cardiovascular wellness routines."),
+
+makeProduct("s09","Punarnava Syrup","images/ayurvedhic/syrups/punarnava.jpg",155,
+"Traditional Punarnava-based herbal syrup.",
+"Used traditionally in selected herbal wellness routines."),
+
+makeProduct("s10","Brahmi Syrup","images/ayurvedhic/syrups/brahmi.jpg",160,
+"Brahmi-based traditional herbal liquid.",
+"Used traditionally in mental wellness routines."),
+
+makeProduct("s11","Guduchi Syrup","images/ayurvedhic/syrups/guduchi.jpg",170,
+"Guduchi-based traditional herbal syrup.",
+"Used traditionally for general wellness."),
+
+makeProduct("s12","Haritaki Syrup","images/ayurvedhic/syrups/haritaki.jpg",145,
+"Traditional Haritaki liquid preparation.",
+"Used traditionally in digestive wellness routines."),
+
+makeProduct("s13","Shatavari Syrup","images/ayurvedhic/syrups/shatavari.jpg",190,
+"Shatavari-based traditional herbal syrup.",
+"Used traditionally in women's wellness routines."),
+
+makeProduct("s14","Neem Herbal Syrup","images/ayurvedhic/syrups/neem.jpg",155,
+"Neem-based herbal liquid preparation.",
+"Used traditionally in selected herbal routines."),
+
+makeProduct("s15","Turmeric Herbal Syrup","images/ayurvedhic/syrups/turmeric.jpg",165,
+"Turmeric-based traditional herbal syrup.",
+"Used traditionally in general wellness routines.")
+
+];
+
+
+/* =========================================================
+   LEHYAM - 15
+========================================================= */
+
+const lehyam = [
+
+makeProduct("l01","Chyawanprash Lehyam","images/ayurvedhic/lehyam/chyawanprash.jpg",250,
+"Traditional multi-herbal jam-like preparation.",
+"Used traditionally as part of daily wellness routines."),
+
+makeProduct("l02","Ashwagandha Lehyam","images/ayurvedhic/lehyam/Ashwagandha.jpg",240,
+"Traditional Ashwagandha-based thick herbal preparation.",
+"Used traditionally in vitality and wellness routines."),
+
+makeProduct("l03","Brahmi Lehyam","images/ayurvedhic/lehyam/Brahmi.jpg",230,
+"Traditional Brahmi-based lehyam.",
+"Used traditionally in mental wellness routines."),
+
+makeProduct("l04","Draksha Lehyam","images/ayurvedhic/lehyam/Draksha.jpg",220,
+"Traditional grape-based herbal preparation.",
+"Used traditionally in dietary and digestive wellness routines."),
+
+makeProduct("l05","Vasaka Lehyam","images/ayurvedhic/lehyam/vasaka.jpg",215,
+"Traditional Vasaka-based herbal lehyam.",
+"Used traditionally in seasonal wellness routines."),
+
+makeProduct("l06","Agastya Haritaki Lehyam","images/ayurvedhic/lehyam/agastya.jpg",260,
+"Classical herbal lehyam containing Haritaki and other ingredients.",
+"Used traditionally in selected wellness routines."),
+
+makeProduct("l07","Bilva Lehyam","images/ayurvedhic/lehyam/bilva.jpg",210,
+"Traditional Bilva-based herbal preparation.",
+"Used traditionally in digestive wellness routines."),
+
+makeProduct("l08","Dashamoola Lehyam","images/ayurvedhic/lehyam/dashamoola.jpg",245,
+"Traditional Dashamoola-based lehyam.",
+"Used traditionally in selected herbal wellness routines."),
+
+makeProduct("l09","Shatavari Lehyam","images/ayurvedhic/lehyam/shatavari.jpg",235,
+"Traditional Shatavari-based preparation.",
+"Used traditionally in women's wellness routines."),
+
+makeProduct("l10","Kutaj Lehyam","images/ayurvedhic/lehyam/kutaj.jpg",205,
+"Traditional Kutaja-based herbal preparation.",
+"Used traditionally in digestive wellness routines."),
+
+makeProduct("l11","Haritaki Lehyam","images/ayurvedhic/lehyam/haritaki.jpg",190,
+"Haritaki-based traditional herbal paste.",
+"Used traditionally in digestive wellness routines."),
+
+makeProduct("l12","Amalaki Lehyam","images/ayurvedhic/lehyam/amalaki.jpg",225,
+"Amla-based traditional lehyam.",
+"Used traditionally in daily wellness routines."),
+
+makeProduct("l13","Pippali Lehyam","images/ayurvedhic/lehyam/pippali.jpg",240,
+"Traditional Pippali-based herbal preparation.",
+"Used traditionally in digestive and seasonal wellness routines."),
+
+makeProduct("l14","Vidanga Lehyam","images/ayurvedhic/lehyam/vidanga.jpg",230,
+"Traditional Vidanga-based herbal preparation.",
+"Used traditionally in selected digestive routines."),
+
+makeProduct("l15","Vasavaleha","images/ayurvedhic/lehyam/vasavaleha.jpg",245,
+"Classical Vasaka-based lehyam.",
+"Used traditionally in seasonal wellness routines.")
+
+];
+
+
+/* =========================================================
+   POWDERS - 15
+========================================================= */
+
+const powders = [
+
+makeProduct("p01","Triphala Churna","images/ayurvedhic/powders/triphala.jpg",130,
+"Traditional combination of three fruits.",
+"Used traditionally in digestive wellness routines."),
+
+makeProduct("p02","Amalaki Churna","images/ayurvedhic/powders/amalaki.jpg",110,
+"Traditional powdered Amla preparation.",
+"Used traditionally in dietary wellness routines."),
+
+makeProduct("p03","Haritaki Churna","images/ayurvedhic/powders/haritaki.jpg",105,
+"Traditional powdered Haritaki preparation.",
+"Used traditionally in digestive wellness routines."),
+
+makeProduct("p04","Bibhitaki Churna","images/ayurvedhic/powders/bibhitaki.jpg",110,
+"Traditional Bibhitaki fruit powder.",
+"Used traditionally in selected wellness routines."),
+
+makeProduct("p05","Turmeric Powder","images/ayurvedhic/powders/turmeric.jpg",95,
+"Finely powdered turmeric preparation.",
+"Used traditionally as a culinary and herbal ingredient."),
+
+makeProduct("p06","Neem Powder","images/ayurvedhic/powders/neem.jpg",100,
+"Traditional Neem leaf powder.",
+"Used traditionally in selected herbal routines."),
+
+makeProduct("p07","Ashwagandha Powder","images/ayurvedhic/powders/ashwagandha.jpg",145,
+"Traditional Ashwagandha root powder.",
+"Used traditionally in vitality and wellness routines."),
+
+makeProduct("p08","Brahmi Powder","images/ayurvedhic/powders/brahmi.jpg",140,
+"Traditional Brahmi herb powder.",
+"Used traditionally in mental wellness routines."),
+
+makeProduct("p09","Shatavari Powder","images/ayurvedhic/powders/shatavari.jpg",150,
+"Traditional Shatavari root powder.",
+"Used traditionally in women's wellness practices."),
+
+makeProduct("p10","Guduchi Powder","images/ayurvedhic/powders/guduchi.jpg",135,
+"Traditional Guduchi stem powder.",
+"Used traditionally in general wellness routines."),
+
+makeProduct("p11","Moringa Leaf Powder","images/ayurvedhic/powders/moringa.jpg",120,
+"Traditional herbal leaf powder.",
+"Used as part of dietary wellness routines."),
+
+makeProduct("p12","Licorice Powder","images/ayurvedhic/powders/licorice.jpg",125,
+"Traditional Yashtimadhu root powder.",
+"Used traditionally in throat and digestive wellness routines."),
+
+makeProduct("p13","Fenugreek Powder","images/ayurvedhic/powders/fenugreek.jpg",100,
+"Traditional Methi seed powder.",
+"Used as a culinary and herbal wellness ingredient."),
+
+makeProduct("p14","Shatavari Blend Powder","images/ayurvedhic/powders/shatavari blend.jpg",155,
+"Traditional herbal powder blend.",
+"Used traditionally in selected daily wellness routines."),
+
+makeProduct("p15","Digestive Herb Powder","images/ayurvedhic/powders/digestive.jpg",115,
+"Traditional blend of digestive herbs.",
+"Used traditionally in digestive wellness routines.")
+
+];
+
+
+
+
+/* =========================================================
+   OILS - 15
+========================================================= */
+
+const oils = [
+
+makeProduct("o01","Bhringamalakadi Tailam","images/ayurvedhic/thailam/bhringamalakadi.jpg",220,
+"Traditional herbal oil preparation.",
+"Used traditionally for hair and scalp care."),
+
+makeProduct("o02","Neelibhringadi Tailam","images/ayurvedhic/thailam/neelibringadi.jpg",240,
+"Traditional herbal hair oil.",
+"Used traditionally as part of hair-care routines."),
+
+makeProduct("o03","Kottamchukkadi Tailam","images/ayurvedhic/thailam/kottamchukkadi.jpg",210,
+"Traditional herbal external oil.",
+"Used traditionally for external body-care routines."),
+
+makeProduct("o04","Mahanarayan Tailam","images/ayurvedhic/thailam/mahanarayan.jpg",280,
+"Traditional multi-herbal oil.",
+"Used traditionally for massage and body wellness."),
+
+makeProduct("o05","Dhanwantharam Tailam","images/ayurvedhic/thailam/dhanwantharam.jpg",290,
+"Classical Ayurvedic herbal oil.",
+"Used traditionally in massage and wellness practices."),
+
+makeProduct("o06","Mahanarayanam Oil","images/ayurvedhic/thailam/ortho.jpg",275,
+"Traditional herbal massage oil.",
+"Used traditionally in body-care routines."),
+
+makeProduct("o07","Kumkumadi Tailam","images/ayurvedhic/thailam/kumkumadi.jpg",320,
+"Traditional botanical facial oil.",
+"Used traditionally in skin-care routines."),
+
+makeProduct("o08","Jatyadi Tailam","images/ayurvedhic/thailam/jatyadi.jpg",230,
+"Traditional herbal external-use oil.",
+"Used traditionally in selected skin-care routines."),
+
+makeProduct("o09","Bhringraj Hair Oil","images/ayurvedhic/thailam/bhringraj.jpg",200,
+"Traditional Bhringraj-based hair oil.",
+"Used traditionally for scalp and hair care."),
+
+makeProduct("o10","Maha Bhringraj Oil","images/ayurvedhic/thailam/maha bhringraj.jpg",210,
+"Traditional Bhringraj herbal oil.",
+"Used traditionally in hair-care routines."),
+
+makeProduct("o11","Sesame Herbal Massage Oil","images/ayurvedhic/thailam/sesame.jpg",180,
+"Sesame-based herbal massage preparation.",
+"Used traditionally for body massage."),
+
+makeProduct("o12","Neem Herbal Oil","images/ayurvedhic/thailam/neem.jpg",190,
+"Neem-based traditional external oil.",
+"Used traditionally in skin and scalp care."),
+
+makeProduct("o13","Ashwagandha Massage Oil","images/ayurvedhic/thailam/ashwagandha.jpg",230,
+"Traditional Ashwagandha-infused oil.",
+"Used traditionally in body massage routines."),
+
+makeProduct("o14","Coconut Herbal Hair Oil","images/ayurvedhic/thailam/coconut.jpg",175,
+"Herbal coconut-oil based preparation.",
+"Used traditionally for scalp and hair care."),
+
+makeProduct("o15","Herbal Foot Massage Oil","images/ayurvedhic/thailam/herbal.jpg",160,
+"Traditional herbal massage oil.",
+"Used traditionally in foot and body-care routines.")
+
+];
+
+
+
+
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+const categories = [
+
+{
+    id:"tablets",
+    icon:"💊",
+    title:"Ayurvedic Tablets",
+    description:"Traditional herbal tablet preparations",
+    products:tablets
+},
+
+{
+    id:"syrups",
+    icon:"🥤",
+    title:"Ayurvedic Syrups",
+    description:"Traditional herbal liquid preparations",
+    products:syrups
+},
+
+{
+    id:"lehyam",
+    icon:"🍯",
+    title:"Lehyam / Legiyum",
+    description:"Traditional thick herbal paste preparations",
+    products:lehyam
+},
+
+{
+    id:"powders",
+    icon:"🌿",
+    title:"Herbal Powders",
+    description:"Traditional powdered herbal preparations",
+    products:powders
+},
+
+
+{
+    id:"oils",
+    icon:"🪔",
+    title:"Thailam / Herbal Oils",
+    description:"Traditional medicated herbal oils",
+    products:oils
+},
+
+
+
+];
+
+
+/* =========================================================
+   CREATE PRODUCTS
+========================================================= */
+
+function createProducts(){
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
+
+
+    categories.forEach(function(category){
+
+        const section =
+            document.createElement(
+                "section"
+            );
+
+
+        section.className =
+            "product-section";
+
+
+        section.id =
+            category.id;
+
+
+        section.innerHTML = `
+
+            <div class="section-title">
+
+                <h2>
+                    ${category.icon}
+                    ${category.title}
+                </h2>
+
+                <p>
+                    ${category.description}
+                </p>
+
+            </div>
+
+            <div class="slider-wrapper">
+
+                <button
+                    type="button"
+                    class="carousel-arrow left-arrow"
+                    aria-label="Previous products"
+                    onclick="moveSlider('${category.id}Track', -1)">
+                    ❮
+                </button>
+
+                <div
+                    class="product-track"
+                    id="${category.id}Track"
+                    tabindex="0"
+                    aria-label="${category.title} products">
+                </div>
+
+                <button
+                    type="button"
+                    class="carousel-arrow right-arrow"
+                    aria-label="Next products"
+                    onclick="moveSlider('${category.id}Track', 1)">
+                    ❯
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(section);
+
+
+        const track =
+            document.getElementById(
+                category.id + "Track"
+            );
+
+
+        category.products.forEach(
+            function(item){
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "product-card";
+
+
+                card.dataset.name =
+                    item.name.toLowerCase();
+
+
+                card.innerHTML = `
+
+                    <div class="product-image">
+
+                        <img
+                            src="${item.image}"
+                            alt="${item.name}"
+                            onerror="imageError(this)"
+                        >
+
+                    </div>
+
+
+                    <h3>
+                        ${item.name}
+                    </h3>
+
+
+                    <div class="card-buttons">
+
+                        <button
+                            type="button"
+                            class="view-btn"
+                            onclick="
+                                openModal('${item.id}')
+                            ">
+
+                            👁 View
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            onclick="
+                                addToCart('${item.id}')
+                            ">
+
+                            🛒 Add
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                track.appendChild(card);
+
+            }
+        );
+
+        enableDrag(track);
+
+    });
+
+}
+
+
+/* =========================================================
+   HORIZONTAL CAROUSEL
+========================================================= */
+
+function moveSlider(trackId, direction){
+
+    const track =
+        document.getElementById(trackId);
+
+    if(!track){
+        return;
+    }
+
+    const firstCard =
+        track.querySelector(".product-card");
+
+    const cardWidth =
+        firstCard
+            ? firstCard.getBoundingClientRect().width
+            : 300;
+
+    const gap =
+        parseFloat(
+            getComputedStyle(track).gap
+        ) || 0;
+
+    track.scrollBy({
+
+        left:
+            direction *
+            (cardWidth + gap),
+
+        behavior:"smooth"
+
+    });
+
+    track.focus({
+        preventScroll:true
+    });
+}
+
+
+function enableDrag(slider){
+
+    let isDragging = false;
+
+    let startX = 0;
+
+    let startScrollLeft = 0;
+
+    let moved = false;
+
+
+    slider.addEventListener(
+        "pointerdown",
+        function(event){
+
+            if(event.pointerType === "mouse" &&
+               event.button !== 0){
+
+                return;
+            }
+
+            /* Do not capture the pointer when the user clicks a button.
+               This keeps View and Add buttons fully clickable. */
+            if(event.target.closest("button, a, input, select, textarea")){
+
+                return;
+            }
+
+            isDragging = true;
+
+            moved = false;
+
+            startX = event.clientX;
+
+            startScrollLeft =
+                slider.scrollLeft;
+
+            slider.classList.add(
+                "dragging"
+            );
+
+            slider.setPointerCapture(
+                event.pointerId
+            );
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "pointermove",
+        function(event){
+
+            if(!isDragging){
+                return;
+            }
+
+            const distance =
+                event.clientX - startX;
+
+            if(Math.abs(distance) > 4){
+                moved = true;
+            }
+
+            slider.scrollLeft =
+                startScrollLeft - distance;
+
+        }
+    );
+
+
+    function stopDragging(event){
+
+        if(!isDragging){
+            return;
+        }
+
+        isDragging = false;
+
+        slider.classList.remove(
+            "dragging"
+        );
+
+        if(
+            event &&
+            slider.hasPointerCapture(
+                event.pointerId
+            )
+        ){
+
+            slider.releasePointerCapture(
+                event.pointerId
+            );
+        }
+
+    }
+
+
+    slider.addEventListener(
+        "pointerup",
+        stopDragging
+    );
+
+    slider.addEventListener(
+        "pointercancel",
+        stopDragging
+    );
+
+    slider.addEventListener(
+        "pointerleave",
+        function(event){
+
+            if(
+                event.pointerType === "mouse"
+            ){
+
+                stopDragging(event);
+            }
+
+        }
+    );
+
+
+    /* Trackpad / mouse wheel */
+
+    slider.addEventListener(
+        "wheel",
+        function(event){
+
+            const vertical =
+                Math.abs(event.deltaY);
+
+            const horizontal =
+                Math.abs(event.deltaX);
+
+            if(vertical > horizontal){
+
+                slider.scrollLeft +=
+                    event.deltaY;
+
+                event.preventDefault();
+
+            }
+
+        },
+        {
+            passive:false
+        }
+    );
+
+
+    /* Keyboard arrows */
+
+    slider.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "ArrowRight"
+            ){
+
+                event.preventDefault();
+
+                moveSlider(
+                    slider.id,
+                    1
+                );
+
+            }
+
+            if(
+                event.key === "ArrowLeft"
+            ){
+
+                event.preventDefault();
+
+                moveSlider(
+                    slider.id,
+                    -1
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FIND PRODUCT
+========================================================= */
+
+function findProduct(id){
+
+    for(
+        const category
+        of categories
+    ){
+
+        const found =
+            category.products.find(
+                item =>
+                    item.id === id
+            );
+
+
+        if(found){
+
+            return found;
+
+        }
+
+    }
+
+    return null;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(id){
+
+    const item =
+        findProduct(id);
+
+
+    if(!item){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "modalImage"
+    ).src = item.image;
+
+
+    document.getElementById(
+        "modalImage"
+    ).alt = item.name;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        item.name;
+
+
+    document.getElementById(
+        "modalPrice"
+    ).textContent =
+        "₹" + item.price;
+
+
+    document.getElementById(
+        "modalBenefits"
+    ).textContent =
+        item.benefits;
+
+
+    document.getElementById(
+        "modalUses"
+    ).textContent =
+        item.uses;
+
+
+    document.getElementById(
+        "modalAvailability"
+    ).textContent =
+        item.availability;
+
+
+    document.getElementById(
+        "modalDosage"
+    ).textContent =
+        item.dosage;
+
+
+    document.getElementById(
+        "modalSideEffects"
+    ).textContent =
+        item.sideEffects;
+
+
+    document.getElementById(
+        "modalCartButton"
+    ).onclick =
+        function(){
+
+            addToCart(item.id);
+
+            closeModal();
+
+        };
+
+
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
+
+
+    modal.classList.add(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal(){
+
+    document.getElementById(
+        "productModal"
+    ).classList.remove(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "";
+}
+
+
+/* =========================================================
+   IMAGE ERROR
+========================================================= */
+
+function imageError(img){
+
+    img.src =
+        "data:image/svg+xml;charset=UTF-8," +
+
+        encodeURIComponent(`
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="500"
+                height="500">
+
+                <rect
+                    width="100%"
+                    height="100%"
+                    fill="#edf6ed"/>
+
+                <text
+                    x="50%"
+                    y="47%"
+                    text-anchor="middle"
+                    font-size="25"
+                    font-family="Arial"
+                    fill="#3c7041">
+
+                    Ayurvedic Product
+
+                </text>
+
+                <text
+                    x="50%"
+                    y="56%"
+                    text-anchor="middle"
+                    font-size="18"
+                    font-family="Arial"
+                    fill="#759178">
+
+                    Add your image
+
+                </text>
+
+            </svg>
+
+        `);
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart = JSON.parse(
+    localStorage.getItem("medicareCart")
+) || [];
+
+
+/* =========================================================
+   ADD CART
+========================================================= */
+
+function addToCart(id){
+
+    const item =
+        findProduct(id);
+
+
+    if(!item){
+
+        return;
+
+    }
+
+
+    const existing =
+        cart.find(
+            product =>
+                product.id === id
+        );
+
+
+    if(existing){
+
+        existing.quantity++;
+
+    }
+    else{
+
+        cart.push({
+    id: item.id,
+    name: item.name,
+    image: item.image,
+    price: item.price,
+    quantity: 1,
+    type: "Ayurvedic",
+    cartType: "ayurvedic"
+});
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   SAVE CART
+========================================================= */
+
+function saveCart() {
+    localStorage.setItem(
+        "medicareCart",
+        JSON.stringify(cart)
+    );
+}
+/* =========================================================
+   UPDATE CART
+========================================================= */
+
+function updateCart(){
+
+    const count =
+        cart.reduce(
+
+            (sum,item) =>
+                sum + item.quantity,
+
+            0
+
+        );
+
+
+    document.getElementById(
+        "cartCount"
+    ).textContent =
+        count;
+
+
+    const cartItems =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    if(cart.length === 0){
+
+        cartItems.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div>
+                    🛒
+                </div>
+
+                <h3>
+                    Your Cart is Empty
+                </h3>
+
+                <p>
+                    Add Ayurvedic products
+                    to your cart.
+                </p>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "cartSubtotal"
+        ).textContent =
+            "₹0";
+
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    cartItems.innerHTML = "";
+
+
+    cart.forEach(
+        function(item){
+
+            const itemTotal =
+                item.price *
+                item.quantity;
+
+
+            total += itemTotal;
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "cart-item";
+
+
+            div.innerHTML = `
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                    onerror="imageError(this)"
+                >
+
+
+                <div class="cart-item-info">
+
+                    <h4>
+                        ${item.name}
+                    </h4>
+
+
+                    <div
+                        class="cart-item-price">
+
+                        ₹${item.price}
+
+                    </div>
+
+
+                    <div
+                        class="qty-controls">
+
+
+                        <button
+                            onclick="
+                                changeQuantity(
+                                    '${item.id}',
+                                    -1
+                                )
+                            ">
+
+                            −
+
+                        </button>
+
+
+                        <strong>
+
+                            ${item.quantity}
+
+                        </strong>
+
+
+                        <button
+                            onclick="
+                                changeQuantity(
+                                    '${item.id}',
+                                    1
+                                )
+                            ">
+
+                            +
+
+                        </button>
+
+
+                    </div>
+
+
+                    <button
+                        class="remove-btn"
+                        onclick="
+                            removeFromCart(
+                                '${item.id}'
+                            )
+                        ">
+
+                        Remove
+
+                    </button>
+
+                </div>
+
+
+                <strong>
+
+                    ₹${itemTotal}
+
+                </strong>
+
+            `;
+
+
+            cartItems.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "cartSubtotal"
+    ).textContent =
+        "₹" + total;
+
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+function changeQuantity(
+    id,
+    change
+){
+
+    const item =
+        cart.find(
+            product =>
+                product.id === id
+        );
+
+
+    if(!item){
+
+        return;
+
+    }
+
+
+    item.quantity += change;
+
+
+    if(
+        item.quantity <= 0
+    ){
+
+        cart =
+            cart.filter(
+                product =>
+                    product.id !== id
+            );
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   REMOVE
+========================================================= */
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   CLEAR CART
+========================================================= */
+
+function clearCart(){
+
+    if(cart.length === 0){
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "Clear all products from cart?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    cart = [];
+
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   OPEN CART
+========================================================= */
+
+function openCart(){
+
+    updateCart();
+
+
+    document.getElementById(
+        "cartPanel"
+    ).classList.add(
+        "show"
+    );
+
+
+    document.getElementById(
+        "cartOverlay"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+========================================================= */
+
+function closeCart(){
+
+    document.getElementById(
+        "cartPanel"
+    ).classList.remove(
+        "show"
+    );
+
+
+    document.getElementById(
+        "cartOverlay"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function checkout(){
+
+    if(cart.length === 0){
+
+        alert(
+            "Your cart is empty."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Checkout page will be connected to your order system."
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchProducts(){
+
+    const value =
+        document.getElementById(
+            "searchBox"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".product-card"
+        );
+
+
+    cards.forEach(
+        function(card){
+
+            const name =
+                card.dataset.name;
+
+
+            if(
+                name.includes(value)
+            ){
+
+                card.style.display =
+                    "";
+
+            }
+            else{
+
+                card.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CATEGORY SCROLL
+========================================================= */
+
+function goTo(id){
+
+    const section =
+        document.getElementById(id);
+
+
+    if(section){
+
+        section.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+document.getElementById(
+    "productModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === this
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeModal();
+
+            closeCart();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+createProducts();
+
+updateCart();
+
+</script>
+
+<script>function toggleNavMenu(){document.getElementById("navLinks").classList.toggle("open");}</script>
+
+<script>
+async function updateAuthButton() {
+    const loginBtn = document.querySelector(".login-btn[href='login.html']");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    try {
+        const response = await fetch("/api/me");
+
+        if (response.ok) {
+            if (loginBtn) loginBtn.style.display = "none";
+            if (logoutBtn) logoutBtn.style.display = "";
+        } else {
+            if (loginBtn) loginBtn.style.display = "";
+            if (logoutBtn) logoutBtn.style.display = "none";
+        }
+    } catch (error) {
+        console.error("Login status check failed:", error);
+    }
+}
+
+async function logoutUser() {
+    try {
+        const response = await fetch("/api/logout", {
+            method: "POST"
+        });
+
+        if (response.ok) {
+            window.location.replace("/login.html");
+        } else {
+            alert("Logout failed. Please try again.");
+        }
+    } catch (error) {
+        alert("Backend connection failed.");
+    }
+}
+
+updateAuthButton();
+</script>
+
+
+
+
+
+</body>
+
+
+
+</html>

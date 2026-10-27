@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicines | MediCare Pharmacy</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f4fbf8;
+            color: #183b35;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .top-bar {
+            min-height: 42px;
+            padding: 8px 6%;
+            background: linear-gradient(90deg, #063d32, #087f6a, #063d32);
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            width: 100%;
+            min-height: 78px;
+
+            padding: 12px 6%;
+
+            background: rgba(255, 255, 255, 0.97);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow: 0 5px 25px rgba(0, 60, 45, 0.12);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #087f6a;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #063d32;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            color: #183b35;
+            font-size: 13px;
+            font-weight: 700;
+
+            padding: 11px 14px;
+            border-radius: 25px;
+
+            transition: 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #087f6a;
+            color: white;
+            box-shadow: 0 0 15px rgba(8, 127, 106, 0.4);
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .medicine-page-hero {
+            min-height: 500px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 35, 28, 0.85),
+                    rgba(0, 80, 65, 0.55),
+                    rgba(0, 50, 40, 0.25)
+                ),
+                url("images/medicine-hero.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            overflow: hidden;
+        }
+
+        .medicine-page-hero::after {
+            content: "";
+
+            position: absolute;
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            right: -100px;
+            bottom: -150px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            animation: floating 5s infinite ease-in-out;
+        }
+
+        @keyframes floating {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-25px);
+            }
+
+        }
+
+        .medicine-hero-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+
+            color: white;
+
+            position: relative;
+            z-index: 2;
+
+            animation: heroText 1s ease;
+        }
+
+        @keyframes heroText {
+
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+        .small-title {
+            display: inline-block;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            border: 1px solid rgba(255, 255, 255, 0.4);
+
+            padding: 9px 18px;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+
+            backdrop-filter: blur(8px);
+        }
+
+        .medicine-hero-content h1 {
+            font-family: 'Playfair Display', serif;
+
+            font-size: clamp(45px, 6vw, 78px);
+
+            line-height: 1.05;
+
+            margin-bottom: 20px;
+        }
+
+        .medicine-hero-content h1 span {
+            color: #6ff5d4;
+
+            text-shadow:
+                0 0 10px rgba(111, 245, 212, 0.5);
+        }
+
+        .medicine-hero-content p {
+            max-width: 650px;
+
+            font-size: 17px;
+            line-height: 1.8;
+
+            color: #e8fffa;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .medicine-search {
+            width: 100%;
+            max-width: 700px;
+
+            display: flex;
+
+            background: white;
+
+            padding: 7px;
+
+            border-radius: 50px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .medicine-search input {
+            flex: 1;
+
+            border: none;
+            outline: none;
+
+            padding: 16px 20px;
+
+            font-size: 15px;
+
+            color: #183b35;
+
+            border-radius: 40px;
+        }
+
+        .medicine-search button {
+            border: none;
+
+            padding: 14px 28px;
+
+            border-radius: 40px;
+
+            background: linear-gradient(
+                135deg,
+                #00c9a7,
+                #087f6a
+            );
+
+            color: white;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 0 15px rgba(0, 201, 167, 0.45);
+
+            transition: 0.3s;
+        }
+
+        .medicine-search button:hover {
+            transform: scale(1.05);
+
+            box-shadow:
+                0 0 25px rgba(0, 201, 167, 0.7);
+        }
+
+
+        /* =========================
+           FILTER
+        ========================= */
+
+        .medicine-filter {
+            text-align: center;
+
+            padding: 60px 6% 30px;
+        }
+
+        .medicine-filter h2 {
+            font-family: 'Playfair Display', serif;
+
+            font-size: 38px;
+
+            margin-bottom: 25px;
+
+            color: #063d32;
+        }
+
+        .filter-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .filter-buttons button {
+            border: 2px solid #087f6a;
+
+            background: white;
+
+            color: #087f6a;
+
+            padding: 12px 22px;
+
+            border-radius: 30px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .filter-buttons button:hover {
+            background: #087f6a;
+
+            color: white;
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 20px rgba(8, 127, 106, 0.3);
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .medicine-section {
+            padding: 30px 6% 80px;
+        }
+
+        .section-heading {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: end;
+
+            margin-bottom: 35px;
+        }
+
+        .section-heading span {
+            color: #00a88b;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+
+            font-size: 42px;
+
+            color: #063d32;
+
+            margin-top: 7px;
+        }
+
+        .section-heading p {
+            color: #67817b;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           PRODUCT GRID
+        ========================= */
+
+        .medicine-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           PRODUCT CARD
+        ========================= */
+
+        .medicine-card {
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(0, 60, 45, 0.10);
+
+            border: 1px solid #e2f1ec;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+
+            animation: cardAppear 0.7s ease;
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 20px 45px rgba(0, 100, 80, 0.18);
+        }
+
+
+        /* =========================
+           PRODUCT IMAGE
+        ========================= */
+
+        .medicine-image {
+            height: 240px;
+
+            position: relative;
+
+            background: #f1faf7;
+
+            overflow: hidden;
+        }
+
+        .medicine-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.5s ease;
+        }
+
+        .medicine-card:hover .medicine-image img {
+            transform: scale(1.08);
+        }
+
+        .offer-tag {
+            position: absolute;
+
+            top: 15px;
+            left: 15px;
+
+            z-index: 5;
+
+            background: #ff5f6d;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 5px 15px rgba(255, 95, 109, 0.35);
+        }
+
+
+        /* =========================
+           PRODUCT INFO
+        ========================= */
+
+        .medicine-info {
+            padding: 22px;
+        }
+
+        .medicine-category {
+            display: inline-block;
+
+            color: #087f6a;
+
+            background: #e6f8f3;
+
+            padding: 6px 10px;
+
+            border-radius: 15px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .medicine-info h3 {
+            font-size: 18px;
+
+            color: #063d32;
+
+            margin-bottom: 8px;
+        }
+
+        .medicine-info p {
+            color: #708681;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            min-height: 38px;
+        }
+
+        .price {
+            color: #087f6a;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            margin: 15px 0;
+        }
+
+        .price del {
+            color: #9aaba6;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            margin-left: 5px;
+        }
+
+        .medicine-info button {
+            width: 100%;
+
+            border: none;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087f6a,
+                    #00b894
+                );
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 0 15px rgba(0, 184, 148, 0.25);
+
+            transition: 0.3s;
+        }
+
+        .medicine-info button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 25px rgba(0, 184, 148, 0.5);
+        }
+
+
+        /* =========================
+           INFO BANNER
+        ========================= */
+
+        .medicine-info-banner {
+            margin: 0 6% 70px;
+
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #063d32,
+                    #087f6a
+                );
+
+            color: white;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 70, 55, 0.2);
+        }
+
+        .medicine-info-banner > div {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 10px;
+        }
+
+        .medicine-info-banner span {
+            font-size: 32px;
+        }
+
+        .medicine-info-banner h3 {
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .medicine-info-banner p {
+            font-size: 11px;
+
+            color: #ccefe7;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            background: #032b24;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 50px 6% 25px;
+        }
+
+        .footer-logo {
+            font-size: 26px;
+
+            font-weight: 800;
+
+            color: #6ff5d4;
+
+            margin-bottom: 12px;
+        }
+
+        .footer p {
+            color: #a7c7c0;
+
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 25px;
+
+            margin: 25px 0;
+        }
+
+        .footer-links a {
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #6ff5d4;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.12);
+
+            padding-top: 20px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .medicine-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            nav a {
+                padding: 9px;
+                font-size: 11px;
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .medicine-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .medicine-info-banner {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .medicine-page-hero {
+                min-height: 580px;
+            }
+
+            .medicine-hero-content h1 {
+                font-size: 45px;
+            }
+
+            .medicine-hero-content p {
+                font-size: 14px;
+            }
+
+            .medicine-search {
+                flex-direction: column;
+
+                background: transparent;
+
+                gap: 10px;
+
+                box-shadow: none;
+            }
+
+            .medicine-search input {
+                width: 100%;
+            }
+
+            .medicine-search button {
+                width: 100%;
+            }
+
+            .medicine-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .medicine-info-banner {
+                grid-template-columns: 1fr;
+
+                margin-left: 4%;
+                margin-right: 4%;
+            }
+
+            .section-heading h2 {
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="top-bar">
+
+        <div>
+            🚚 Fast & Safe Delivery
+        </div>
+
+        <div>
+            🏥 Trusted Pharmacy
+            &nbsp; | &nbsp;
+            📞 +91 98765 43210
+            &nbsp; | &nbsp;
+            🕐 Open 24/7
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            💊 <span>MediCare</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                🏠 Home
+            </a>
+
+            <a href="medicine.html" class="active">
+                💊 Medicines
+            </a>
+
+            <a href="categories.html">
+                📋 Categories
+            </a>
+
+            <a href="ayurvedic.html">
+                🌿 Ayurvedic
+            </a>
+
+            <a href="orders.html">
+                📦 Orders
+            </a>
+
+            <a href="cart.html">
+                🛒 Cart
+            </a>
+
+            <a href="login.html">
+                👤 Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="medicine-page-hero">
+
+        <div class="medicine-hero-content">
+
+            <span class="small-title">
+                💚 MEDICARE PHARMACY
+            </span>
+
+            <h1>
+                Find Your
+                <span>Medicines</span>
+            </h1>
+
+            <p>
+                Shop medicines, healthcare products,
+                vitamins, supplements and Ayurvedic
+                products easily from our trusted pharmacy.
+            </p>
+
+
+            <div class="medicine-search">
+
+                <input
+                    type="text"
+                    id="medicineSearch"
+                    placeholder="🔍 Search medicines..."
+                    onkeyup="searchMedicine()"
+                >
+
+                <button onclick="searchMedicine()">
+                    🔎 Search
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FILTER ================= -->
+
+    <section class="medicine-filter">
+
+        <h2>
+            Shop by Category
+        </h2>
+
+
+        <div class="filter-buttons">
+
+            <button onclick="filterMedicine('all')">
+                💊 All
+            </button>
+
+            <button onclick="filterMedicine('tablet')">
+                💊 Tablets
+            </button>
+
+            <button onclick="filterMedicine('capsule')">
+                🔵 Capsules
+            </button>
+
+            <button onclick="filterMedicine('syrup')">
+                🧴 Syrups
+            </button>
+
+            <button onclick="filterMedicine('vitamin')">
+                🍊 Vitamins
+            </button>
+
+            <button onclick="filterMedicine('ayurvedic')">
+                🌿 Ayurvedic
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="medicine-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span>
+                    OUR PRODUCTS
+                </span>
+
+                <h2>
+                    Popular Medicines
+                </h2>
+
+            </div>
+
+            <p>
+                Genuine healthcare products
+                from trusted categories
+            </p>
+
+        </div>
+
+
+        <div class="medicine-grid" id="medicineGrid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="medicine-card"
+                 data-category="tablet">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        15% OFF
+                    </span>
+
+                    <img
+                        src="images/tablets.jpg"
+                        alt="Tablets"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        💊 Tablet
+                    </span>
+
+                    <h3>
+                        Paracetamol Tablets
+                    </h3>
+
+                    <p>
+                        Common fever and pain
+                        relief product.
+                    </p>
+
+                    <div class="price">
+                        ₹35
+                        <del>₹42</del>
+                    </div>
+
+                    <button onclick="addToCart('Paracetamol Tablets',35)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="medicine-card"
+                 data-category="capsule">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        10% OFF
+                    </span>
+
+                    <img
+                        src="images/capsules.jpg"
+                        alt="Capsules"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        🔵 Capsule
+                    </span>
+
+                    <h3>
+                        Multivitamin Capsules
+                    </h3>
+
+                    <p>
+                        Daily vitamin and
+                        mineral supplement.
+                    </p>
+
+                    <div class="price">
+                        ₹120
+                        <del>₹135</del>
+                    </div>
+
+                    <button onclick="addToCart('Multivitamin Capsules',120)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="medicine-card"
+                 data-category="syrup">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        12% OFF
+                    </span>
+
+                    <img
+                        src="images/syrups.jpg"
+                        alt="Syrup"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        🧴 Syrup
+                    </span>
+
+                    <h3>
+                        Health Care Syrup
+                    </h3>
+
+                    <p>
+                        Healthcare and wellness
+                        syrup product.
+                    </p>
+
+                    <div class="price">
+                        ₹95
+                        <del>₹108</del>
+                    </div>
+
+                    <button onclick="addToCart('Health Care Syrup',95)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="medicine-card"
+                 data-category="vitamin">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        20% OFF
+                    </span>
+
+                    <img
+                        src="images/vitamins.jpg"
+                        alt="Vitamins"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        🍊 Vitamins
+                    </span>
+
+                    <h3>
+                        Vitamin Supplements
+                    </h3>
+
+                    <p>
+                        Essential nutritional
+                        supplement products.
+                    </p>
+
+                    <div class="price">
+                        ₹180
+                        <del>₹225</del>
+                    </div>
+
+                    <button onclick="addToCart('Vitamin Supplements',180)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 5 -->
+
+            <div class="medicine-card"
+                 data-category="ayurvedic">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        15% OFF
+                    </span>
+
+                    <img
+                        src="images/ashwagandha.jpg"
+                        alt="Ashwagandha"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        🌿 Ayurvedic
+                    </span>
+
+                    <h3>
+                        Ashwagandha
+                    </h3>
+
+                    <p>
+                        Traditional herbal
+                        wellness product.
+                    </p>
+
+                    <div class="price">
+                        ₹210
+                        <del>₹250</del>
+                    </div>
+
+                    <button onclick="addToCart('Ashwagandha',210)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 6 -->
+
+            <div class="medicine-card"
+                 data-category="ayurvedic">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        10% OFF
+                    </span>
+
+                    <img
+                        src="images/turmeric.jpg"
+                        alt="Turmeric"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        🌿 Herbal
+                    </span>
+
+                    <h3>
+                        Turmeric Capsules
+                    </h3>
+
+                    <p>
+                        Herbal wellness
+                        supplement product.
+                    </p>
+
+                    <div class="price">
+                        ₹150
+                        <del>₹170</del>
+                    </div>
+
+                    <button onclick="addToCart('Turmeric Capsules',150)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 7 -->
+
+            <div class="medicine-card"
+                 data-category="tablet">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        8% OFF
+                    </span>
+
+                    <img
+                        src="images/tablets.jpg"
+                        alt="Healthcare Tablets"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        💊 Tablet
+                    </span>
+
+                    <h3>
+                        Healthcare Tablets
+                    </h3>
+
+                    <p>
+                        Everyday healthcare
+                        product.
+                    </p>
+
+                    <div class="price">
+                        ₹75
+                        <del>₹82</del>
+                    </div>
+
+                    <button onclick="addToCart('Healthcare Tablets',75)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 8 -->
+
+            <div class="medicine-card"
+                 data-category="ayurvedic">
+
+                <div class="medicine-image">
+
+                    <span class="offer-tag">
+                        18% OFF
+                    </span>
+
+                    <img
+                        src="images/neem.jpg"
+                        alt="Neem"
+                    >
+
+                </div>
+
+                <div class="medicine-info">
+
+                    <span class="medicine-category">
+                        🌿 Herbal
+                    </span>
+
+                    <h3>
+                        Neem Herbal Product
+                    </h3>
+
+                    <p>
+                        Traditional herbal
+                        wellness product.
+                    </p>
+
+                    <div class="price">
+                        ₹130
+                        <del>₹158</del>
+                    </div>
+
+                    <button onclick="addToCart('Neem Herbal Product',130)">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INFORMATION ================= -->
+
+    <section class="medicine-info-banner">
+
+
+        <div>
+
+            <span>🏥</span>
+
+            <div>
+
+                <h3>
+                    Trusted Pharmacy
+                </h3>
+
+                <p>
+                    Quality healthcare products
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <span>🚚</span>
+
+            <div>
+
+                <h3>
+                    Fast Delivery
+                </h3>
+
+                <p>
+                    Safe doorstep delivery
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <span>🔒</span>
+
+            <div>
+
+                <h3>
+                    Secure Shopping
+                </h3>
+
+                <p>
+                    Safe online shopping
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <span>💬</span>
+
+            <div>
+
+                <h3>
+                    24/7 Support
+                </h3>
+
+                <p>
+                    We're here to help
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-logo">
+            💊 MediCare Pharmacy
+        </div>
+
+        <p>
+            Your trusted online healthcare partner.
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="medicine.html">
+                Medicines
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="cart.html">
+                Cart
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <p class="copyright">
+            © 2026 MediCare Pharmacy.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        function searchMedicine() {
+
+            let search =
+                document
+                .getElementById("medicineSearch")
+                .value
+                .toLowerCase()
+                .trim();
+
+
+            let cards =
+                document.querySelectorAll(
+                    ".medicine-card"
+                );
+
+
+            cards.forEach(function(card) {
+
+                let name =
+                    card
+                    .querySelector("h3")
+                    .innerText
+                    .toLowerCase();
+
+
+                let category =
+                    card.dataset.category
+                    .toLowerCase();
+
+
+                if (
+                    name.includes(search) ||
+                    category.includes(search)
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* =========================
+           CATEGORY FILTER
+        ========================= */
+
+        function filterMedicine(category) {
+
+            let cards =
+                document.querySelectorAll(
+                    ".medicine-card"
+                );
+
+
+            cards.forEach(function(card) {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category === category
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* =========================
+           ADD TO CART
+        ========================= */
+
+        function addToCart(name, price) {
+
+            let cart =
+                JSON.parse(
+                    localStorage.getItem("cart")
+                ) || [];
+
+
+            cart.push({
+
+                name: name,
+
+                price: price,
+
+                quantity: 1
+
+            });
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            alert(
+                "✅ " +
+                name +
+                " added to your cart!"
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

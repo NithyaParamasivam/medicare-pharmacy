@@ -1,0 +1,1047 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare Pharmacy | Checkout</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+    --green: #087f5b;
+    --dark: #07543f;
+    --light: #eaf8f1;
+    --text: #24352e;
+    --muted: #718078;
+    --border: #e2ebe5;
+    --white: #ffffff;
+    --bg: #f5faf7;
+    --red: #c62828;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar {
+    background: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 3px 15px #153b2410;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--green);
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo i {
+    font-size: 30px;
+}
+
+.logo small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--green);
+}
+
+.cart-link {
+    background: var(--light);
+    color: var(--green);
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.hero {
+    background: linear-gradient(120deg, #07543f, #0d9b6b);
+    color: white;
+    padding: 35px 7%;
+}
+
+.hero h1 {
+    font-size: clamp(27px, 4vw, 38px);
+    margin-bottom: 8px;
+}
+
+.hero p {
+    opacity: .9;
+    font-size: 14px;
+}
+
+.steps {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 23px;
+    font-size: 12px;
+}
+
+.steps span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.steps i {
+    background: #ffffff25;
+    padding: 9px;
+    border-radius: 50%;
+}
+
+.steps .current {
+    font-weight: 700;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 35px auto;
+}
+
+.notice {
+    padding: 14px 17px;
+    background: #eaf8f1;
+    color: #07543f;
+    border: 1px solid #c9ead8;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    font-size: 13px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, .9fr);
+    gap: 25px;
+    align-items: start;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 7px 25px #183e2208;
+}
+
+.panel h2 {
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.subtext {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #dce7df;
+    border-radius: 10px;
+    outline: none;
+    font: inherit;
+    font-size: 13px;
+    background: white;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px #087f5b12;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 85px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 17px;
+    border: 1px solid #b8e0cb;
+    border-radius: 12px;
+    background: #f0faf4;
+}
+
+.payment-option input {
+    margin-top: 5px;
+    accent-color: var(--green);
+}
+
+.payment-option strong {
+    font-size: 13px;
+}
+
+.payment-option p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #edf1ee;
+}
+
+.product:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.product-image {
+    width: 62px;
+    height: 62px;
+    border-radius: 12px;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    color: var(--green);
+    font-size: 22px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-info h3 {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.product-info p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.product-price {
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    margin: 15px 0;
+}
+
+.summary-row.muted {
+    color: var(--muted);
+}
+
+.summary-row.total {
+    border-top: 1px dashed #dce7df;
+    padding-top: 18px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.green {
+    color: var(--green);
+}
+
+.place-order {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 15px;
+    background: var(--green);
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.place-order:hover {
+    background: var(--dark);
+    transform: translateY(-1px);
+}
+
+.place-order:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.secure {
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 13px;
+}
+
+.message {
+    padding: 14px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    display: none;
+}
+
+.message.error {
+    display: block;
+    color: #9b1c1c;
+    background: #fff0f0;
+    border: 1px solid #ffd1d1;
+}
+
+.message.success {
+    display: block;
+    color: #07543f;
+    background: #eaf8f1;
+    border: 1px solid #c9ead8;
+}
+
+.empty {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.empty i {
+    font-size: 42px;
+    color: #a5cdb6;
+    margin-bottom: 15px;
+}
+
+.empty h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.empty p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.action-link {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 25px 15px;
+    font-size: 11px;
+}
+
+@media(max-width: 760px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        padding: 14px 5%;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .panel {
+        padding: 19px;
+    }
+}
+
+@media(max-width: 450px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .nav-links {
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">
+        <i class="fa-solid fa-house-medical"></i>
+        <span>
+            MediCare+
+            <small>PHARMACY</small>
+        </span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="medicines.html">Medicines</a>
+        <a href="categories.html">Categories</a>
+        <a href="orders.html">Orders</a>
+        <a href="cart.html" class="cart-link">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+            <span id="cartCount">0</span>
+        </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1><i class="fa-solid fa-shield-heart"></i> Secure Checkout</h1>
+    <p>Review your medicines and complete your MediCare Pharmacy order.</p>
+
+    <div class="steps">
+        <span><i class="fa-solid fa-check"></i> Cart</span>
+        <span class="current"><i class="fa-solid fa-location-dot"></i> Checkout</span>
+        <span><i class="fa-solid fa-box"></i> Place Order</span>
+    </div>
+</section>
+
+<main class="container">
+    <div id="message" class="message" role="alert"></div>
+
+    <div class="notice">
+        <i class="fa-solid fa-circle-info"></i>
+        Please verify your delivery details and medicine quantities before placing your order.
+    </div>
+
+    <div id="checkoutContent" class="layout">
+
+        <div>
+            <section class="panel">
+                <h2><i class="fa-solid fa-location-dot green"></i> Delivery Address</h2>
+                <p class="subtext">Enter the address where you want your medicines delivered.</p>
+
+                <form id="checkoutForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="fullName">Full Name *</label>
+                            <input id="fullName" name="fullName" required maxlength="100"
+                                   autocomplete="name" placeholder="Enter your full name">
+                        </div>
+
+                        <div class="field">
+                            <label for="phone">Phone Number *</label>
+                            <input id="phone" name="phone" required
+                                   type="tel" inputmode="numeric"
+                                   pattern="[0-9]{10}" maxlength="10"
+                                   autocomplete="tel" placeholder="10-digit mobile number">
+                        </div>
+
+                        <div class="field full">
+                            <label for="address">House No. / Street Address *</label>
+                            <textarea id="address" name="address" required maxlength="500"
+                                      autocomplete="street-address"
+                                      placeholder="Enter your house number, street and area"></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label for="city">City *</label>
+                            <input id="city" name="city" required maxlength="100"
+                                   autocomplete="address-level2" placeholder="Enter your city">
+                        </div>
+
+                        <div class="field">
+                            <label for="pincode">PIN Code *</label>
+                            <input id="pincode" name="pincode" required
+                                   inputmode="numeric" pattern="[0-9]{6}"
+                                   maxlength="6" autocomplete="postal-code"
+                                   placeholder="6-digit PIN code">
+                        </div>
+
+                        <div class="field full">
+                            <label for="landmark">Landmark (optional)</label>
+                            <input id="landmark" name="landmark" maxlength="150"
+                                   placeholder="Nearby landmark">
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top:28px">
+                        <i class="fa-solid fa-credit-card green"></i> Payment Method
+                    </h2>
+                    <p class="subtext">Choose how you want to pay.</p>
+
+                   
+<h2 style="margin-top:28px">
+    <i class="fa-solid fa-credit-card green"></i> Payment Method
+</h2>
+<p class="subtext">Choose how you want to pay.</p>
+
+<div style="display:grid;gap:13px">
+
+    <label class="payment-option" style="cursor:pointer">
+        <input type="radio" name="paymentMethod" value="COD" checked>
+        <span>
+            <strong>
+                <i class="fa-solid fa-money-bill-wave green"></i>
+                Cash on Delivery (COD)
+            </strong>
+            <p>Pay when your order is delivered.</p>
+        </span>
+    </label>
+
+    <label class="payment-option" style="cursor:pointer">
+        <input type="radio" name="paymentMethod" value="UPI">
+        <span>
+            <strong>
+                <i class="fa-solid fa-mobile-screen-button green"></i>
+                Pay Online with UPI
+            </strong>
+            <p>Google Pay, PhonePe, Paytm and BHIM UPI.</p>
+        </span>
+    </label>
+
+</div>
+
+<div id="upiDetails" style="
+    display:none;
+    margin-top:15px;
+    padding:18px;
+    border:1px solid #c9ead8;
+    border-radius:12px;
+    background:#f0faf4;
+">
+    <h3 style="font-size:15px;margin-bottom:12px">
+        <i class="fa-solid fa-wallet green"></i> UPI Payment
+    </h3>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+        <span style="background:white;padding:10px 12px;border-radius:9px;font-size:12px;font-weight:700">
+            <i class="fa-brands fa-google-pay"></i> Google Pay
+        </span>
+        <span style="background:white;padding:10px 12px;border-radius:9px;font-size:12px;font-weight:700">
+            <i class="fa-solid fa-mobile-screen"></i> PhonePe
+        </span>
+        <span style="background:white;padding:10px 12px;border-radius:9px;font-size:12px;font-weight:700">
+            <i class="fa-solid fa-building-columns"></i> Paytm
+        </span>
+        <span style="background:white;padding:10px 12px;border-radius:9px;font-size:12px;font-weight:700">
+            <i class="fa-solid fa-indian-rupee-sign"></i> BHIM
+        </span>
+    </div>
+
+    <p style="font-size:12px;line-height:1.9;color:#718078">
+        Online payments require a configured payment gateway.
+        UPI payment is not activated yet, so no payment will be collected here.
+    </p>
+</div>
+
+                </form>
+            </section>
+        </div>
+
+        <aside>
+            <section class="panel">
+                <h2><i class="fa-solid fa-bag-shopping green"></i> Order Summary</h2>
+                <p class="subtext">Medicines in your cart</p>
+
+                <div id="productList" class="product-list">
+                    <p>Loading cart...</p>
+                </div>
+
+                <div id="priceSummary">
+                    <div class="summary-row muted">
+                        <span>Subtotal</span>
+                        <strong id="subtotal">₹0.00</strong>
+                    </div>
+
+                    <div class="summary-row muted">
+                        <span>Delivery</span>
+                        <strong id="shipping">₹0.00</strong>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total" class="green">₹0.00</span>
+                    </div>
+                </div>
+
+                <button id="placeOrderBtn" class="place-order"
+                        type="submit" form="checkoutForm" disabled>
+                    <i class="fa-solid fa-lock"></i> Place Order
+                </button>
+
+                <p class="secure">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Your order is submitted through your logged-in session.
+                </p>
+            </section>
+
+            <section class="panel">
+                <p style="font-size:12px;line-height:1.9;color:#718078">
+                    <i class="fa-solid fa-headset green"></i>
+                    Need help? Please contact the pharmacy for assistance with your order.
+                </p>
+            </section>
+        </aside>
+    </div>
+</main>
+
+<footer class="footer">
+    © 2026 MediCare Pharmacy. Your health, our priority.
+</footer>
+
+<script>
+const productList = document.getElementById("productList");
+const placeOrderBtn = document.getElementById("placeOrderBtn");
+const messageBox = document.getElementById("message");
+
+let cartItems = [];
+let cartTotal = 0;
+
+function money(value) {
+    return "₹" + Number(value).toLocaleString("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+function showMessage(text, type = "error") {
+    messageBox.textContent = text;
+    messageBox.className = "message " + type;
+    messageBox.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function clearMessage() {
+    messageBox.textContent = "";
+    messageBox.className = "message";
+}
+
+function safeImageUrl(value) {
+    if (!value) return "";
+
+    try {
+        const url = new URL(value, window.location.origin);
+
+        if (
+            url.protocol === "http:" ||
+            url.protocol === "https:"
+        ) {
+            return url.href;
+        }
+    } catch (error) {
+        return "";
+    }
+
+    return "";
+}
+
+function renderCart() {
+    productList.innerHTML = "";
+console.log("CART ITEMS:", cartItems);
+console.log("LOCAL CART:", localStorage.getItem("medicareAyurvedicCart"));
+    if (!cartItems.length) {
+        productList.innerHTML = `
+            <div class="empty">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h3>Your cart is empty</h3>
+                <p>Add medicines before proceeding to checkout.</p>
+                <a class="action-link" href="medicines.html">
+                    Browse Medicines
+                </a>
+            </div>`;
+
+        document.getElementById("priceSummary").style.display = "none";
+        placeOrderBtn.disabled = true;
+        return;
+    }
+
+    document.getElementById("priceSummary").style.display = "block";
+
+    cartTotal = 0;
+    let totalQuantity = 0;
+
+    cartItems.forEach(item => {
+        const name = String(item.name || item.medicine_name || "Medicine");
+        const price = Number(item.price);
+        const quantity = Number(item.quantity);
+
+        const subtotal = price * quantity;
+        cartTotal += subtotal;
+        totalQuantity += quantity;
+
+        const imageUrl = safeImageUrl(item.image);
+
+        const product = document.createElement("div");
+        product.className = "product";
+
+        const imageBox = document.createElement("div");
+        imageBox.className = "product-image";
+
+        if (imageUrl) {
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.alt = name;
+            img.onerror = () => {
+                imageBox.innerHTML = '<i class="fa-solid fa-capsules"></i>';
+            };
+            imageBox.appendChild(img);
+        } else {
+            imageBox.innerHTML = '<i class="fa-solid fa-capsules"></i>';
+        }
+
+        const info = document.createElement("div");
+        info.className = "product-info";
+
+        const title = document.createElement("h3");
+        title.textContent = name;
+
+        const quantityText = document.createElement("p");
+        quantityText.textContent = "Quantity: " + quantity + " × " + money(price);
+
+        info.append(title, quantityText);
+
+        const priceBox = document.createElement("div");
+        priceBox.className = "product-price";
+        priceBox.textContent = money(subtotal);
+
+        product.append(imageBox, info, priceBox);
+        productList.appendChild(product);
+    });
+
+    document.getElementById("cartCount").textContent = totalQuantity;
+    document.getElementById("subtotal").textContent = money(cartTotal);
+
+    // Free delivery for this demo checkout.
+    document.getElementById("shipping").textContent = money(0);
+    document.getElementById("total").textContent = money(cartTotal);
+
+    placeOrderBtn.disabled = false;
+}
+
+
+async function loadCart() {
+    placeOrderBtn.disabled = true;
+    productList.textContent = "Loading your cart...";
+
+    try {
+        const response = await fetch("/api/cart", {
+            method: "GET",
+            credentials: "same-origin",
+            headers: { "Accept": "application/json" }
+        });
+
+        if (response.status === 401) {
+            showMessage("Please log in before checkout.");
+            productList.innerHTML = `
+                <a class="action-link" href="login.html">Login to Continue</a>`;
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error("Could not load cart from server.");
+        }
+
+        
+const data = await response.json();
+
+const normalCart = JSON.parse(
+    localStorage.getItem("medicareCart") || "[]"
+);
+
+const ayurvedicCart = JSON.parse(
+    localStorage.getItem("medicareAyurvedicCart") || "[]"
+);
+
+const serverCart = Array.isArray(data.cart) ? data.cart : [];
+
+const localCart = [
+    ...(Array.isArray(normalCart) ? normalCart : []),
+    ...(Array.isArray(ayurvedicCart) ? ayurvedicCart : [])
+];
+
+// Use the cart that actually contains items.
+const finalCart = serverCart.length > 0 ? serverCart : localCart;
+
+cartItems = finalCart
+    .filter(item => Number(item.quantity) > 0)
+    .map(item => ({
+        ...item,
+        name: item.name || item.medicine_name || "Medicine",
+        price: Number(item.price) || 0,
+        quantity: Number(item.quantity) || 1
+    }));
+
+clearMessage();
+renderCart();
+
+    } catch (error) {
+        console.error("Checkout cart error:", error);
+        productList.textContent =
+            "Unable to load cart. Please check your cart and server.";
+        showMessage(error.message || "Unable to load your cart.");
+    }
+}
+
+
+async function checkLogin() {
+    try {
+        const response = await fetch("/api/me", {
+            credentials: "same-origin"
+        });
+
+        if (response.status === 401) {
+            showMessage("Please log in to continue to checkout.");
+            placeOrderBtn.disabled = true;
+            return false;
+        }
+
+        if (!response.ok) {
+            showMessage("Could not verify your login. Please try again.");
+            placeOrderBtn.disabled = true;
+            return false;
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !data.user) {
+            showMessage("Please log in to continue.");
+            placeOrderBtn.disabled = true;
+            return false;
+        }
+
+        document.getElementById("fullName").value =
+            data.user.name || "";
+
+        return true;
+
+    } catch (error) {
+        showMessage("Cannot connect to the server. Make sure Node.js is running.");
+        placeOrderBtn.disabled = true;
+        return false;
+    }
+}
+
+document.getElementById("checkoutForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    clearMessage();
+
+    if (!this.reportValidity()) return;
+
+    if (!cartItems.length) {
+        showMessage("Your cart is empty. Please add medicines first.");
+        return;
+    }
+
+    const loggedIn = await checkLogin();
+
+    if (!loggedIn) return;
+
+    const confirmed = window.confirm(
+        "Place your order for " + money(cartTotal) + " with Cash on Delivery?"
+    );
+
+    if (!confirmed) return;
+
+    placeOrderBtn.disabled = true;
+    placeOrderBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Placing Order...';
+
+    try {
+        /*
+          The current server.js POST /api/orders endpoint reads the
+          saved cart and creates the order. It does not yet save
+          delivery address or phone number in the database.
+        */
+       const cartSaveResponse = await fetch("/api/cart", {
+    method: "PUT",
+    credentials: "same-origin",
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    },
+    body: JSON.stringify({
+        cart: cartItems
+    })
+});
+
+if (!cartSaveResponse.ok) {
+    const saveError = await cartSaveResponse.json().catch(() => ({}));
+    throw new Error(saveError.message || "Could not save your cart.");
+}
+        const response = await fetch("/api/orders", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+           
+body: JSON.stringify({
+    fullName: document.getElementById("fullName").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    address: document.getElementById("address").value.trim(),
+    city: document.getElementById("city").value.trim(),
+    pincode: document.getElementById("pincode").value.trim(),
+    landmark: document.getElementById("landmark").value.trim(),
+    paymentMethod: "COD"
+})
+
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+            showMessage("Your login session expired. Please log in again.");
+            placeOrderBtn.disabled = false;
+            placeOrderBtn.innerHTML =
+                '<i class="fa-solid fa-lock"></i> Place Order';
+            return;
+        }
+
+        if (!response.ok || data.success !== true) {
+            throw new Error(data.message || "Could not place your order.");
+        }
+
+        showMessage(
+            "Order placed successfully! Order ID: " +
+            data.orderId + ". Redirecting to your orders...",
+            "success"
+        );
+
+        placeOrderBtn.innerHTML =
+            '<i class="fa-solid fa-check"></i> Order Placed';
+
+        setTimeout(() => {
+            window.location.href = "orders.html";
+        }, 1500);
+
+    } catch (error) {
+        console.error("Place order error:", error);
+        showMessage(error.message || "Something went wrong. Please try again.");
+        placeOrderBtn.disabled = false;
+        placeOrderBtn.innerHTML =
+            '<i class="fa-solid fa-lock"></i> Place Order';
+    }
+});
+
+async function initializeCheckout() {
+    const loggedIn = await checkLogin();
+
+    if (loggedIn) {
+        await loadCart();
+    }
+}
+
+const paymentRadios = document.querySelectorAll(
+    'input[name="paymentMethod"]'
+);
+
+const upiDetails = document.getElementById("upiDetails");
+
+paymentRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
+        const isUPI = this.value === "UPI";
+
+        upiDetails.style.display = isUPI ? "block" : "none";
+
+        if (isUPI) {
+            placeOrderBtn.disabled = true;
+
+            showMessage(
+                "UPI gateway is not configured yet. Please select Cash on Delivery, or integrate a payment gateway to accept real UPI payments."
+            );
+        } else {
+            clearMessage();
+            placeOrderBtn.disabled = cartItems.length === 0;
+        }
+    });
+});
+
+initializeCheckout();
+</script>
+
+</body>
+</html>

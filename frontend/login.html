@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MediCare Pharmacy | Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #00c99a;
+    --dark: #073e33;
+    --deep: #062f28;
+    --text: #123e35;
+    --light: #e7fff6;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5faf7;
+    color: var(--text);
+}
+
+/* TOP INFORMATION BAR */
+.topbar {
+    min-height: 34px;
+    padding: 8px 5%;
+    background: #006c59;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.top-left, .top-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.topbar i {
+    color: #54ffd4;
+    margin-right: 6px;
+}
+
+/* MAIN NAVIGATION */
+.navbar {
+    background: white;
+    min-height: 112px;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 3px 15px #063e3210;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand-icon {
+    width: 49px;
+    height: 49px;
+    background: linear-gradient(135deg, #00e0a5, #00b98a);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 27px;
+    transform: rotate(-5deg);
+    box-shadow: 0 5px 15px #00c99a35;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #103f34;
+    line-height: 1.1;
+}
+
+.brand-sub {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 800;
+    color: #00a984;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #48665e;
+    padding: 13px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: .25s;
+}
+
+.nav-links a i {
+    color: #00ae88;
+    margin-right: 6px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #e7fff6;
+    color: #008b6a;
+    box-shadow: inset 0 -3px #00c99a;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-actions a {
+    height: 43px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 13px;
+    text-decoration: none;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.search-btn {
+    width: 44px;
+    padding: 0 !important;
+    color: #00a984;
+    border: 1px solid #dceee6;
+}
+
+.cart-btn {
+    color: #006e59;
+    background: #e9fff7;
+}
+
+.login-btn-nav {
+    color: white;
+    background: #062f28;
+}
+
+.nav-actions a:hover {
+    transform: translateY(-2px);
+}
+
+/* LOGIN BACKGROUND */
+.login-section {
+    min-height: 680px;
+    padding: 65px 5%;
+    background:
+        radial-gradient(circle at 90% 10%, #00a87d 0%, transparent 35%),
+        linear-gradient(120deg, #06392f, #08765d);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-section::before {
+    content: "+";
+    position: absolute;
+    right: 8%;
+    top: 35px;
+    font-size: 280px;
+    font-weight: 800;
+    color: #ffffff09;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.login-layout {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 470px;
+    gap: 55px;
+    align-items: center;
+}
+
+/* LEFT CONTENT */
+.welcome-content {
+    color: white;
+}
+
+.tag {
+    display: inline-block;
+    padding: 10px 17px;
+    border: 1px solid #00e4ad;
+    color: #5affd5;
+    border-radius: 30px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 800;
+    margin-bottom: 27px;
+}
+
+.welcome-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.welcome-content h1 span {
+    display: block;
+    color: #00dfad;
+}
+
+.welcome-content > p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #e0fff5;
+    max-width: 540px;
+}
+
+.benefits {
+    display: grid;
+    gap: 19px;
+    margin-top: 32px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-weight: 700;
+    color: #f0fff9;
+}
+
+.benefit i {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00c99a;
+    background: #ffffff17;
+}
+
+/* LOGIN CARD */
+.login-card {
+    background: white;
+    border-radius: 24px;
+    padding: 38px;
+    box-shadow: 0 25px 70px #001b143d;
+}
+
+.card-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #008e6c;
+    background: #e4fff5;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.login-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 31px;
+    color: #103e33;
+    margin-bottom: 9px;
+}
+
+.card-description {
+    color: #7b9088;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #244c40;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap > i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00a984;
+}
+
+.input-wrap input {
+    width: 100%;
+    height: 51px;
+    border: 1px solid #dcebe3;
+    background: #fbfefc;
+    border-radius: 11px;
+    padding: 0 45px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.input-wrap input:focus {
+    border-color: #00bd90;
+    box-shadow: 0 0 0 4px #00c99a18;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #008b6a;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 3px 0 25px;
+    font-size: 12px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #597369;
+}
+
+.remember input {
+    accent-color: #00ad83;
+}
+
+.form-options a,
+.register a {
+    color: #008d6b;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(100deg, #00c99a, #00a77d);
+    color: #043c30;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px #00a77d30;
+}
+
+.message {
+    margin-top: 13px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.register {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #71867c;
+}
+
+.register a {
+    margin-left: 4px;
+}
+
+.secure-note {
+    margin-top: 25px;
+    text-align: center;
+    color: #71867c;
+    font-size: 11px;
+}
+
+.secure-note i {
+    color: #00a984;
+    margin-right: 5px;
+}
+
+/* FOOTER */
+.footer {
+    background: #062f28;
+    color: #d7eee5;
+    text-align: center;
+    padding: 22px 15px;
+    font-size: 13px;
+}
+
+.footer span {
+    color: #00dfad;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .login-layout {
+        grid-template-columns: 1fr 420px;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        padding: 11px 9px;
+    }
+}
+
+@media (max-width: 800px) {
+    .login-layout {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+    }
+
+    .welcome-content {
+        text-align: center;
+    }
+
+    .welcome-content > p {
+        margin: auto;
+    }
+
+    .benefits {
+        display: none;
+    }
+
+    .login-section {
+        padding: 45px 5%;
+    }
+
+    .login-card {
+        padding: 30px 24px;
+    }
+
+    .topbar {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+
+    .nav-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .welcome-content h1 {
+        font-size: 39px;
+    }
+
+    .login-card h2 {
+        font-size: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="top-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Fast & Safe Delivery</span>
+        <span><i class="fa-solid fa-shield-heart"></i> Trusted Pharmacy</span>
+    </div>
+
+    <div class="top-right">
+        <span><i class="fa-solid fa-phone"></i> +91 98765 43210</span>
+        <span><i class="fa-solid fa-clock"></i> Open 24/7</span>
+    </div>
+</div>
+
+<!-- MAIN NAVBAR -->
+<header class="navbar">
+
+    <a href="index.html" class="brand">
+        <div class="brand-icon">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+
+        <div>
+            <div class="brand-name">MediCare</div>
+            <span class="brand-sub">PHARMACY</span>
+        </div>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>Home
+        </a>
+
+        <a href="medicines.html">
+            <i class="fa-solid fa-capsules"></i>Medicines
+        </a>
+
+        <a href="categories.html">
+            <i class="fa-solid fa-layer-group"></i>Categories
+        </a>
+
+        <a href="ayurvedic.html">
+            <i class="fa-solid fa-leaf"></i>Ayurvedic
+        </a>
+
+        <a href="orders.html">
+            <i class="fa-solid fa-calendar-check"></i>Orders
+        </a>
+    </nav>
+
+    <div class="nav-actions">
+        <a href="medicines.html" class="search-btn"
+           aria-label="Search medicines">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+
+        <a href="cart.html" class="cart-btn">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+        </a>
+
+        <a href="login.html" class="login-btn-nav">
+            <i class="fa-solid fa-user"></i> Login
+        </a>
+    </div>
+
+</header>
+
+<!-- LOGIN SECTION -->
+<main class="login-section">
+
+    <div class="login-layout">
+
+        <!-- LEFT SIDE -->
+        <section class="welcome-content">
+
+            <div class="tag">
+                <i class="fa-solid fa-heart"></i>
+                &nbsp; YOUR HEALTH, OUR PRIORITY
+            </div>
+
+            <h1>
+                Welcome Back
+                <span>to MediCare+</span>
+            </h1>
+
+            <p>
+                Your health journey starts here. Sign in to explore
+                medicines, manage your orders, and access your
+                pharmacy account in one convenient place.
+            </p>
+
+            <div class="benefits">
+                <div class="benefit">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    <span>Your health and safety matter</span>
+                </div>
+
+                <div class="benefit">
+                    <i class="fa-solid fa-capsules"></i>
+                    <span>Explore healthcare essentials</span>
+                </div>
+
+                <div class="benefit">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Convenient order management</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RIGHT LOGIN CARD -->
+        <section class="login-card">
+
+            <div class="card-icon">
+                <i class="fa-solid fa-user-doctor"></i>
+            </div>
+
+            <h2>Sign In</h2>
+
+            <p class="card-description">
+                Enter your details to access your account.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            minlength="6"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember">
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+
+                    <a href="forgot-password.html">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    &nbsp; Login to Account
+                </button>
+
+                <p class="message" id="message"
+                   role="status" aria-live="polite"></p>
+
+            </form>
+
+            <div class="register">
+                Don't have an account?
+                <a href="register.html">Create Account</a>
+            </div>
+
+            <div class="secure-note">
+                <i class="fa-solid fa-shield-halved"></i>
+                Secure access to your pharmacy account
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>
+        &copy; 2026 <span>MediCare Pharmacy</span>.
+        Your Health, Our Priority.
+    </p>
+</footer>
+
+<script>
+const loginForm = document.getElementById("loginForm");
+const password = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+const message = document.getElementById("message");
+
+togglePassword.addEventListener("click", function () {
+    const hidden = password.type === "password";
+    password.type = hidden ? "text" : "password";
+    togglePassword.textContent = hidden ? "Hide" : "Show";
+});
+
+loginForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    if (!loginForm.checkValidity()) {
+        loginForm.reportValidity();
+        return;
+    }
+
+    const email = document.getElementById("email").value.trim();
+    const enteredPassword = password.value;
+    const submitButton = loginForm.querySelector(".submit-btn");
+
+    message.style.color = "#008b6a";
+    message.textContent = "Checking your account...";
+    submitButton.disabled = true;
+
+    try {
+        const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({
+                email: email,
+                password: enteredPassword
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            message.style.color = "#008b6a";
+            message.textContent = "Login successful! Redirecting...";
+if (result.user && result.user.role === "admin") {
+    window.location.href = "/admin.html";
+} else {
+    window.location.href = "/index.html";
+}
+            
+        } else {
+            message.style.color = "#d93025";
+            message.textContent =
+                result.message || "Login failed. Please try again.";
+        }
+    } catch (error) {
+        message.style.color = "#d93025";
+        message.textContent =
+            "Server connection failed. Please check whether the backend is running.";
+    } finally {
+        submitButton.disabled = false;
+    }
+});
+</script>
+
+
+</body>
+</html>

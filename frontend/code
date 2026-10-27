@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MediCare Pharmacy - Categories</title>
+
+<style>
+/* =========================
+   BASIC RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#eefaf7,#f8fbff,#fff5f8);
+    color:#17202a;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:16px 5%;
+
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 4px 20px rgba(0,0,0,0.12);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:900;
+    color:#087f5b;
+}
+
+.logo span{
+    color:#ff4d6d;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#222;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#087f5b;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    min-height:300px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:50px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0,100,80,0.75),
+            rgba(0,60,100,0.70)
+        ),
+        url("images/pharmacy-background.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+}
+
+.hero-content h1{
+    font-size:48px;
+    font-weight:900;
+    margin-bottom:15px;
+
+    animation:titleAnimation 1.2s ease;
+}
+
+.hero-content p{
+    font-size:20px;
+    font-weight:bold;
+    animation:fadeUp 1.5s ease;
+}
+
+@keyframes titleAnimation{
+    from{
+        opacity:0;
+        transform:translateY(-40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   SEARCH
+========================= */
+.search-area{
+    text-align:center;
+    padding:30px 20px 15px;
+}
+
+.search-area input{
+    width:70%;
+    max-width:700px;
+
+    padding:16px 22px;
+
+    border:2px solid #0ca678;
+    border-radius:30px;
+
+    font-size:17px;
+    outline:none;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+}
+
+.search-area input:focus{
+    transform:scale(1.02);
+    box-shadow:0 0 15px rgba(12,166,120,0.35);
+}
+
+/* =========================
+   FILTER BUTTONS
+========================= */
+.filters{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+
+    padding:15px 20px 30px;
+}
+
+.filter-btn{
+    border:none;
+    padding:11px 20px;
+
+    border-radius:25px;
+
+    background:#087f5b;
+    color:white;
+
+    font-weight:bold;
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.filter-btn:hover{
+    transform:translateY(-3px) scale(1.04);
+    background:#ff4d6d;
+}
+
+.filter-btn.active{
+    background:#ff4d6d;
+}
+
+/* =========================
+   TABLE SECTION
+========================= */
+.table-section{
+    width:94%;
+    margin:auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+
+    box-shadow:0 10px 35px rgba(0,0,0,0.12);
+
+    margin-bottom:50px;
+}
+
+.table-title{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.table-title h2{
+    font-size:32px;
+    color:#087f5b;
+    font-weight:900;
+}
+
+.table-title p{
+    margin-top:8px;
+    color:#666;
+}
+
+/* =========================
+   IMPORTANT HORIZONTAL AREA
+========================= */
+
+.table-wrapper{
+    width:100%;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    cursor:grab;
+
+    scroll-behavior:smooth;
+
+    scroll-snap-type:x proximity;
+
+    -webkit-overflow-scrolling:touch;
+
+    scrollbar-width:thin;
+
+    border-radius:15px;
+}
+
+/* When mouse is dragging */
+.table-wrapper.dragging{
+    cursor:grabbing;
+    scroll-behavior:auto;
+    user-select:none;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.medicine-table{
+    width:1800px;
+    min-width:1800px;
+
+    border-collapse:separate;
+    border-spacing:0;
+
+    overflow:hidden;
+
+    border-radius:15px;
+}
+
+.medicine-table th{
+    position:sticky;
+    top:0;
+
+    background:linear-gradient(
+        135deg,
+        #087f5b,
+        #00a878
+    );
+
+    color:white;
+
+    padding:16px 14px;
+
+    font-size:15px;
+    font-weight:900;
+
+    text-align:center;
+
+    white-space:nowrap;
+}
+
+.medicine-table td{
+    padding:14px 12px;
+
+    text-align:center;
+
+    font-size:20px;
+
+    border-bottom:1px solid #e8eeee;
+
+    white-space:nowrap;
+
+    transition:0.25s;
+}
+
+.medicine-table tr:nth-child(even){
+    background:#f4fffb;
+}
+
+.medicine-table tr:nth-child(odd){
+    background:#ffffff;
+}
+
+.medicine-table tr:hover{
+    background:#fff3f6;
+    transform:scale(1.002);
+}
+
+/* =========================
+   SMALL IMAGES
+========================= */
+
+.medicine-table img{
+    width:58px;
+    height:58px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    border:2px solid #e5e5e5;
+
+    box-shadow:0 3px 10px rgba(0,0,0,0.12);
+
+    transition:0.3s;
+}
+
+.medicine-table img:hover{
+    transform:scale(1.25) rotate(2deg);
+}
+
+/* CLICKABLE IMAGE */
+.medicine-table img{
+    cursor:pointer;
+}
+
+.medicine-table td:first-child{
+    position:relative;
+}
+
+.medicine-table td:first-child::after{
+    content:"👁️ Click to View";
+    display:block;
+    font-size:11px;
+    color:#087f5b;
+    font-weight:bold;
+    margin-top:5px;
+    opacity:.75;
+}
+
+/* =========================
+   CATEGORY BADGES
+========================= */
+
+.badge{
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+.english{
+    background:#d3f9d8;
+    color:#087f5b;
+}
+
+.ayurvedic{
+    background:#fff3bf;
+    color:#8a5a00;
+}
+
+.firstaid{
+    background:#ffe3e3;
+    color:#c92a2a;
+}
+
+.baby{
+    background:#e7f5ff;
+    color:#1864ab;
+}
+
+.personal{
+    background:#f3d9fa;
+    color:#862e9c;
+}
+
+/* =========================
+   PRICE
+========================= */
+
+.price{
+    font-size:17px;
+    font-weight:900;
+    color:#e03131;
+}
+
+/* =========================
+   VIEW BUTTON
+========================= */
+
+.view-btn{
+    border:none;
+
+    background:#087f5b;
+    color:white;
+
+    padding:9px 14px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.view-btn:hover{
+    background:#ff4d6d;
+    transform:scale(1.08);
+}
+
+/* =========================
+   HORIZONTAL SCROLL HINT
+========================= */
+
+.scroll-hint{
+    text-align:center;
+
+    margin-top:18px;
+
+    padding:12px;
+
+    background:#eefaf7;
+
+    border-radius:12px;
+
+    color:#087f5b;
+
+    font-weight:bold;
+
+    animation:pulseHint 2s infinite;
+}
+
+@keyframes pulseHint{
+    0%,100%{
+        opacity:0.65;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:3000;
+
+    background:rgba(0,0,0,0.65);
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.modal-content{
+    width:95%;
+    max-width:700px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    position:relative;
+
+    animation:modalOpen 0.35s ease;
+}
+
+@keyframes modalOpen{
+    from{
+        opacity:0;
+        transform:scale(0.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.close{
+    position:absolute;
+
+    top:15px;
+    right:20px;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    color:#ff4d6d;
+
+    font-weight:bold;
+}
+
+.modal-img{
+    width:180px;
+    height:180px;
+
+    object-fit:cover;
+
+    display:block;
+
+    margin:10px auto 20px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+.modal-content h2{
+    text-align:center;
+
+    color:#087f5b;
+
+    margin-bottom:20px;
+}
+
+.modal-info{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+.info-box{
+    background:#f5fffc;
+
+    padding:12px;
+
+    border-radius:12px;
+}
+
+.info-box strong{
+    color:#087f5b;
+}
+
+.modal-price{
+    text-align:center;
+
+    font-size:25px;
+
+    color:#e03131;
+
+    font-weight:900;
+
+    margin:20px;
+}
+
+/* =========================
+   ENHANCED VIEW MODAL
+========================= */
+.modal-image-area{
+    text-align:center;
+}
+
+.click-hint{
+    color:#087f5b;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.modal-img{
+    width:220px;
+    height:220px;
+    object-fit:contain;
+    display:block;
+    margin:5px auto 8px;
+    border-radius:25px;
+    background:#f7fffc;
+    padding:12px;
+    border:3px solid #d8f5e8;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.modal-img:hover{
+    transform:scale(1.04);
+}
+
+.modal-content h2{
+    font-size:30px;
+    color:#087f5b;
+    text-align:center;
+    margin:10px 0 20px;
+}
+
+.extra-details{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:18px;
+}
+
+.detail-box{
+    padding:17px;
+    border-radius:17px;
+    transition:.3s;
+}
+
+.detail-box:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 18px rgba(0,0,0,.10);
+}
+
+.detail-box h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.detail-box p{
+    color:#444;
+    line-height:1.6;
+    font-size:14px;
+    white-space:normal;
+}
+
+.symptoms-box{background:#fff5f5;border-left:5px solid #ff6b6b;}
+.symptoms-box h3{color:#c92a2a;}
+.benefits-box{background:#f3fff8;border-left:5px solid #20c997;}
+.benefits-box h3{color:#087f5b;}
+.uses-box{background:#f3f8ff;border-left:5px solid #339af0;}
+.uses-box h3{color:#1864ab;}
+.usage-box{background:#fff9db;border-left:5px solid #fab005;}
+.usage-box h3{color:#8a5a00;}
+.precaution-box{background:#fff4e6;border-left:5px solid #ff922b;}
+.precaution-box h3{color:#d9480f;}
+.suitable-box{background:#f8f0ff;border-left:5px solid #be4bdb;}
+.suitable-box h3{color:#862e9c;}
+.storage-box{background:#eefaff;border-left:5px solid #15aabf;}
+.storage-box h3{color:#0b7285;}
+.safety-box{background:#fff0f6;border-left:5px solid #f06595;}
+.safety-box h3{color:#a61e4d;}
+
+.modal-price-area{
+    margin-top:22px;
+    padding:18px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#e8fff5,#f3f9ff);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-price-area span{font-size:18px;font-weight:bold;}
+.modal-price-area strong{font-size:28px;color:#e03131;}
+.modal-footer-note{
+    text-align:center;
+    margin-top:18px;
+    padding:12px;
+    border-radius:12px;
+    background:#eefaf7;
+    color:#087f5b;
+    font-weight:bold;
+    font-size:13px;
+}
+
+@media(max-width:800px){
+    .extra-details{grid-template-columns:1fr;}
+    .modal-img{width:180px;height:180px;}
+    .modal-content h2{font-size:24px;}
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#17202a;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:40px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .nav-links{
+        gap:10px;
+        font-size:12px;
+    }
+
+    .hero-content h1{
+        font-size:34px;
+    }
+
+    .search-area input{
+        width:90%;
+    }
+
+    .table-section{
+        width:96%;
+        padding:15px;
+    }
+
+    .medicine-table{
+        width:1800px;
+    }
+
+    .modal-info{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        💊 MediCare<span>+</span>
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="index.html">🏠 Home</a></li>
+
+        <li><a href="medicines.html">💊 Medicines</a></li>
+
+        <li><a href="categories.html">📋 Categories</a></li>
+
+        <li><a href="ayurvedic.html">🌿 Ayurvedic</a></li>
+
+        <li><a href="orders.html">📦 Orders</a></li>
+
+        <li><a href="cart.html">🛒 Cart</a></li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>📋 Medicine Categories</h1>
+
+        <p>
+            💊 English Medicines • 🌿 Ayurvedic • 🩹 First Aid • 👶 Baby Care
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-area">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search medicine, category, purpose..."
+        onkeyup="searchTable()"
+    >
+
+</div>
+
+
+<!-- =========================
+     FILTERS
+========================= -->
+
+<div class="filters">
+
+    <button class="filter-btn active"
+            onclick="filterCategory('all',this)">
+        🌐 All
+    </button>
+
+    <button class="filter-btn"
+            onclick="filterCategory('English Medicine',this)">
+        💊 English
+    </button>
+
+    <button class="filter-btn"
+            onclick="filterCategory('Ayurvedic',this)">
+        🌿 Ayurvedic
+    </button>
+
+    <button class="filter-btn"
+            onclick="filterCategory('First Aid',this)">
+        🩹 First Aid
+    </button>
+
+    <button class="filter-btn"
+            onclick="filterCategory('Baby Care',this)">
+        👶 Baby Care
+    </button>
+
+    <button class="filter-btn"
+            onclick="filterCategory('Personal Care',this)">
+        🧴 Personal Care
+    </button>
+
+</div>
+
+
+<!-- =========================
+     TABLE
+========================= -->
+
+<section class="table-section">
+
+    <div class="table-title">
+
+        <h2>💊 Complete Medicine List</h2>
+
+        <p>
+            Allopathic • Ayurvedic • Baby Care Products • First Aid • Personal Care
+        </p>
+
+    </div>
+
+
+    <!--
+       THIS IS THE IMPORTANT PART
+
+       Mouse Drag
+       Trackpad Horizontal Swipe
+       Touch Swipe
+       Keyboard ← →
+    -->
+
+    <div class="table-wrapper" id="tableWrapper">
+
+        <table class="medicine-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>🖼️ Image</th>
+
+                    <th>💊 Medicine Name</th>
+
+                    <th>📂 Type</th>
+
+                    <th>🏷️ Category</th>
+
+                    <th>🎯 Purpose</th>
+
+                    <th>✨ Benefits</th>
+
+                    <th>📝 Uses</th>
+
+                    <th>⚠️ Precautions</th>
+
+                    <th>💰 Price</th>
+
+                    <th>👁️ Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="medicineTableBody">
+
+
+                <!-- 1 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/fever-tablets.jpg">
+                    </td>
+
+                    <td><b>Fever Relief Tablet</b></td>
+
+                    <td>Tablet</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Fever care</td>
+
+                    <td>Helps provide temporary relief</td>
+
+                    <td>Used according to product label</td>
+
+                    <td>Follow label instructions</td>
+
+                    <td class="price">₹45</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Fever Relief Tablet',
+                        'images/fever-tablets.jpg',
+                        'Tablet',
+                        'English Medicine',
+                        'Fever care',
+                        'Temporary relief',
+                        'Use according to label',
+                        'Follow label instructions',
+                        '₹45')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 2 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/cold-tablet.jfif">
+                    </td>
+
+                    <td><b>Cold Relief Tablet</b></td>
+
+                    <td>Tablet</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Cold care</td>
+
+                    <td>Supports cold symptom relief</td>
+
+                    <td>Use according to label</td>
+
+                    <td>Check ingredients</td>
+
+                    <td class="price">₹55</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Cold Relief Tablet',
+                        'images/cold-tablet.jfif',
+                        'Tablet',
+                        'English Medicine',
+                        'Cold care',
+                        'Symptom support',
+                        'Use according to label',
+                        'Check ingredients',
+                        '₹55')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 3 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/cough-tablet.jpg">
+                    </td>
+
+                    <td><b>Cough Care Tablet</b></td>
+
+                    <td>Tablet</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Cough care</td>
+
+                    <td>Supports cough care</td>
+
+                    <td>Use according to label</td>
+
+                    <td>Check product instructions</td>
+
+                    <td class="price">₹60</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Cough Care Tablet',
+                        'images/cough-tablet.jpg',
+                        'Tablet',
+                        'English Medicine',
+                        'Cough care',
+                        'Supports cough care',
+                        'Use according to label',
+                        'Check instructions',
+                        '₹60')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 4 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/capsules.jpg">
+                    </td>
+
+                    <td><b>Daily Wellness Capsule</b></td>
+
+                    <td>Capsule</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Daily wellness</td>
+
+                    <td>Supports nutritional intake</td>
+
+                    <td>Use as directed</td>
+
+                    <td>Check ingredients</td>
+
+                    <td class="price">₹120</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Daily Wellness Capsule',
+                        'images/capsules.jpg',
+                        'Capsule',
+                        'English Medicine',
+                        'Daily wellness',
+                        'Nutritional support',
+                        'Use as directed',
+                        'Check ingredients',
+                        '₹120')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 5 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/syrups.jpg">
+                    </td>
+
+                    <td><b>Cough Syrup</b></td>
+
+                    <td>Syrup</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Cough care</td>
+
+                    <td>Supports cough symptom care</td>
+
+                    <td>Follow label directions</td>
+
+                    <td>Check age restrictions</td>
+
+                    <td class="price">₹95</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Cough Syrup',
+                        'images/syrups.jpg',
+                        'Syrup',
+                        'English Medicine',
+                        'Cough care',
+                        'Symptom support',
+                        'Follow label directions',
+                        'Check age restrictions',
+                        '₹95')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 6 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/pain-relief-tablet.jpg">
+                    </td>
+
+                    <td><b>Pain Relief Tablet</b></td>
+
+                    <td>Tablet</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Pain care</td>
+
+                    <td>Temporary pain relief</td>
+
+                    <td>Use according to label</td>
+
+                    <td>Check warnings</td>
+
+                    <td class="price">₹50</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Pain Relief Tablet',
+                        'images/pain-relief-tablet.jpg',
+                        'Tablet',
+                        'English Medicine',
+                        'Pain care',
+                        'Temporary relief',
+                        'Use according to label',
+                        'Check warnings',
+                        '₹50')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 7 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/ashwagandha.jpg">
+                    </td>
+
+                    <td><b>Ashwagandha</b></td>
+
+                    <td>Herbal</td>
+
+                    <td>
+                        <span class="badge ayurvedic">
+                            Ayurvedic
+                        </span>
+                    </td>
+
+                    <td>Traditional wellness</td>
+
+                    <td>Traditional herbal wellness support</td>
+
+                    <td>Follow product instructions</td>
+
+                    <td>Check suitability</td>
+
+                    <td class="price">₹180</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Ashwagandha',
+                        'images/ashwagandha.jpg',
+                        'Herbal',
+                        'Ayurvedic',
+                        'Traditional wellness',
+                        'Traditional herbal wellness support',
+                        'Follow product instructions',
+                        'Check suitability',
+                        '₹180')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 8 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/turmeric.jpg">
+                    </td>
+
+                    <td><b>Turmeric Herbal Product</b></td>
+
+                    <td>Herbal</td>
+
+                    <td>
+                        <span class="badge ayurvedic">
+                            Ayurvedic
+                        </span>
+                    </td>
+
+                    <td>Traditional wellness</td>
+
+                    <td>Traditional herbal use</td>
+
+                    <td>Follow product label</td>
+
+                    <td>Check suitability</td>
+
+                    <td class="price">₹140</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Turmeric Herbal Product',
+                        'images/turmeric.jpg',
+                        'Herbal',
+                        'Ayurvedic',
+                        'Traditional wellness',
+                        'Traditional herbal use',
+                        'Follow product label',
+                        'Check suitability',
+                        '₹140')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 9 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/neem.jpg">
+                    </td>
+
+                    <td><b>Neem Herbal Product</b></td>
+
+                    <td>Herbal</td>
+
+                    <td>
+                        <span class="badge ayurvedic">
+                            Ayurvedic
+                        </span>
+                    </td>
+
+                    <td>Traditional herbal care</td>
+
+                    <td>Traditional neem-based use</td>
+
+                    <td>Follow product instructions</td>
+
+                    <td>Check suitability</td>
+
+                    <td class="price">₹130</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Neem Herbal Product',
+                        'images/neem.jpg',
+                        'Herbal',
+                        'Ayurvedic',
+                        'Traditional herbal care',
+                        'Traditional neem-based use',
+                        'Follow product instructions',
+                        'Check suitability',
+                        '₹130')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 10 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/triphala.jpg">
+                    </td>
+
+                    <td><b>Triphala</b></td>
+
+                    <td>Herbal</td>
+
+                    <td>
+                        <span class="badge ayurvedic">
+                            Ayurvedic
+                        </span>
+                    </td>
+
+                    <td>Traditional wellness</td>
+
+                    <td>Traditional herbal wellness</td>
+
+                    <td>Follow package instructions</td>
+
+                    <td>Check suitability</td>
+
+                    <td class="price">₹160</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Triphala',
+                        'images/triphala.jpg',
+                        'Herbal',
+                        'Ayurvedic',
+                        'Traditional wellness',
+                        'Traditional herbal wellness',
+                        'Follow package instructions',
+                        'Check suitability',
+                        '₹160')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 11 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/skin-care-oilnments.jpg">
+                    </td>
+
+                    <td><b>Skin Care Ointment</b></td>
+
+                    <td>Ointment</td>
+
+                    <td>
+                        <span class="badge personal">
+                            Personal Care
+                        </span>
+                    </td>
+
+                    <td>Skin care</td>
+
+                    <td>Helps moisturize and protect skin</td>
+
+                    <td>External use</td>
+
+                    <td>Avoid contact with eyes</td>
+
+                    <td class="price">₹110</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Skin Care Ointment',
+                        'images/skin-care-oilnments.jpg',
+                        'Ointment',
+                        'Personal Care',
+                        'Skin care',
+                        'Moisturizing and protective care',
+                        'External use',
+                        'Avoid contact with eyes',
+                        '₹110')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 12 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/babycare.jpg">
+                    </td>
+
+                    <td><b>Baby Care Product</b></td>
+
+                    <td>Baby Care</td>
+
+                    <td>
+                        <span class="badge baby">
+                            Baby Care
+                        </span>
+                    </td>
+
+                    <td>Baby skin care</td>
+
+                    <td>Gentle daily care</td>
+
+                    <td>External use</td>
+
+                    <td>Check product suitability</td>
+
+                    <td class="price">₹150</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Baby Care Product',
+                        'images/babycare.jpg',
+                        'Baby Care',
+                        'Baby Care',
+                        'Baby skin care',
+                        'Gentle daily care',
+                        'External use',
+                        'Check product suitability',
+                        '₹150')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 13 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/moisturising-lotion.jpg">
+                    </td>
+
+                    <td><b>Moisturizing Lotion</b></td>
+
+                    <td>Lotion</td>
+
+                    <td>
+                        <span class="badge personal">
+                            Personal Care
+                        </span>
+                    </td>
+
+                    <td>Skin moisturization</td>
+
+                    <td>Helps keep skin moisturized</td>
+
+                    <td>External use</td>
+
+                    <td>Avoid eye contact</td>
+
+                    <td class="price">₹125</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Moisturizing Lotion',
+                        'images/moisturising-lotion.jpg',
+                        'Lotion',
+                        'Personal Care',
+                        'Skin moisturization',
+                        'Moisturizing care',
+                        'External use',
+                        'Avoid eye contact',
+                        '₹125')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 14 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/herbal-shampoo.jpg">
+                    </td>
+
+                    <td><b>Herbal Shampoo</b></td>
+
+                    <td>Shampoo</td>
+
+                    <td>
+                        <span class="badge personal">
+                            Personal Care
+                        </span>
+                    </td>
+
+                    <td>Hair care</td>
+
+                    <td>Daily hair cleansing</td>
+
+                    <td>External use</td>
+
+                    <td>Avoid eye contact</td>
+
+                    <td class="price">₹180</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Herbal Shampoo',
+                        'images/herbal-shampoo.jpg',
+                        'Shampoo',
+                        'Personal Care',
+                        'Hair care',
+                        'Daily hair cleansing',
+                        'External use',
+                        'Avoid eye contact',
+                        '₹180')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 15 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/herbal-soap.jpg">
+                    </td>
+
+                    <td><b>Herbal Soap</b></td>
+
+                    <td>Soap</td>
+
+                    <td>
+                        <span class="badge ayurvedic">
+                            Ayurvedic
+                        </span>
+                    </td>
+
+                    <td>Skin cleansing</td>
+
+                    <td>Daily cleansing</td>
+
+                    <td>External use</td>
+
+                    <td>Avoid eye contact</td>
+
+                    <td class="price">₹75</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Herbal Soap',
+                        'images/herbal-soap.jpg',
+                        'Soap',
+                        'Ayurvedic',
+                        'Skin cleansing',
+                        'Daily cleansing',
+                        'External use',
+                        'Avoid eye contact',
+                        '₹75')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 16 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/vitamin-drops.jpg">
+                    </td>
+
+                    <td><b>Vitamin Drops</b></td>
+
+                    <td>Drops</td>
+
+                    <td>
+                        <span class="badge english">
+                            English Medicine
+                        </span>
+                    </td>
+
+                    <td>Vitamin supplement</td>
+
+                    <td>Nutritional support</td>
+
+                    <td>Use according to label</td>
+
+                    <td>Check age suitability</td>
+
+                    <td class="price">₹90</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Vitamin Drops',
+                        'images/vitamin-drops.jpg',
+                        'Drops',
+                        'English Medicine',
+                        'Vitamin supplement',
+                        'Nutritional support',
+                        'Use according to label',
+                        'Check age suitability',
+                        '₹90')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 17 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/firstaid-kit.jpg">
+                    </td>
+
+                    <td><b>First Aid Kit</b></td>
+
+                    <td>First Aid</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Emergency care</td>
+
+                    <td>Basic first-aid supplies</td>
+
+                    <td>For basic first aid</td>
+
+                    <td>Check contents before use</td>
+
+                    <td class="price">₹350</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'First Aid Kit',
+                        'images/firstaid-kit.jpg',
+                        'First Aid',
+                        'First Aid',
+                        'Emergency care',
+                        'Basic first-aid supplies',
+                        'For basic first aid',
+                        'Check contents',
+                        '₹350')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 18 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/bandage.jpg">
+                    </td>
+
+                    <td><b>Adhesive Bandage</b></td>
+
+                    <td>Bandage</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Minor wound protection</td>
+
+                    <td>Protects minor wounds</td>
+
+                    <td>Clean skin before use</td>
+
+                    <td>Change when required</td>
+
+                    <td class="price">₹40</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Adhesive Bandage',
+                        'images/bandage.jpg',
+                        'Bandage',
+                        'First Aid',
+                        'Minor wound protection',
+                        'Protective covering',
+                        'Clean skin before use',
+                        'Change when required',
+                        '₹40')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 19 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/gauze.jpg">
+                    </td>
+
+                    <td><b>Sterile Gauze Pad</b></td>
+
+                    <td>Gauze</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Wound dressing</td>
+
+                    <td>Provides wound covering</td>
+
+                    <td>Use clean sterile gauze</td>
+
+                    <td>Keep package sealed</td>
+
+                    <td class="price">₹60</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Sterile Gauze Pad',
+                        'images/gauze.jpg',
+                        'Gauze',
+                        'First Aid',
+                        'Wound dressing',
+                        'Wound covering',
+                        'Use sterile gauze',
+                        'Keep package sealed',
+                        '₹60')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 20 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/thermometer.jpg">
+                    </td>
+
+                    <td><b>Digital Thermometer</b></td>
+
+                    <td>Health Device</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Temperature measurement</td>
+
+                    <td>Helps measure body temperature</td>
+
+                    <td>Use according to manual</td>
+
+                    <td>Clean after use</td>
+
+                    <td class="price">₹180</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Digital Thermometer',
+                        'images/thermometer.jpg',
+                        'Health Device',
+                        'First Aid',
+                        'Temperature measurement',
+                        'Temperature monitoring',
+                        'Use according to manual',
+                        'Clean after use',
+                        '₹180')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 21 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/medical-cotton.jpg">
+                    </td>
+
+                    <td><b>Medical Cotton</b></td>
+
+                    <td>Cotton</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Basic wound care</td>
+
+                    <td>Useful for basic cleaning</td>
+
+                    <td>Use clean cotton</td>
+
+                    <td>Store in dry place</td>
+
+                    <td class="price">₹50</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Medical Cotton',
+                        'images/medical-cotton.jpg',
+                        'Cotton',
+                        'First Aid',
+                        'Basic wound care',
+                        'Basic cleaning support',
+                        'Use clean cotton',
+                        'Store dry',
+                        '₹50')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 22 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/medical-adhesive-tapes.jpg">
+                    </td>
+
+                    <td><b>Medical Adhesive Tape</b></td>
+
+                    <td>Medical Tape</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Wound dressing support</td>
+
+                    <td>Helps secure dressings</td>
+
+                    <td>Use on clean dry skin</td>
+
+                    <td>Stop use if irritation occurs</td>
+
+                    <td class="price">₹70</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Medical Adhesive Tape',
+                        'images/medical-adhesive-tapes.jpg',
+                        'Medical Tape',
+                        'First Aid',
+                        'Wound dressing support',
+                        'Secures dressings',
+                        'Use on clean dry skin',
+                        'Stop if irritation occurs',
+                        '₹70')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 23 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/antiseptic-solution.jpg">
+                    </td>
+
+                    <td><b>Antiseptic Solution</b></td>
+
+                    <td>Solution</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Basic wound cleaning</td>
+
+                    <td>Used for basic cleaning</td>
+
+                    <td>Follow product instructions</td>
+
+                    <td>External use only when stated</td>
+
+                    <td class="price">₹95</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Antiseptic Solution',
+                        'images/antiseptic-solution.jpg',
+                        'Solution',
+                        'First Aid',
+                        'Basic wound cleaning',
+                        'Cleaning support',
+                        'Follow product instructions',
+                        'Check label',
+                        '₹95')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 24 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/hand-sanitizer.jpg">
+                    </td>
+
+                    <td><b>Hand Sanitizer</b></td>
+
+                    <td>Sanitizer</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Hand hygiene</td>
+
+                    <td>Helps maintain hand hygiene</td>
+
+                    <td>External use</td>
+
+                    <td>Avoid eyes</td>
+
+                    <td class="price">₹80</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Hand Sanitizer',
+                        'images/hand-sanitizer.jpg',
+                        'Sanitizer',
+                        'First Aid',
+                        'Hand hygiene',
+                        'Hand hygiene support',
+                        'External use',
+                        'Avoid eyes',
+                        '₹80')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 25 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/hot-water-bag.jpg">
+                    </td>
+
+                    <td><b>Hot Water Bag</b></td>
+
+                    <td>Health Device</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Warm compress</td>
+
+                    <td>Provides warming comfort</td>
+
+                    <td>Use according to instructions</td>
+
+                    <td>Check temperature carefully</td>
+
+                    <td class="price">₹250</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Hot Water Bag',
+                        'images/hot-water-bag.jpg',
+                        'Health Device',
+                        'First Aid',
+                        'Warm compress',
+                        'Warming comfort',
+                        'Use according to instructions',
+                        'Check temperature',
+                        '₹250')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 26 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/reusable-icepack.jpg">
+                    </td>
+
+                    <td><b>Reusable Ice Pack</b></td>
+
+                    <td>Health Device</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Cold compress</td>
+
+                    <td>Provides cooling comfort</td>
+
+                    <td>Use according to instructions</td>
+
+                    <td>Do not apply directly if label says otherwise</td>
+
+                    <td class="price">₹180</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Reusable Ice Pack',
+                        'images/reusable-icepack.jpg',
+                        'Health Device',
+                        'First Aid',
+                        'Cold compress',
+                        'Cooling comfort',
+                        'Use according to instructions',
+                        'Follow product instructions',
+                        '₹180')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+                <!-- 27 -->
+
+                <tr>
+
+                    <td>
+                        <img src="images/complete-firstaid-box.jpg">
+                    </td>
+
+                    <td><b>Complete First Aid Box</b></td>
+
+                    <td>First Aid</td>
+
+                    <td>
+                        <span class="badge firstaid">
+                            First Aid
+                        </span>
+                    </td>
+
+                    <td>Emergency preparedness</td>
+
+                    <td>Contains basic first-aid supplies</td>
+
+                    <td>For basic first aid</td>
+
+                    <td>Check expiry and contents</td>
+
+                    <td class="price">₹550</td>
+
+                    <td>
+                        <button class="view-btn"
+                        onclick="viewMedicine(
+                        'Complete First Aid Box',
+                        'images/complete-firstaid-box.jpg',
+                        'First Aid',
+                        'First Aid',
+                        'Emergency preparedness',
+                        'Basic first-aid supplies',
+                        'For basic first aid',
+                        'Check expiry and contents',
+                        '₹550')">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    
+
+</section>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div class="modal" id="medicineModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">×</span>
+
+        <div class="modal-image-area">
+            <img id="modalImage" class="modal-img" src="" alt="Medicine Image">
+            <div class="click-hint">👆 Product / Medicine Details</div>
+        </div>
+
+        <h2 id="modalName"></h2>
+
+        <div class="modal-info">
+            <div class="info-box"><strong>💊 Type</strong><span id="modalType"></span></div>
+            <div class="info-box"><strong>🏷️ Category</strong><span id="modalCategory"></span></div>
+            <div class="info-box"><strong>🎯 Purpose</strong><span id="modalPurpose"></span></div>
+            <div class="info-box"><strong>💰 Price</strong><span id="modalPrice"></span></div>
+        </div>
+
+        <div class="extra-details">
+            <div class="detail-box symptoms-box"><h3>🤒 Symptoms / Common Concerns</h3><p id="modalSymptoms"></p></div>
+            <div class="detail-box benefits-box"><h3>✨ Benefits</h3><p id="modalBenefits"></p></div>
+            <div class="detail-box uses-box"><h3>📝 Uses</h3><p id="modalUses"></p></div>
+            <div class="detail-box usage-box"><h3>📋 How to Use</h3><p id="modalHowToUse"></p></div>
+            <div class="detail-box precaution-box"><h3>⚠️ Precautions</h3><p id="modalPrecautions"></p></div>
+            <div class="detail-box suitable-box"><h3>👤 Suitable For</h3><p id="modalSuitable"></p></div>
+            <div class="detail-box storage-box"><h3>📦 Storage</h3><p id="modalStorage"></p></div>
+            <div class="detail-box safety-box"><h3>🩺 Safety Note</h3><p>Follow the product label or advice of a qualified healthcare professional. Do not use a medicine beyond the recommended instructions.</p></div>
+        </div>
+
+        <div class="modal-price-area"><span>💰 Price</span><strong id="modalPriceBottom"></strong></div>
+        <div class="modal-footer-note">💚 MediCare Pharmacy • 🌿 Your health, our care</div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h3>💊 MediCare Pharmacy</h3>
+
+    <p>
+        Your Online Pharmacy Management System
+    </p>
+
+    <p>
+        © 2026 MediCare Pharmacy
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   HORIZONTAL TABLE MOVEMENT
+   MOUSE DRAG
+===================================== */
+
+const slider = document.getElementById("tableWrapper");
+
+let isDown = false;
+
+let startX;
+
+let scrollLeft;
+
+
+/* Mouse Down */
+
+slider.addEventListener("mousedown", function(e){
+
+    isDown = true;
+
+    slider.classList.add("dragging");
+
+    startX = e.pageX - slider.offsetLeft;
+
+    scrollLeft = slider.scrollLeft;
+
+});
+
+
+/* Mouse Leave */
+
+slider.addEventListener("mouseleave", function(){
+
+    isDown = false;
+
+    slider.classList.remove("dragging");
+
+});
+
+
+/* Mouse Up */
+
+slider.addEventListener("mouseup", function(){
+
+    isDown = false;
+
+    slider.classList.remove("dragging");
+
+});
+
+
+/* Mouse Move */
+
+slider.addEventListener("mousemove", function(e){
+
+    if(!isDown) return;
+
+    e.preventDefault();
+
+    const x = e.pageX - slider.offsetLeft;
+
+    const walk = (x - startX) * 1.5;
+
+    slider.scrollLeft = scrollLeft - walk;
+
+});
+
+
+/* =====================================
+   TRACKPAD / TOUCH SWIPE
+===================================== */
+
+let lastTouchX = 0;
+
+slider.addEventListener(
+    "touchstart",
+    function(e){
+
+        lastTouchX = e.touches[0].pageX;
+
+    },
+    {passive:true}
+);
+
+
+slider.addEventListener(
+    "touchmove",
+    function(e){
+
+        const currentX = e.touches[0].pageX;
+
+        const movement = lastTouchX - currentX;
+
+        slider.scrollLeft += movement;
+
+        lastTouchX = currentX;
+
+    },
+    {passive:true}
+);
+
+
+/* =====================================
+   MOUSE WHEEL
+   Vertical wheel -> horizontal movement
+===================================== */
+
+slider.addEventListener(
+    "wheel",
+    function(e){
+
+        if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+
+            slider.scrollLeft += e.deltaY;
+
+            e.preventDefault();
+
+        }
+
+    },
+    {passive:false}
+);
+
+
+/* =====================================
+   KEYBOARD LEFT / RIGHT
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        /*
+          Don't move table while typing
+          inside search box
+        */
+
+        if(
+            document.activeElement.tagName === "INPUT" ||
+            document.activeElement.tagName === "TEXTAREA"
+        ){
+
+            return;
+
+        }
+
+
+        if(e.key === "ArrowRight"){
+
+            slider.scrollBy({
+                left:450,
+                behavior:"smooth"
+            });
+
+        }
+
+
+        if(e.key === "ArrowLeft"){
+
+            slider.scrollBy({
+                left:-450,
+                behavior:"smooth"
+            });
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   SEARCH TABLE
+===================================== */
+
+function searchTable(){
+
+    const input =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const rows =
+        document
+        .querySelectorAll(
+            "#medicineTableBody tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        const text =
+            row.innerText.toLowerCase();
+
+        if(text.includes(input)){
+
+            row.style.display="";
+
+        }else{
+
+            row.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* =====================================
+   CATEGORY FILTER
+===================================== */
+
+function filterCategory(category,button){
+
+    const rows =
+        document
+        .querySelectorAll(
+            "#medicineTableBody tr"
+        );
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    rows.forEach(function(row){
+
+        if(category === "all"){
+
+            row.style.display="";
+
+            return;
+
+        }
+
+
+        const text =
+            row.innerText.toLowerCase();
+
+
+        if(
+            text.includes(
+                category.toLowerCase()
+            )
+        ){
+
+            row.style.display="";
+
+        }else{
+
+            row.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* =====================================
+   VIEW MEDICINE MODAL
+===================================== */
+
+function viewMedicine(
+    name, image, type, category, purpose, benefits, uses, precautions, price
+){
+    document.getElementById("modalImage").src = image;
+    document.getElementById("modalName").innerText = name;
+    document.getElementById("modalType").innerText = type;
+    document.getElementById("modalCategory").innerText = category;
+    document.getElementById("modalPurpose").innerText = purpose;
+    document.getElementById("modalBenefits").innerText = benefits;
+    document.getElementById("modalUses").innerText = uses;
+    document.getElementById("modalPrecautions").innerText = precautions;
+    document.getElementById("modalPrice").innerText = price;
+    document.getElementById("modalPriceBottom").innerText = price;
+
+    const info = getExtraInformation(name, purpose, category);
+    document.getElementById("modalSymptoms").innerText = info.symptoms;
+    document.getElementById("modalHowToUse").innerText = info.howToUse;
+    document.getElementById("modalSuitable").innerText = info.suitable;
+    document.getElementById("modalStorage").innerText = info.storage;
+
+    document.getElementById("medicineModal").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =====================================
+   EXTRA PRODUCT INFORMATION
+===================================== */
+function getExtraInformation(name, purpose, category){
+    const text = (name + " " + purpose + " " + category).toLowerCase();
+
+    let symptoms = "🤍 Common health or personal-care concern related to the product purpose.";
+    let howToUse = "📋 Use only according to the product label or healthcare professional's instructions.";
+    let suitable = "👤 Suitability depends on the specific product and individual needs.";
+    const storage = "📦 Keep in a cool, dry place, away from direct sunlight and out of children's reach.";
+
+    if(text.includes("fever")){
+        symptoms="🌡️ Fever, body discomfort and temporary feeling of warmth.";
+        howToUse="💊 Follow the dosage and timing mentioned on the product label.";
+        suitable="👤 Use according to the labelled age and dosage instructions.";
+    } else if(text.includes("cold")){
+        symptoms="🤧 Runny nose, blocked nose, sneezing or common cold discomfort.";
+        howToUse="💊 Use according to the instructions given on the package.";
+        suitable="👤 Suitability depends on age, ingredients and individual condition.";
+    } else if(text.includes("cough")){
+        symptoms="😷 Cough, throat irritation or common respiratory discomfort.";
+        howToUse="🥄 Follow the recommended instructions on the product label.";
+        suitable="👤 Check age suitability before use, especially for children.";
+    } else if(text.includes("pain")){
+        symptoms="🤕 Mild pain, body aches or temporary discomfort.";
+        howToUse="💊 Follow the recommended label directions and dosage.";
+        suitable="👤 Suitability depends on age, health condition and product instructions.";
+    } else if(text.includes("vitamin") || text.includes("wellness")){
+        symptoms="🥗 May be used when nutritional or everyday wellness support is needed.";
+        howToUse="💊 Take/use according to the product label.";
+        suitable="👤 Suitable use depends on nutritional needs and product instructions.";
+    } else if(text.includes("ayurvedic") || text.includes("herbal") || text.includes("ashwagandha") || text.includes("turmeric") || text.includes("neem") || text.includes("triphala")){
+        symptoms="🌿 Traditional wellness concerns may vary depending on the product.";
+        howToUse="🌿 Follow the package directions or advice from a qualified professional.";
+        suitable="👤 Suitability varies by product, age and individual health needs.";
+    } else if(text.includes("skin") || text.includes("lotion") || text.includes("ointment") || text.includes("soap")){
+        symptoms="🧴 Dryness, roughness or everyday skin-care concerns.";
+        howToUse="🧴 Apply externally as directed on the product label.";
+        suitable="👤 Suitable for external personal-care use according to the product label.";
+    } else if(text.includes("shampoo") || text.includes("hair")){
+        symptoms="💇 Everyday hair and scalp-care concerns.";
+        howToUse="🫧 Use externally according to the product instructions.";
+        suitable="👤 Suitable users depend on the product's labelled instructions.";
+    } else if(text.includes("baby")){
+        symptoms="👶 Everyday baby skin-care and hygiene needs.";
+        howToUse="🍼 Use only according to the baby-product instructions.";
+        suitable="👶 Specifically intended for baby-care use when stated on the label.";
+    } else if(text.includes("bandage") || text.includes("gauze") || text.includes("first aid") || text.includes("cotton") || text.includes("tape")){
+        symptoms="🩹 Minor cuts, scrapes or basic wound-care needs.";
+        howToUse="🩹 Clean the area when appropriate and use the item according to its instructions.";
+        suitable="👤 Intended for basic first-aid use.";
+    } else if(text.includes("thermometer")){
+        symptoms="🌡️ Used when temperature monitoring is required.";
+        howToUse="🌡️ Use according to the thermometer manufacturer's instructions.";
+        suitable="👨‍👩‍👧 Can be used for temperature monitoring according to the device instructions.";
+    } else if(text.includes("sanitizer")){
+        symptoms="🧼 Used for hand-hygiene needs.";
+        howToUse="🖐️ Apply/use according to the product label and allow the recommended drying time.";
+        suitable="👤 For hand hygiene when indicated on the product label.";
+    }
+
+    return {symptoms, howToUse, suitable, storage};
+}
+
+
+/* =====================================
+   IMAGE CLICK = SAME VIEW ACTION
+===================================== */
+document.querySelectorAll("#medicineTableBody tr").forEach(function(row){
+    const image = row.querySelector("td:first-child img");
+    const viewButton = row.querySelector(".view-btn");
+
+    if(image && viewButton){
+        image.addEventListener("click", function(){
+            viewButton.click();
+        });
+    }
+});
+
+
+
+/* =====================================
+   CLOSE MODAL
+===================================== */
+
+function closeModal(){
+    document.getElementById("medicineModal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+
+/* =====================================
+   CLICK OUTSIDE MODAL
+===================================== */
+
+window.addEventListener(
+    "click",
+    function(e){
+
+        const modal =
+            document.getElementById(
+                "medicineModal"
+            );
+
+        if(e.target === modal){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   ESC KEY CLOSE MODAL
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

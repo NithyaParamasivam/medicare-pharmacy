@@ -1,0 +1,3788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MediCare Pharmacy - Medicines</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Manrope",sans-serif;
+    background:#f7f9fc;
+    color:#17202a;
+}
+
+/* ================= MEDICARE HOME-PAGE NAVBAR ================= */
+.topbar{
+    background:#06483d;color:#fff;min-height:38px;padding:8px 6%;
+    display:flex;align-items:center;justify-content:space-between;gap:15px;
+    font-size:12px;font-weight:700;
+}
+.topbar-left,.topbar-right{display:flex;align-items:center;gap:25px}
+.topbar i{color:#00c99a;margin-right:5px}
+.main-header{
+    position:sticky;top:0;z-index:1000;background:#fff;min-height:78px;
+    padding:12px 5%;display:flex;align-items:center;justify-content:space-between;
+    gap:20px;box-shadow:0 3px 12px rgba(0,0,0,.05);flex-wrap:wrap;
+}
+.brand-logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#00dfa6,#00b987);display:flex;align-items:center;justify-content:center;color:#fff;font-size:25px;box-shadow:0 5px 15px #00c99a35;transform:rotate(-6deg)}
+.brand-name{font-family:'DM Serif Display',serif;color:#063b32;font-size:25px;font-weight:700;line-height:1.1}
+.brand-subtitle{color:#00ad85;font-size:9px;font-weight:800;letter-spacing:4px;margin-top:4px}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a{text-decoration:none;color:#48645d;font-size:13px;font-weight:800;padding:11px 13px;border-radius:12px;white-space:nowrap;transition:.25s}
+.nav-links a i{margin-right:7px;color:#00a982}
+.nav-links a:hover,.nav-links a.active{background:#eafff7;color:#008e70}
+.nav-links a.active{position:relative}
+.nav-links a.active:after{content:'';position:absolute;bottom:4px;left:25%;width:50%;height:3px;background:#00c99a;border-radius:5px}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-icon-btn{width:43px;height:43px;display:flex;align-items:center;justify-content:center;color:#00a982;background:#fff;border:1px solid #d8eee7;border-radius:13px;text-decoration:none}
+.nav-cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:#eafff7;color:#007e63;text-decoration:none;padding:12px 16px;border-radius:13px;font-size:13px;font-weight:800;white-space:nowrap}
+.nav-cart-count{position:absolute;top:-7px;right:-7px;width:21px;height:21px;display:flex;align-items:center;justify-content:center;background:#ff5475;color:#fff;border-radius:50%;font-size:11px}
+.nav-login-btn{background:#062f29;color:#fff;text-decoration:none;padding:13px 17px;border-radius:13px;font-size:13px;font-weight:800;white-space:nowrap}
+.nav-login-btn i{margin-right:6px}
+.nav-menu-toggle{display:none;border:1px solid #dceee7;background:#eafff7;color:#008e70;border-radius:10px;padding:10px 12px;font-size:18px;cursor:pointer}
+@media(max-width:1100px){
+ .main-header{gap:14px}.nav-links{order:3;width:100%;justify-content:center;flex-wrap:wrap}
+}
+@media(max-width:800px){
+ .topbar{justify-content:center;flex-wrap:wrap}.topbar-right{display:none}
+ .main-header{padding:13px 4%}.nav-menu-toggle{display:block}
+ .nav-links{display:none;flex-direction:column;align-items:stretch;order:4;width:100%;padding:10px;background:#f6fffb;border-radius:12px}
+ .nav-links.open{display:flex}.nav-links a{width:100%}.nav-actions{margin-left:auto}.nav-login-btn{display:none}
+}
+@media(max-width:520px){
+ .brand-name{font-size:21px}.brand-icon{width:40px;height:40px}.nav-actions{gap:6px}
+ .nav-icon-btn{width:36px;height:38px}.nav-cart-btn{padding:11px;font-size:12px}
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:380px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:50px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0,90,100,.78),
+            rgba(0,120,100,.65)
+        ),
+        url("images/medbg.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+}
+
+.hero h1{
+    font-family:"DM Serif Display",serif;
+    font-size:55px;
+    letter-spacing:.5px;
+    margin-bottom:15px;
+
+    animation:heroDown .8s ease;
+}
+
+.hero p{
+    max-width:700px;
+    font-size:18px;
+    line-height:1.7;
+
+    animation:heroUp 1s ease;
+}
+
+.hero-symbol{
+    font-size:48px;
+    margin-bottom:10px;
+    animation:floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes heroDown{
+    from{
+        opacity:0;
+        transform:translateY(-30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes heroUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes floatIcon{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    width:min(700px,90%);
+    margin:-30px auto 45px;
+    position:relative;
+    z-index:10;
+}
+
+.search-box input{
+    width:100%;
+    padding:18px 25px;
+
+    border:none;
+    outline:none;
+
+    border-radius:50px;
+
+    background:white;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.14);
+
+    font-size:16px;
+    font-family:inherit;
+}
+
+.search-box input:focus{
+    box-shadow:0 12px 35px rgba(0,150,130,.22);
+}
+
+/* ================= SECTIONS ================= */
+
+#productsContainer{
+    width:100%;
+}
+
+.medicine-section{
+    width:100%;
+    padding:70px 5%;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(232,250,247,.9),
+            rgba(248,252,255,.96)
+        );
+
+    border-top:1px solid rgba(0,0,0,.04);
+}
+
+.medicine-section:nth-child(even){
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239,247,255,.95),
+            rgba(246,253,249,.98)
+        );
+}
+
+.medicine-section::before{
+    content:"";
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(25,169,116,.07);
+
+    top:-100px;
+    right:-70px;
+}
+
+.section-heading{
+    position:relative;
+    z-index:2;
+
+    max-width:1150px;
+    margin:0 auto 35px;
+}
+
+.section-heading h2{
+    font-family:"DM Serif Display",serif;
+    font-size:38px;
+    color:#087f8c;
+}
+
+.section-heading p{
+    margin-top:8px;
+    color:#65727c;
+    max-width:700px;
+    line-height:1.6;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+    width:100%;
+    max-width:1150px;
+    margin:auto;
+
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:stretch;
+    gap:24px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    padding:8px 6px 25px;
+
+    scroll-behavior:smooth;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+
+    cursor:grab;
+    user-select:none;
+    touch-action:pan-x;
+
+    scrollbar-width:thin;
+}
+
+.products:active{
+    cursor:grabbing;
+}
+
+.products.is-dragging{
+    cursor:grabbing;
+}
+
+.products::-webkit-scrollbar{
+    height:8px;
+}
+
+.products::-webkit-scrollbar-track{
+    background:rgba(8,127,140,.08);
+    border-radius:20px;
+}
+
+.products::-webkit-scrollbar-thumb{
+    background:rgba(8,127,140,.45);
+    border-radius:20px;
+}
+
+.products:focus-visible{
+    outline:3px solid rgba(8,127,140,.25);
+    outline-offset:4px;
+}
+
+
+.product-card{
+    flex:0 0 250px;
+    width:250px;
+    min-width:250px;
+
+    background:white;
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 28px rgba(0,0,0,.08);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    cursor:pointer;
+
+    animation:cardShow .6s ease both;
+}
+
+.product-card:hover{
+    transform:translateY(-9px);
+    box-shadow:0 18px 40px rgba(0,100,100,.18);
+}
+
+@keyframes cardShow{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.product-image{
+    height:190px;
+    width:100%;
+    overflow:hidden;
+    background:#eef5f5;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform .5s ease;
+}
+
+.product-card:hover .product-image img{
+    transform:scale(1.08);
+}
+
+.product-info{
+    padding:18px;
+}
+
+.product-info h3{
+    font-size:18px;
+    margin-bottom:7px;
+    color:#17202a;
+}
+
+.product-type{
+    display:inline-block;
+
+    padding:5px 10px;
+
+    background:#e5f8f4;
+    color:#078d7d;
+
+    border-radius:20px;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+.product-info p{
+    color:#65727c;
+    font-size:13px;
+    line-height:1.5;
+    margin:10px 0;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price{
+    color:#087f8c;
+    font-size:18px;
+    font-weight:800;
+}
+
+ .rating{
+    font-size:13px;
+    color:#e69b00;
+}
+
+.product-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+
+.view-btn,
+.card-cart-btn{
+    border:none;
+    border-radius:12px;
+    padding:11px 8px;
+    font-family:inherit;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.view-btn{
+    background:#e9f7f6;
+    color:#087f8c;
+}
+
+.view-btn:hover{
+    background:#d5f0ed;
+    transform:translateY(-2px);
+}
+
+.card-cart-btn{
+    background:linear-gradient(135deg,#087f8c,#19a974);
+    color:white;
+}
+
+.card-cart-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(8,127,140,.22);
+}
+
+.card-cart-btn.added{
+    background:#19a974;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    z-index:2000;
+
+    background:rgba(8,20,25,.72);
+
+    backdrop-filter:blur(8px);
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+    animation:modalBg .25s ease;
+}
+
+@keyframes modalBg{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.modal-content{
+    width:min(950px,100%);
+    max-height:92vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:25px;
+
+    position:relative;
+
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
+
+    animation:modalOpen .35s ease;
+}
+
+@keyframes modalOpen{
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:15px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:50%;
+
+    background:white;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    z-index:5;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.close:hover{
+    background:#eaf8f5;
+}
+
+.modal-top{
+    display:grid;
+    grid-template-columns:42% 58%;
+}
+
+.modal-image{
+    min-height:420px;
+    background:#eef5f5;
+}
+
+.modal-image img {
+    width: 70%;
+    height: 90%;
+    max-width: 280px;
+    max-height: 360px;
+    object-fit: contain;
+}
+
+.modal-details{
+    padding:35px;
+}
+
+.modal-details h2{
+    font-family:"DM Serif Display",serif;
+    color:#087f8c;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.modal-type{
+    display:inline-block;
+
+    background:#e3f8f3;
+    color:#078b79;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+    font-weight:800;
+
+    margin-bottom:20px;
+}
+
+.modal-details h4{
+    color:#087f8c;
+    margin-top:18px;
+    margin-bottom:5px;
+}
+
+.modal-details p{
+    color:#5d6870;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.modal-price{
+    font-size:25px;
+    font-weight:800;
+    color:#19a974;
+
+    margin-top:15px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px 20px;
+}
+
+/* ================= BUTTON ================= */
+
+.cart-btn{
+    width:100%;
+
+    border:none;
+
+    margin-top:22px;
+
+    padding:14px 20px;
+
+    border-radius:13px;
+
+    background:linear-gradient(
+        135deg,
+        #087f8c,
+        #19a974
+    );
+
+    color:white;
+
+    font-size:15px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.cart-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(8,127,140,.25);
+}
+
+/* ================= EMPTY ================= */
+
+.no-result{
+    grid-column:1/-1;
+    text-align:center;
+
+    padding:35px;
+
+    color:#65727c;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:750px){
+
+    nav{
+        padding:14px 4%;
+    }
+
+    nav ul{
+        gap:10px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+    }
+
+    nav ul li a{
+        font-size:12px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .medicine-section{
+        padding:50px 4%;
+    }
+
+    .section-heading h2{
+        font-size:31px;
+    }
+
+    .products{
+        gap:16px;
+        padding-bottom:20px;
+    }
+
+    .product-card{
+        flex-basis:230px;
+        width:230px;
+        min-width:230px;
+    }
+
+    .modal-top{
+        grid-template-columns:1fr;
+    }
+
+   /* ================= MODAL IMAGE SIZE ================= */
+
+.modal-image {
+    width: 42%;
+    min-height: 520px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+    box-sizing: border-box;
+
+    background: #eef7f7;
+    overflow: hidden;
+}
+
+.modal-image img {
+    width: 300px;
+    height: 300px;
+
+    object-fit: contain;
+    object-position: center;
+
+    background: white;
+
+    padding: 15px;
+
+    border: 6px solid white;
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18),
+        0 4px 10px rgba(8, 127, 140, 0.12);
+
+    display: block;
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.modal-image img:hover {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.22),
+        0 6px 15px rgba(8, 127, 140, 0.18);
+}
+
+    .modal-details{
+        padding:25px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ===== MEDICINE MODAL IMAGE FINAL DESIGN ===== */
+
+.modal-image,
+.modal-left,
+.medicine-modal-left {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 35px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: #eef7f7 !important;
+}
+
+/* Image */
+.modal-image img,
+.modal-left img,
+.medicine-modal-left img {
+    width: 280px !important;
+    height: 280px !important;
+
+    max-width: 280px !important;
+    max-height: 280px !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    display: block !important;
+
+    background: white !important;
+
+    padding: 12px !important;
+
+    border: 5px solid white !important;
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.18),
+        0 4px 10px rgba(8,127,140,0.15) !important;
+
+    box-sizing: border-box !important;
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease !important;
+}
+
+/* Hover effect */
+.modal-image img:hover,
+.modal-left img:hover,
+.medicine-modal-left img:hover {
+    transform: scale(1.03) !important;
+
+    box-shadow:
+        0 16px 35px rgba(0,0,0,0.22),
+        0 5px 15px rgba(8,127,140,0.18) !important;
+}
+
+</style>
+</head>
+
+
+
+<body>
+
+<!-- ================= SAME NAVBAR AS INDEX PAGE ================= -->
+<div class="topbar">
+    <div class="topbar-left">
+        <span><i class="fa-solid fa-truck-fast"></i> Fast &amp; Safe Delivery</span>
+        <span><i class="fa-solid fa-shield-heart"></i> Trusted Pharmacy</span>
+    </div>
+    <div class="topbar-right">
+        <span><i class="fa-solid fa-phone"></i> +91 98765 43210</span>
+        <span><i class="fa-solid fa-clock"></i> Open 24/7</span>
+    </div>
+</div>
+
+<header class="main-header">
+    <a href="index.html" class="brand-logo">
+        <div class="brand-icon"><i class="fa-solid fa-plus"></i></div>
+        <div>
+            <div class="brand-name">MediCare</div>
+            <div class="brand-subtitle">PHARMACY</div>
+        </div>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+        <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+        <a href="medicine.html" class="active"><i class="fa-solid fa-capsules"></i>Medicines</a>
+        <a href="categories.html"><i class="fa-solid fa-layer-group"></i>Categories</a>
+        <a href="ayurvedic.html"><i class="fa-solid fa-leaf"></i>Ayurvedic</a>
+        <a href="orders.html"><i class="fa-solid fa-calendar-check"></i>Orders</a>
+    </nav>
+
+    <div class="nav-actions">
+        <a class="nav-icon-btn" href="#searchInput" aria-label="Search medicines"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="cart.html" class="nav-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Cart <span class="nav-cart-count" id="navCartCount">0</span></a>
+        <a href="login.html" class="nav-login-btn"><i class="fa-solid fa-user"></i>Login</a>
+
+<button type="button" class="login-btn" id="logoutBtn"
+        style="display:none;" onclick="logoutUser()">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+</button>
+
+        <button class="nav-menu-toggle" onclick="toggleMedicineMenu()" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+    </div>
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-symbol">💊</div>
+
+    <h1>Our Medicines</h1>
+
+    <p>
+        Explore our medicine collection with product-specific
+        information, uses, benefits and precautions.
+    </p>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 Search medicine, category, purpose..."
+    >
+
+</div>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<div id="productsContainer"></div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="medicineModal">
+
+    <div class="modal-content">
+
+        <button class="close" id="closeModal">&times;</button>
+
+        <div class="modal-top">
+
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Medicine">
+            </div>
+
+            <div class="modal-details">
+
+                <h2 id="modalName"></h2>
+
+                <span class="modal-type" id="modalType"></span>
+
+                <p>
+                    <b>Category:</b>
+                    <span id="modalCategory"></span>
+                </p>
+
+                <p>
+                    <b>Purpose:</b>
+                    <span id="modalPurpose"></span>
+                </p>
+
+                <div class="modal-price">
+                    ₹<span id="modalPrice"></span>
+                </div>
+
+                <div class="info-grid">
+
+                    <div>
+                        <h4>🤒 Symptoms / Concerns</h4>
+                        <p id="modalSymptoms"></p>
+                    </div>
+
+                    <div>
+                        <h4>✨ Benefits</h4>
+                        <p id="modalBenefits"></p>
+                    </div>
+
+                    <div>
+                        <h4>📝 Uses</h4>
+                        <p id="modalUses"></p>
+                    </div>
+
+                    <div>
+                        <h4>💡 How to Use</h4>
+                        <p id="modalHowToUse"></p>
+                    </div>
+
+                    <div>
+                        <h4>⚠️ Precautions</h4>
+                        <p id="modalPrecautions"></p>
+                    </div>
+
+                    <div>
+                        <h4>👨‍👩‍👧 Suitable For</h4>
+                        <p id="modalSuitable"></p>
+                    </div>
+
+                    <div>
+                        <h4>📦 Storage</h4>
+                        <p id="modalStorage"></p>
+                    </div>
+
+                </div>
+
+                <button class="cart-btn" id="addCartBtn">
+                    🛒 Add to Cart — ₹<span id="modalPriceBottom"></span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function toggleMedicineMenu(){
+    document.getElementById("navLinks").classList.toggle("open");
+}
+function updateMedicineCartCount(){
+    try{
+        const cart=JSON.parse(localStorage.getItem("medicareCart")||"[]");
+        const count=Array.isArray(cart)?cart.reduce((sum,item)=>sum+Math.max(0,Number(item.quantity)||1),0):0;
+        const badge=document.getElementById("navCartCount");
+        if(badge) badge.textContent=count;
+    }catch(error){
+        const badge=document.getElementById("navCartCount");
+        if(badge) badge.textContent="0";
+    }
+}
+window.addEventListener("storage",updateMedicineCartCount);
+updateMedicineCartCount();
+
+/* =========================================================
+   PRODUCT DATA
+   EACH PRODUCT HAS DIFFERENT CONTENT
+========================================================= */
+
+const categories =[
+
+/* =========================================================
+   1. TABLETS
+========================================================= */
+
+{
+    icon:"💊",
+    title:"Tablets",
+    description:"Tablets for everyday healthcare needs.",
+
+    products:[
+
+        {
+            name:"Fever Relief Tablet",
+            image:"images/fever-tablets.jpg",
+            type:"Tablet",
+            category:"Fever Care",
+            purpose:"Temporary relief from fever and mild body aches.",
+            price:79,
+            rating:"4.8",
+            symptoms:"Fever, mild headache and body discomfort.",
+            benefits:"Helps provide temporary symptomatic relief.",
+            uses:"Used for short-term fever-related discomfort.",
+            howToUse:"Use only according to the product label or healthcare professional.",
+            precautions:"Do not exceed the recommended amount. Check the label for ingredients.",
+            suitable:"Suitable age group depends on the product label.",
+            storage:"Store in a cool, dry place away from direct sunlight."
+        },
+
+        {
+            name:"Cold Care Tablet",
+            image:"images/cold-tablet.jfif",
+            type:"Tablet",
+            category:"Cold Care",
+            purpose:"Provides symptomatic support during common cold discomfort.",
+            price:89,
+            rating:"4.7",
+            symptoms:"Runny nose, sneezing and nasal discomfort.",
+            benefits:"May help manage common cold symptoms.",
+            uses:"Used for temporary relief of cold-related symptoms.",
+            howToUse:"Follow the dosage and directions printed on the package.",
+            precautions:"Check ingredients if you are already taking cold medicines.",
+            suitable:"Use according to the age guidance on the pack.",
+            storage:"Keep tightly closed in a cool and dry location."
+        },
+
+        {
+            name:"Cough Relief Tablet",
+            image:"images/cough-tablet.jpg",
+            type:"Tablet",
+            category:"Cough Care",
+            purpose:"Helps provide symptomatic relief from cough discomfort.",
+            price:95,
+            rating:"4.6",
+            symptoms:"Dry cough or throat irritation.",
+            benefits:"Provides temporary support for cough-related discomfort.",
+            uses:"Used according to the product indication.",
+            howToUse:"Take only as directed on the package.",
+            precautions:"Seek professional advice for persistent or severe cough.",
+            suitable:"Follow the age recommendations on the product.",
+            storage:"Store below the temperature mentioned on the label."
+        },
+
+        {
+            name:"Headache Comfort Tablet",
+            image:"images/headache-tablet.jpg",
+            type:"Tablet",
+            category:"Headache Care",
+            purpose:"Provides temporary relief from mild headache discomfort.",
+            price:85,
+            rating:"4.8",
+            symptoms:"Mild headache and occasional head discomfort.",
+            benefits:"Can help reduce temporary discomfort.",
+            uses:"Used for short-term symptomatic relief.",
+            howToUse:"Follow the product label and recommended directions.",
+            precautions:"Do not combine with another product containing the same active ingredient.",
+            suitable:"Use according to label instructions.",
+            storage:"Keep away from moisture and direct sunlight."
+        },
+
+        {
+            name:"Pain Relief Tablet",
+            image:"images/pain-relief-tablet.jpg",
+            type:"Tablet",
+            category:"Pain Relief",
+            purpose:"Designed for temporary relief of minor aches and pains.",
+            price:99,
+            rating:"4.7",
+            symptoms:"Minor muscle aches and everyday body pain.",
+            benefits:"Provides temporary symptomatic pain relief.",
+            uses:"Used for occasional mild pain.",
+            howToUse:"Use only according to the package directions.",
+            precautions:"Read the warnings and ingredients before use.",
+            suitable:"Suitable use depends on age and product instructions.",
+            storage:"Store in a dry place at room temperature."
+        },
+
+        {
+            name:"Vitamin C Tablet",
+            image:"images/vitamin-c.jpg",
+            type:"Tablet",
+            category:"Vitamin Supplement",
+            purpose:"Provides vitamin C as a dietary supplement.",
+            price:120,
+            rating:"4.9",
+            symptoms:"Dietary vitamin C intake may be inadequate.",
+            benefits:"Supports normal nutritional vitamin C intake.",
+            uses:"Used as a dietary supplement when appropriate.",
+            howToUse:"Follow the serving instructions printed on the product.",
+            precautions:"Do not exceed the recommended daily amount.",
+            suitable:"Check age suitability on the package.",
+            storage:"Keep container closed and store in a cool dry place."
+        },
+
+        {
+            name:"Calcium Support Tablet",
+            image:"images/calcium.jpg",
+            type:"Tablet",
+            category:"Calcium Supplement",
+            purpose:"Provides calcium as part of dietary supplementation.",
+            price:135,
+            rating:"4.8",
+            symptoms:"Dietary calcium intake may require supplementation.",
+            benefits:"Helps supplement calcium intake.",
+            uses:"Used as a nutritional supplement when advised.",
+            howToUse:"Follow the serving instructions on the label.",
+            precautions:"Ask a healthcare professional if you take other medicines.",
+            suitable:"Use according to the age and product guidance.",
+            storage:"Store tightly closed away from moisture."
+        },
+
+        {
+            name:"Daily Multivitamin Tablet",
+            image:"images/multivitamin.jpg",
+            type:"Tablet",
+            category:"Multivitamin",
+            purpose:"Provides a combination of vitamins and minerals.",
+            price:149,
+            rating:"4.9",
+            symptoms:"May be used when dietary intake needs nutritional support.",
+            benefits:"Supports everyday nutritional supplementation.",
+            uses:"Used as a daily dietary supplement.",
+            howToUse:"Follow the serving size shown on the package.",
+            precautions:"Do not take more than the recommended serving.",
+            suitable:"Check product age recommendations.",
+            storage:"Keep in a cool, dry place."
+        },
+
+        {
+            name:"Allergy Comfort Tablet",
+            image:"images/allergy-tablet.jpg",
+            type:"Tablet",
+            category:"Allergy Care",
+            purpose:"Provides symptomatic support for selected allergy symptoms.",
+            price:110,
+            rating:"4.6",
+            symptoms:"Sneezing, watery eyes or allergy-related discomfort.",
+            benefits:"May help reduce selected allergy symptoms.",
+            uses:"Used for temporary allergy symptom relief.",
+            howToUse:"Follow package directions carefully.",
+            precautions:"Some allergy medicines may cause drowsiness; read the label.",
+            suitable:"Use according to age instructions.",
+            storage:"Store in a cool and dry place."
+        },
+
+        {
+            name:"Acidity Relief Tablet",
+            image:"images/acidity.jpg",
+            type:"Tablet",
+            category:"Acidity Care",
+            purpose:"Provides temporary relief from occasional acidity discomfort.",
+            price:75,
+            rating:"4.7",
+            symptoms:"Heartburn, acidity or sour stomach discomfort.",
+            benefits:"Can provide temporary relief from occasional acidity.",
+            uses:"Used for occasional digestive discomfort.",
+            howToUse:"Follow the directions on the package.",
+            precautions:"Persistent symptoms should be discussed with a healthcare professional.",
+            suitable:"Use according to the product age guidance.",
+            storage:"Keep dry and away from excessive heat."
+        },
+
+        {
+            name:"Digestive Support Tablet",
+            image:"images/digestion.jpg",
+            type:"Tablet",
+            category:"Digestive Care",
+            purpose:"Provides nutritional support for everyday digestive wellness.",
+            price:105,
+            rating:"4.5",
+            symptoms:"Occasional digestive discomfort.",
+            benefits:"Designed for general digestive support.",
+            uses:"Used as directed for digestive wellness.",
+            howToUse:"Follow the instructions printed on the pack.",
+            precautions:"Stop use and seek advice if symptoms persist.",
+            suitable:"Check label for suitable age group.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Wellness Support Tablet",
+            image:"images/wellness.jpg",
+            type:"Tablet",
+            category:"Wellness",
+            purpose:"Designed as a general wellness supplement.",
+            price:155,
+            rating:"4.7",
+            symptoms:"Used when additional nutritional support is desired.",
+            benefits:"Supports everyday wellness supplementation.",
+            uses:"Used as part of a balanced wellness routine.",
+            howToUse:"Follow product serving instructions.",
+            precautions:"Do not exceed the recommended serving.",
+            suitable:"Check label for age suitability.",
+            storage:"Keep container tightly closed."
+        },
+
+        {
+            name:"Daily Care Tablet",
+            image:"images/dailycare.jpg",
+            type:"Tablet",
+            category:"Daily Care",
+            purpose:"Designed for general daily healthcare support.",
+            price:125,
+            rating:"4.6",
+            symptoms:"General nutritional support needs.",
+            benefits:"Provides convenient everyday support.",
+            uses:"Used according to package instructions.",
+            howToUse:"Use only as recommended on the label.",
+            precautions:"Read all ingredients and warnings before use.",
+            suitable:"Follow the recommended age group.",
+            storage:"Store away from sunlight and moisture."
+        },
+
+        {
+            name:"Healthcare Support Tablet",
+            image:"images/healthcare.jpg",
+            type:"Tablet",
+            category:"Healthcare",
+            purpose:"Designed to support general healthcare routines.",
+            price:140,
+            rating:"4.7",
+            symptoms:"General wellness and healthcare needs.",
+            benefits:"Provides convenient support for daily routines.",
+            uses:"Use according to product instructions.",
+            howToUse:"Follow the directions provided with the product.",
+            precautions:"Consult a healthcare professional if unsure.",
+            suitable:"Use according to the label.",
+            storage:"Keep in a cool dry location."
+        },
+
+        {
+            name:"Essential Care Tablet",
+            image:"images/essential.jpg",
+            type:"Tablet",
+            category:"Essential Care",
+            purpose:"General-purpose healthcare support product.",
+            price:115,
+            rating:"4.6",
+            symptoms:"Everyday healthcare support needs.",
+            benefits:"Convenient option for routine healthcare needs.",
+            uses:"Use according to the product label.",
+            howToUse:"Follow the instructions on the package.",
+            precautions:"Do not exceed the stated recommendation.",
+            suitable:"Check the package for age suitability.",
+            storage:"Store in a cool and dry place."
+        }
+
+    ]
+    },
+
+/* =========================================================
+   2. CAPSULES
+========================================================= */
+
+{
+    icon:"💊",
+    title:"Capsules",
+    description:"Capsules for nutritional and wellness support.",
+
+    products:[
+
+        {
+            name:"Vitamin D3 Capsule",
+            image:"images/vitaminD-capsule.jfif",
+            type:"Capsule",
+            category:"Vitamin D",
+            purpose:"Provides vitamin D3 as a dietary supplement.",
+            price:145,
+            rating:"4.8",
+            symptoms:"Used when vitamin D supplementation is appropriate.",
+            benefits:"Helps supplement dietary vitamin D intake.",
+            uses:"Used as a nutritional supplement.",
+            howToUse:"Follow the serving instructions on the package.",
+            precautions:"Do not exceed the recommended amount.",
+            suitable:"Check product age guidance.",
+            storage:"Store in a cool, dry place."
+        },
+
+        {
+            name:"Omega 3 Capsule",
+            image:"images/omega3-capsule.jpg",
+            type:"Capsule",
+            category:"Omega 3",
+            purpose:"Provides omega-3 fatty acids as a supplement.",
+            price:220,
+            rating:"4.8",
+            symptoms:"Dietary omega-3 intake may require supplementation.",
+            benefits:"Supports dietary omega-3 intake.",
+            uses:"Used as a nutritional supplement.",
+            howToUse:"Follow package serving instructions.",
+            precautions:"Consult a professional if taking regular medicines.",
+            suitable:"Follow age guidance on the label.",
+            storage:"Keep tightly closed in a cool place."
+        },
+
+        {
+            name:"Iron Support Capsule",
+            image:"images/iron.jpg",
+            type:"Capsule",
+            category:"Iron Supplement",
+            purpose:"Provides iron as a nutritional supplement.",
+            price:135,
+            rating:"4.7",
+            symptoms:"Used when additional iron intake is recommended.",
+            benefits:"Helps supplement dietary iron intake.",
+            uses:"Used as directed for nutritional supplementation.",
+            howToUse:"Use only according to product or professional advice.",
+            precautions:"Keep away from children.",
+            suitable:"Use according to professional or label guidance.",
+            storage:"Store in a dry place."
+        },
+
+        {
+            name:"B-Complex Capsule",
+            image:"images/b-complex.jfif",
+            type:"Capsule",
+            category:"B Vitamins",
+            purpose:"Provides a combination of B vitamins.",
+            price:125,
+            rating:"4.6",
+            symptoms:"Used for nutritional supplementation.",
+            benefits:"Supports dietary B-vitamin intake.",
+            uses:"Used as a daily nutritional supplement.",
+            howToUse:"Follow package instructions.",
+            precautions:"Do not exceed recommended serving.",
+            suitable:"Check age guidance.",
+            storage:"Store away from moisture."
+        },
+
+        {
+            name:"Zinc Support Capsule",
+            image:"images/zinc.jpg",
+            type:"Capsule",
+            category:"Zinc Supplement",
+            purpose:"Provides zinc as a dietary supplement.",
+            price:115,
+            rating:"4.7",
+            symptoms:"Used when dietary zinc supplementation is appropriate.",
+            benefits:"Helps supplement zinc intake.",
+            uses:"Used as part of a nutritional routine.",
+            howToUse:"Follow the label instructions.",
+            precautions:"Avoid excessive intake.",
+            suitable:"Use according to package directions.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Probiotic Capsule",
+            image:"images/probiotic.jpg",
+            type:"Capsule",
+            category:"Digestive Wellness",
+            purpose:"Provides probiotic cultures for dietary supplementation.",
+            price:250,
+            rating:"4.8",
+            symptoms:"Used for general digestive wellness support.",
+            benefits:"Supports dietary probiotic intake.",
+            uses:"Used as a digestive wellness supplement.",
+            howToUse:"Follow storage and serving instructions carefully.",
+            precautions:"Check storage requirements on the package.",
+            suitable:"Follow product age guidance.",
+            storage:"Store according to the product label."
+        },
+
+        {
+            name:"Biotin Capsule",
+            image:"images/biotin.jpg",
+            type:"Capsule",
+            category:"Beauty Supplement",
+            purpose:"Provides biotin as a dietary supplement.",
+            price:180,
+            rating:"4.7",
+            symptoms:"Used for nutritional supplementation.",
+            benefits:"Supports dietary biotin intake.",
+            uses:"Used as a beauty and nutrition supplement.",
+            howToUse:"Follow label serving instructions.",
+            precautions:"Do not exceed recommended intake.",
+            suitable:"Check age suitability.",
+            storage:"Keep in a cool dry place."
+        },
+
+        {
+            name:"Magnesium Capsule",
+            image:"images/magnesium.jpg",
+            type:"Capsule",
+            category:"Mineral Supplement",
+            purpose:"Provides magnesium as a dietary supplement.",
+            price:165,
+            rating:"4.6",
+            symptoms:"Used when additional magnesium intake is appropriate.",
+            benefits:"Helps supplement dietary magnesium.",
+            uses:"Used as a mineral supplement.",
+            howToUse:"Follow package directions.",
+            precautions:"Ask a professional if taking other medicines.",
+            suitable:"Use according to product guidance.",
+            storage:"Store away from moisture."
+        },
+
+        {
+            name:"Calcium D3 Capsule",
+            image:"images/calcium-d3.jpg",
+            type:"Capsule",
+            category:"Bone Nutrition",
+            purpose:"Combines calcium and vitamin D nutritional support.",
+            price:195,
+            rating:"4.8",
+            symptoms:"Used for nutritional calcium and vitamin D support.",
+            benefits:"Supports dietary calcium and vitamin D intake.",
+            uses:"Used as a nutritional supplement.",
+            howToUse:"Follow label instructions.",
+            precautions:"Do not exceed recommended serving.",
+            suitable:"Check package age guidance.",
+            storage:"Keep tightly closed in a dry place."
+        },
+
+        {
+            name:"Herbal Wellness Capsule",
+            image:"images/herbal1.jpg",
+            type:"Capsule",
+            category:"Herbal Wellness",
+            purpose:"Provides selected herbal ingredients for wellness support.",
+            price:175,
+            rating:"4.5",
+            symptoms:"Used as part of a general wellness routine.",
+            benefits:"Provides convenient herbal supplementation.",
+            uses:"Used according to the product label.",
+            howToUse:"Follow the supplied instructions.",
+            precautions:"Check ingredients for allergies.",
+            suitable:"Follow label suitability guidance.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Energy Support Capsule",
+            image:"images/energy.jpg",
+            type:"Capsule",
+            category:"Energy Nutrition",
+            purpose:"Designed as a nutritional energy-support supplement.",
+            price:210,
+            rating:"4.6",
+            symptoms:"Used when nutritional support is desired.",
+            benefits:"Provides convenient nutritional supplementation.",
+            uses:"Used as directed on the label.",
+            howToUse:"Follow serving instructions.",
+            precautions:"Do not exceed the recommended serving.",
+            suitable:"Check age recommendations.",
+            storage:"Keep away from heat and moisture."
+        },
+
+        {
+            name:"Daily Mineral Capsule",
+            image:"images/mineral.jpg",
+            type:"Capsule",
+            category:"Mineral Support",
+            purpose:"Provides selected minerals as dietary supplementation.",
+            price:185,
+            rating:"4.7",
+            symptoms:"Used for nutritional mineral support.",
+            benefits:"Helps supplement mineral intake.",
+            uses:"Used as a dietary supplement.",
+            howToUse:"Follow package directions.",
+            precautions:"Read all ingredients before use.",
+            suitable:"Use according to label.",
+            storage:"Store in a dry location."
+        },
+
+        {
+            name:"Antioxidant Capsule",
+            image:"images/antioxidant.jpg",
+            type:"Capsule",
+            category:"Antioxidant Support",
+            purpose:"Provides antioxidant ingredients as a supplement.",
+            price:230,
+            rating:"4.7",
+            symptoms:"Used for general nutritional support.",
+            benefits:"Provides antioxidant nutritional support.",
+            uses:"Used as directed on the product.",
+            howToUse:"Follow package instructions.",
+            precautions:"Do not exceed recommended serving.",
+            suitable:"Check age guidance.",
+            storage:"Store away from direct sunlight."
+        },
+
+        {
+            name:"Wellness Plus Capsule",
+            image:"images/wellness-plus.jpg",
+            type:"Capsule",
+            category:"Daily Wellness",
+            purpose:"Designed for general nutritional wellness.",
+            price:200,
+            rating:"4.6",
+            symptoms:"General nutritional support needs.",
+            benefits:"Supports everyday supplement routines.",
+            uses:"Used according to product directions.",
+            howToUse:"Follow label instructions.",
+            precautions:"Read the product warnings.",
+            suitable:"Check age suitability.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Immunity Nutrition Capsule",
+            image:"images/immunity.jpg",
+            type:"Capsule",
+            category:"Nutritional Support",
+            purpose:"Provides selected nutrients as dietary supplementation.",
+            price:215,
+            rating:"4.8",
+            symptoms:"Used for general nutritional support.",
+            benefits:"Supports regular nutrient intake.",
+            uses:"Used as a nutritional supplement.",
+            howToUse:"Follow product serving instructions.",
+            precautions:"Do not exceed recommended intake.",
+            suitable:"Follow package age guidance.",
+            storage:"Keep container closed and dry."
+        }
+
+    ]
+},
+
+/* =========================================================
+   3. SYRUPS
+========================================================= */
+
+{
+    icon:"🧴",
+    title:"Syrups",
+    description:"Liquid healthcare products for different everyday needs.",
+
+    products:[
+
+        {
+            name:"Cough Care Syrup",
+            image:"images/cough1.jpg",
+            type:"Syrup",
+            category:"Cough Care",
+            purpose:"Provides temporary symptomatic support for cough.",
+            price:110,
+            rating:"4.7",
+            symptoms:"Cough and throat irritation.",
+            benefits:"Helps provide temporary cough symptom support.",
+            uses:"Used according to product indication.",
+            howToUse:"Measure and use exactly as directed on the label.",
+            precautions:"Do not exceed recommended amount.",
+            suitable:"Check the age guidance before use.",
+            storage:"Store according to label instructions."
+        },
+
+        {
+            name:"Honey Lemon Syrup",
+            image:"images/lemon.jpg",
+            type:"Syrup",
+            category:"Throat Comfort",
+            purpose:"Provides soothing support for occasional throat discomfort.",
+            price:95,
+            rating:"4.6",
+            symptoms:"Mild throat irritation.",
+            benefits:"Provides a soothing liquid option.",
+            uses:"Used for temporary throat comfort.",
+            howToUse:"Follow the serving instructions.",
+            precautions:"Check ingredients for allergies.",
+            suitable:"Follow age guidance.",
+            storage:"Keep bottle tightly closed."
+        },
+
+        {
+            name:"Digestive Syrup",
+            image:"images/digestive.jpg",
+            type:"Syrup",
+            category:"Digestive Care",
+            purpose:"Designed for everyday digestive support.",
+            price:105,
+            rating:"4.5",
+            symptoms:"Occasional digestive discomfort.",
+            benefits:"Provides liquid digestive support.",
+            uses:"Used as directed on the product.",
+            howToUse:"Use the measuring cup supplied with the product.",
+            precautions:"Seek advice if symptoms continue.",
+            suitable:"Check label age recommendations.",
+            storage:"Store as instructed on the bottle."
+        },
+
+        {
+            name:"Vitamin Tonic Syrup",
+            image:"images/vitamin.jpg",
+            type:"Syrup",
+            category:"Vitamin Supplement",
+            purpose:"Provides selected vitamins as a liquid supplement.",
+            price:145,
+            rating:"4.7",
+            symptoms:"Used for nutritional supplementation.",
+            benefits:"Helps supplement daily vitamin intake.",
+            uses:"Used as a dietary supplement.",
+            howToUse:"Measure according to label instructions.",
+            precautions:"Do not exceed recommended serving.",
+            suitable:"Check age suitability.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Iron Tonic Syrup",
+            image:"images/iron1.jpg",
+            type:"Syrup",
+            category:"Iron Supplement",
+            purpose:"Provides iron in liquid form.",
+            price:130,
+            rating:"4.6",
+            symptoms:"Used when additional iron intake is recommended.",
+            benefits:"Helps supplement dietary iron.",
+            uses:"Used according to professional or label guidance.",
+            howToUse:"Measure using the supplied measuring device.",
+            precautions:"Keep away from children.",
+            suitable:"Use according to professional advice.",
+            storage:"Keep bottle closed."
+        },
+
+        {
+            name:"Calcium Syrup",
+            image:"images/calcium1.jpg",
+            type:"Syrup",
+            category:"Calcium Supplement",
+            purpose:"Provides calcium as a liquid dietary supplement.",
+            price:140,
+            rating:"4.7",
+            symptoms:"Used for nutritional calcium supplementation.",
+            benefits:"Helps supplement calcium intake.",
+            uses:"Used according to label instructions.",
+            howToUse:"Shake and measure if instructed on the label.",
+            precautions:"Do not exceed recommended serving.",
+            suitable:"Check age guidance.",
+            storage:"Store according to package instructions."
+        },
+
+        {
+            name:"Kids Multivitamin Syrup",
+            image:"images/kids-multivitamin.jpg",
+            type:"Syrup",
+            category:"Children's Nutrition",
+            purpose:"Provides selected vitamins for children's nutritional supplementation.",
+            price:155,
+            rating:"4.8",
+            symptoms:"Used when nutritional supplementation is appropriate.",
+            benefits:"Supports dietary vitamin intake.",
+            uses:"Used according to age-specific label directions.",
+            howToUse:"Use the measuring device provided.",
+            precautions:"Adult supervision is recommended.",
+            suitable:"Only for the age group stated on the package.",
+            storage:"Keep tightly closed and away from children."
+        },
+
+        {
+            name:"Appetite Support Syrup",
+            image:"images/appetite.jpg",
+            type:"Syrup",
+            category:"Nutrition",
+            purpose:"Designed as a nutritional support product.",
+            price:135,
+            rating:"4.5",
+            symptoms:"Used as part of nutritional support.",
+            benefits:"Provides convenient liquid supplementation.",
+            uses:"Use according to the label.",
+            howToUse:"Follow the stated serving instructions.",
+            precautions:"Check ingredients before use.",
+            suitable:"Follow package age guidance.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Electrolyte Syrup",
+            image:"images/electrolyte.jpg",
+            type:"Syrup",
+            category:"Hydration Support",
+            purpose:"Provides selected electrolytes in liquid form.",
+            price:90,
+            rating:"4.7",
+            symptoms:"Used as part of hydration support.",
+            benefits:"Provides convenient electrolyte supplementation.",
+            uses:"Used according to product instructions.",
+            howToUse:"Follow preparation or serving instructions.",
+            precautions:"Seek professional advice when dehydration is severe.",
+            suitable:"Check age-specific directions.",
+            storage:"Store as indicated on the package."
+        },
+
+        {
+            name:"Herbal Digestive Syrup",
+            image:"images/herbal-digestive.jpg",
+            type:"Syrup",
+            category:"Herbal Digestive Care",
+            purpose:"Provides herbal ingredients for digestive wellness.",
+            price:125,
+            rating:"4.5",
+            symptoms:"Occasional digestive discomfort.",
+            benefits:"Provides herbal digestive support.",
+            uses:"Used according to label directions.",
+            howToUse:"Measure the recommended amount.",
+            precautions:"Check herbal ingredients for sensitivities.",
+            suitable:"Follow label suitability.",
+            storage:"Keep bottle closed."
+        },
+
+        {
+            name:"Throat Comfort Syrup",
+            image:"images/throat.jpg",
+            type:"Syrup",
+            category:"Throat Care",
+            purpose:"Provides temporary soothing support for throat discomfort.",
+            price:100,
+            rating:"4.6",
+            symptoms:"Dry or irritated throat.",
+            benefits:"Provides soothing liquid support.",
+            uses:"Used for temporary throat comfort.",
+            howToUse:"Follow label instructions.",
+            precautions:"Seek advice if symptoms persist.",
+            suitable:"Check age instructions.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Wellness Tonic",
+            image:"images/wellness1.jpg",
+            type:"Syrup",
+            category:"Wellness",
+            purpose:"Provides nutritional support in liquid form.",
+            price:150,
+            rating:"4.6",
+            symptoms:"General nutritional support needs.",
+            benefits:"Convenient daily nutritional support.",
+            uses:"Used as directed.",
+            howToUse:"Measure according to the label.",
+            precautions:"Do not exceed recommended amount.",
+            suitable:"Follow age guidance.",
+            storage:"Keep tightly closed."
+        },
+
+        {
+            name:"Protein Nutrition Syrup",
+            image:"images/protein.jpg",
+            type:"Syrup",
+            category:"Nutrition",
+            purpose:"Designed to provide nutritional support.",
+            price:175,
+            rating:"4.5",
+            symptoms:"Used as part of a nutritional routine.",
+            benefits:"Provides convenient nutritional supplementation.",
+            uses:"Use according to product instructions.",
+            howToUse:"Follow serving directions.",
+            precautions:"Check ingredients for allergies.",
+            suitable:"Check label suitability.",
+            storage:"Store according to package instructions."
+        },
+
+        {
+            name:"Daily Health Syrup",
+            image:"images/daily-health.jpg",
+            type:"Syrup",
+            category:"Daily Wellness",
+            purpose:"Designed for general daily nutritional support.",
+            price:160,
+            rating:"4.6",
+            symptoms:"General wellness needs.",
+            benefits:"Provides liquid nutritional support.",
+            uses:"Used as directed.",
+            howToUse:"Use supplied measuring device.",
+            precautions:"Follow label warnings.",
+            suitable:"Check age guidance.",
+            storage:"Keep away from direct sunlight."
+        },
+
+        {
+            name:"Mineral Support Syrup",
+            image:"images/mineral1.jpg",
+            type:"Syrup",
+            category:"Mineral Supplement",
+            purpose:"Provides selected minerals as a liquid supplement.",
+            price:145,
+            rating:"4.7",
+            symptoms:"Used for nutritional mineral supplementation.",
+            benefits:"Helps supplement mineral intake.",
+            uses:"Used according to product instructions.",
+            howToUse:"Measure according to label.",
+            precautions:"Do not exceed recommended amount.",
+            suitable:"Check product age guidance.",
+            storage:"Store in a cool dry place."
+        }
+
+    ]
+},
+
+/* =========================================================
+   4. BABY CARE
+========================================================= */
+
+{
+    icon:"👶",
+    title:"Baby Care",
+    description:"Gentle everyday care products for babies.",
+
+    products:[
+
+        {
+            name:"Baby Gentle Lotion",
+            image:"images/baby/baby-lotion.jpg",
+            type:"Baby Care",
+            category:"Baby Skin Care",
+            purpose:"Moisturizes baby's skin.",
+            price:180,
+            rating:"4.8",
+            symptoms:"Dry or rough skin.",
+            benefits:"Helps keep skin moisturized.",
+            uses:"For everyday external skin care.",
+            howToUse:"Apply a small amount to clean skin.",
+            precautions:"Avoid contact with eyes and irritated skin.",
+            suitable:"For babies as directed on the product.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Baby Shampoo",
+            image:"images/baby/baby-shampoo.jpg",
+            type:"Baby Care",
+            category:"Hair Care",
+            purpose:"Gentle cleansing for baby's hair.",
+            price:165,
+            rating:"4.7",
+            symptoms:"Normal hair cleansing needs.",
+            benefits:"Provides gentle hair cleansing.",
+            uses:"Used during baby's bath routine.",
+            howToUse:"Apply gently and rinse thoroughly.",
+            precautions:"Avoid direct contact with eyes.",
+            suitable:"Follow product age guidance.",
+            storage:"Keep bottle closed."
+        },
+
+        {
+            name:"Baby Moisturizing Cream",
+            image:"images/baby/baby-cream.jpg",
+            type:"Baby Care",
+            category:"Skin Care",
+            purpose:"Provides moisture for baby's skin.",
+            price:195,
+            rating:"4.8",
+            symptoms:"Dry skin.",
+            benefits:"Helps maintain skin moisture.",
+            uses:"For external skin care.",
+            howToUse:"Apply gently to clean skin.",
+            precautions:"Stop use if irritation occurs.",
+            suitable:"Use according to product instructions.",
+            storage:"Store away from direct sunlight."
+        },
+
+        {
+            name:"Baby Massage Oil",
+            image:"images/baby/massageoil.jpg",
+            type:"Baby Care",
+            category:"Massage Care",
+            purpose:"Designed for gentle baby massage.",
+            price:210,
+            rating:"4.7",
+            symptoms:"Used during routine massage.",
+            benefits:"Provides a smooth massage application.",
+            uses:"For external massage use.",
+            howToUse:"Apply a small amount and massage gently.",
+            precautions:"Patch test if recommended on product.",
+            suitable:"Follow label guidance.",
+            storage:"Keep bottle tightly closed."
+        },
+
+        {
+            name:"Baby Diaper Rash Cream",
+            image:"images/baby/baby-diaper-cream.jpg",
+            type:"Baby Care",
+            category:"Diaper Care",
+            purpose:"Protective cream for diaper-area skin care.",
+            price:175,
+            rating:"4.8",
+            symptoms:"Minor diaper-area irritation.",
+            benefits:"Provides a protective skin barrier.",
+            uses:"For external diaper-area care.",
+            howToUse:"Apply a thin layer to clean dry skin.",
+            precautions:"For persistent irritation, seek professional advice.",
+            suitable:"Use according to product age guidance.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Baby Body Wash",
+            image:"images/baby/body-wash.jpg",
+            type:"Baby Care",
+            category:"Bath Care",
+            purpose:"Gentle cleansing for baby's body.",
+            price:155,
+            rating:"4.6",
+            symptoms:"Daily bathing needs.",
+            benefits:"Provides gentle cleansing.",
+            uses:"Used during bath time.",
+            howToUse:"Apply gently and rinse with water.",
+            precautions:"Avoid eyes.",
+            suitable:"Check age guidance.",
+            storage:"Keep container closed."
+        },
+
+        {
+            name:"Baby Powder",
+            image:"images/baby/baby-powder.jpg",
+            type:"Baby Care",
+            category:"Skin Comfort",
+            purpose:"Designed for baby's external skin care.",
+            price:130,
+            rating:"4.6",
+            symptoms:"Moisture-related skin discomfort.",
+            benefits:"Helps keep skin feeling dry.",
+            uses:"For external use only.",
+            howToUse:"Apply carefully according to package directions.",
+            precautions:"Avoid inhalation and face area.",
+            suitable:"Use as directed.",
+            storage:"Keep container closed and dry."
+        },
+
+        {
+            name:"Baby Wet Wipes",
+            image:"images/baby/babywetwipes.jpg",
+            type:"Baby Care",
+            category:"Cleaning",
+            purpose:"Convenient gentle cleaning for babies.",
+            price:95,
+            rating:"4.7",
+            symptoms:"Everyday cleaning needs.",
+            benefits:"Provides convenient skin cleaning.",
+            uses:"For external cleaning.",
+            howToUse:"Wipe gently and dispose after use.",
+            precautions:"Do not flush unless package says so.",
+            suitable:"Follow product instructions.",
+            storage:"Reseal pack after opening."
+        },
+
+        {
+            name:"Baby Feeding Bottle",
+            image:"images/baby/bottle brush.jpg",
+            type:"Baby Care",
+            category:"Feeding",
+            purpose:"Feeding accessory for babies.",
+            price:220,
+            rating:"4.6",
+            symptoms:"Feeding requirement.",
+            benefits:"Provides convenient feeding support.",
+            uses:"Used for infant feeding.",
+            howToUse:"Clean and sterilize according to manufacturer instructions.",
+            precautions:"Inspect regularly for damage.",
+            suitable:"Use according to age guidance.",
+            storage:"Keep clean and dry."
+        },
+
+        {
+            name:"Baby Bottle Brush",
+            image:"images/baby/bottle brushes.jpg",
+            type:"Baby Care",
+            category:"Cleaning Accessory",
+            purpose:"Designed for cleaning feeding bottles.",
+            price:85,
+            rating:"4.5",
+            symptoms:"Bottle cleaning requirement.",
+            benefits:"Helps clean bottle surfaces.",
+            uses:"Used for bottle cleaning.",
+            howToUse:"Use with suitable cleaning solution and water.",
+            precautions:"Replace when worn.",
+            suitable:"For adult-supervised use.",
+            storage:"Rinse and dry after use."
+        },
+
+        {
+            name:"Baby Nail Care Set",
+            image:"images/baby/baby nail care set.jpg",
+            type:"Baby Care",
+            category:"Grooming",
+            purpose:"Baby grooming accessory set.",
+            price:145,
+            rating:"4.6",
+            symptoms:"Nail grooming requirement.",
+            benefits:"Provides convenient grooming tools.",
+            uses:"For baby nail care.",
+            howToUse:"Use carefully with adult supervision.",
+            precautions:"Keep sharp tools away from children.",
+            suitable:"Adult use only.",
+            storage:"Keep safely stored."
+        },
+
+        {
+            name:"Baby Soft Towel",
+            image:"images/baby/baby soft towel.jfif",
+            type:"Baby Care",
+            category:"Bath Accessory",
+            purpose:"Soft towel for baby's bath routine.",
+            price:160,
+            rating:"4.7",
+            symptoms:"Bath drying requirement.",
+            benefits:"Provides gentle drying.",
+            uses:"Used after bathing.",
+            howToUse:"Pat skin gently dry.",
+            precautions:"Wash regularly.",
+            suitable:"For baby use.",
+            storage:"Keep clean and dry."
+        },
+
+        {
+            name:"Baby Laundry Wash",
+            image:"images/baby/baby laundry wash.jpg",
+            type:"Baby Care",
+            category:"Laundry Care",
+            purpose:"Laundry product for baby clothing.",
+            price:190,
+            rating:"4.6",
+            symptoms:"Baby clothing washing needs.",
+            benefits:"Designed for baby laundry care.",
+            uses:"Used for washing baby clothes.",
+            howToUse:"Follow product quantity instructions.",
+            precautions:"Keep detergent away from children.",
+            suitable:"Use according to product directions.",
+            storage:"Keep container tightly closed."
+        },
+
+        {
+            name:"Baby Sunscreen Lotion",
+            image:"images/baby/baby sunscreen lotion.jpg",
+            type:"Baby Care",
+            category:"Sun Care",
+            purpose:"Sun-care lotion designed according to product labeling.",
+            price:240,
+            rating:"4.7",
+            symptoms:"Outdoor sun exposure.",
+            benefits:"Provides topical sun-care support.",
+            uses:"Used externally according to label.",
+            howToUse:"Apply according to package directions.",
+            precautions:"Avoid eyes and damaged skin.",
+            suitable:"Use only for the age range stated on the package.",
+            storage:"Store away from excessive heat."
+        },
+
+        {
+            name:"Baby Gentle Soap",
+            image:"images/baby/baby gentle soap.jpg",
+            type:"Baby Care",
+            category:"Bath Care",
+            purpose:"Gentle cleansing soap for baby's bath routine.",
+            price:90,
+            rating:"4.6",
+            symptoms:"Daily cleansing requirement.",
+            benefits:"Provides gentle cleansing.",
+            uses:"Used during bathing.",
+            howToUse:"Use gently with water and rinse.",
+            precautions:"Avoid eyes.",
+            suitable:"Follow package age guidance.",
+            storage:"Keep dry between uses."
+        }
+
+    ]
+},
+
+/* =========================================================
+   5. OINTMENTS
+========================================================= */
+
+{
+    icon:"🧴",
+    title:"Ointments",
+    description:"External-use creams and ointments for everyday skin care.",
+
+    products:[
+
+        {
+            name:"Moisture Repair Ointment",
+            image:"images/ointments/moisture.jpg",
+            type:"Ointment",
+            category:"Skin Care",
+            purpose:"Provides moisture support for dry skin.",
+            price:120,
+            rating:"4.7",
+            symptoms:"Dry and rough skin.",
+            benefits:"Helps moisturize the skin.",
+            uses:"For external skin care.",
+            howToUse:"Apply a thin layer to clean skin.",
+            precautions:"Avoid eyes.",
+            suitable:"Use according to product instructions.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Aloe Skin Gel",
+            image:"images/ointments/aloe.jpg",
+            type:"Gel",
+            category:"Skin Soothing",
+            purpose:"Provides a cooling and moisturizing skin-care application.",
+            price:110,
+            rating:"4.6",
+            symptoms:"Dry or uncomfortable skin.",
+            benefits:"Provides moisturizing skin support.",
+            uses:"For external use.",
+            howToUse:"Apply a small amount gently.",
+            precautions:"Patch test if required.",
+            suitable:"Follow product instructions.",
+            storage:"Keep container closed."
+        },
+
+        {
+            name:"Calamine Skin Lotion",
+            image:"images/ointments/calamine.jpg",
+            type:"Lotion",
+            category:"Skin Comfort",
+            purpose:"Topical lotion for selected minor skin discomfort.",
+            price:95,
+            rating:"4.7",
+            symptoms:"Minor itching or skin discomfort.",
+            benefits:"Provides topical soothing support.",
+            uses:"For external skin use.",
+            howToUse:"Apply as directed on the product.",
+            precautions:"Avoid eyes and broken skin unless instructed.",
+            suitable:"Follow label directions.",
+            storage:"Store away from direct sunlight."
+        },
+
+        {
+            name:"Antiseptic Cream",
+            image:"images/ointments/antiseptic.jpg",
+            type:"Cream",
+            category:"First Aid",
+            purpose:"Topical antiseptic care product.",
+            price:105,
+            rating:"4.8",
+            symptoms:"Minor cuts and superficial skin care needs.",
+            benefits:"Provides topical cleansing/protective support.",
+            uses:"For suitable minor skin-care situations.",
+            howToUse:"Clean area first and apply according to label.",
+            precautions:"Do not use on deep wounds unless professionally advised.",
+            suitable:"Follow package directions.",
+            storage:"Keep tube closed."
+        },
+
+        {
+            name:"Hand Repair Cream",
+            image:"images/ointments/hand.jpg",
+            type:"Cream",
+            category:"Hand Care",
+            purpose:"Moisturizing cream for dry hands.",
+            price:135,
+            rating:"4.6",
+            symptoms:"Dry hands.",
+            benefits:"Helps improve skin moisture.",
+            uses:"Daily hand care.",
+            howToUse:"Apply as needed to clean hands.",
+            precautions:"Avoid eyes.",
+            suitable:"For external use.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Foot Care Cream",
+            image:"images/ointments/foot.jpg",
+            type:"Cream",
+            category:"Foot Care",
+            purpose:"Moisturizing care for dry feet.",
+            price:145,
+            rating:"4.7",
+            symptoms:"Dry or rough feet.",
+            benefits:"Helps maintain skin moisture.",
+            uses:"For external foot care.",
+            howToUse:"Apply to clean dry feet.",
+            precautions:"Avoid broken skin unless product permits.",
+            suitable:"For external use.",
+            storage:"Keep tightly closed."
+        },
+
+        {
+            name:"Lip Care Balm",
+            image:"images/ointments/lip.jpg",
+            type:"Balm",
+            category:"Lip Care",
+            purpose:"Moisturizing care for dry lips.",
+            price:75,
+            rating:"4.8",
+            symptoms:"Dry or chapped lips.",
+            benefits:"Helps moisturize lips.",
+            uses:"Daily lip care.",
+            howToUse:"Apply a thin layer to lips.",
+            precautions:"Stop if irritation occurs.",
+            suitable:"Use according to product directions.",
+            storage:"Store away from excessive heat."
+        },
+
+        {
+            name:"Muscle Comfort Balm",
+            image:"images/ointments/muscle.jpg",
+            type:"Balm",
+            category:"Body Care",
+            purpose:"Topical balm for temporary muscle comfort.",
+            price:130,
+            rating:"4.6",
+            symptoms:"Minor muscle discomfort.",
+            benefits:"Provides topical soothing comfort.",
+            uses:"External use on suitable areas.",
+            howToUse:"Massage a small amount gently.",
+            precautions:"Avoid eyes and damaged skin.",
+            suitable:"Follow package directions.",
+            storage:"Keep tightly closed."
+        },
+
+        {
+            name:"Foot Moisture Balm",
+            image:"images/ointments/foot moisture.jpg",
+            type:"Balm",
+            category:"Foot Care",
+            purpose:"Moisturizing balm for dry feet.",
+            price:125,
+            rating:"4.5",
+            symptoms:"Dry heels and feet.",
+            benefits:"Provides intensive moisture support.",
+            uses:"For external foot care.",
+            howToUse:"Apply a small amount before bedtime if directed.",
+            precautions:"Avoid irritated skin.",
+            suitable:"For external use.",
+            storage:"Store in a cool dry place."
+        },
+
+        {
+            name:"Skin Protect Cream",
+            image:"images/ointments/skin.jpg",
+            type:"Cream",
+            category:"Skin Protection",
+            purpose:"Provides protective moisturizing support.",
+            price:115,
+            rating:"4.6",
+            symptoms:"Dry skin and environmental exposure.",
+            benefits:"Helps maintain skin moisture.",
+            uses:"Daily external skin care.",
+            howToUse:"Apply evenly to clean skin.",
+            precautions:"Avoid eye area.",
+            suitable:"Follow product directions.",
+            storage:"Keep container closed."
+        },
+
+        {
+            name:"Vitamin E Cream",
+            image:"images/ointments/vitamine.jpg",
+            type:"Cream",
+            category:"Skin Moisturizing",
+            purpose:"Vitamin E based moisturizing skin-care product.",
+            price:150,
+            rating:"4.7",
+            symptoms:"Dry skin.",
+            benefits:"Provides moisturizing support.",
+            uses:"For external skin care.",
+            howToUse:"Apply gently to clean skin.",
+            precautions:"Patch test if needed.",
+            suitable:"For external use.",
+            storage:"Store away from heat."
+        },
+
+        {
+            name:"Shea Butter Cream",
+            image:"images/ointments/shea.jpg",
+            type:"Cream",
+            category:"Body Moisturizer",
+            purpose:"Rich moisturizing cream for dry skin.",
+            price:160,
+            rating:"4.7",
+            symptoms:"Dry skin.",
+            benefits:"Helps retain skin moisture.",
+            uses:"Daily body care.",
+            howToUse:"Apply evenly to dry areas.",
+            precautions:"Avoid eyes.",
+            suitable:"For external use.",
+            storage:"Keep in a cool dry place."
+        },
+
+        {
+            name:"Cooling Skin Gel",
+            image:"images/ointments/cooling.jpg",
+            type:"Gel",
+            category:"Cooling Care",
+            purpose:"Provides a cooling topical application.",
+            price:135,
+            rating:"4.6",
+            symptoms:"Temporary skin discomfort.",
+            benefits:"Provides cooling sensation.",
+            uses:"External topical use.",
+            howToUse:"Apply according to label.",
+            precautions:"Avoid broken skin.",
+            suitable:"Follow product instructions.",
+            storage:"Keep container closed."
+        },
+
+        {
+            name:"Daily Skin Cream",
+            image:"images/ointments/daily.jpg",
+            type:"Cream",
+            category:"Daily Skin Care",
+            purpose:"Everyday moisturizing skin care.",
+            price:125,
+            rating:"4.7",
+            symptoms:"Daily skin dryness.",
+            benefits:"Helps maintain skin moisture.",
+            uses:"Daily external care.",
+            howToUse:"Apply as needed.",
+            precautions:"Avoid eye area.",
+            suitable:"For external use.",
+            storage:"Store in a cool place."
+        },
+
+        {
+            name:"Barrier Care Cream",
+            image:"images/ointments/barrier.jpg",
+            type:"Cream",
+            category:"Barrier Care",
+            purpose:"Provides protective moisturizing support for skin.",
+            price:145,
+            rating:"4.6",
+            symptoms:"Dryness and environmental exposure.",
+            benefits:"Supports the skin's protective moisture barrier.",
+            uses:"For external skin care.",
+            howToUse:"Apply a thin layer as directed.",
+            precautions:"Stop if irritation develops.",
+            suitable:"For external use.",
+            storage:"Keep tube tightly closed."
+        }
+
+    ]
+},
+
+
+    
+
+
+
+/* =========================================================
+   9. SHAMPOOS, SOAPS & NAPKINS
+========================================================= */
+
+{
+    icon: "🧴",
+    title: "Shampoos, Soaps & Napkins",
+    description: "Everyday personal care products including shampoos, cleansing soaps and sanitary napkins.",
+
+    products: [
+
+        {
+            name: "Anti-Dandruff Shampoo",
+            image: "images/hairskin/anti.jpg",
+            type: "Shampoo",
+            category: "Hair Care",
+            purpose: "Shampoo for dandruff-prone scalp care.",
+            price: 180,
+            rating: "4.8",
+            symptoms: "Visible flakes and scalp dryness.",
+            benefits: "Helps cleanse the scalp.",
+            uses: "For routine scalp cleansing.",
+            howToUse: "Use according to the product label.",
+            precautions: "Avoid eye contact. Stop if irritation occurs.",
+            suitable: "Follow age and usage instructions on the label.",
+            storage: "Store in a cool, dry place."
+        },
+
+        {
+            name: "Mild Daily Shampoo",
+            image: "images/hairskin/mild.jpg",
+            type: "Shampoo",
+            category: "Hair Care",
+            purpose: "Shampoo for regular hair cleansing.",
+            price: 150,
+            rating: "4.6",
+            symptoms: "Everyday hair cleansing needs.",
+            benefits: "Helps remove dirt and excess oil.",
+            uses: "Routine hair washing.",
+            howToUse: "Apply to wet hair and rinse thoroughly.",
+            precautions: "Avoid contact with eyes.",
+            suitable: "Follow product label instructions.",
+            storage: "Keep bottle tightly closed."
+        },
+
+        {
+            name: "Hair Care Shampoo",
+            image: "images/hairskin/hair-fall-shampoo.jpg",
+            type: "Shampoo",
+            category: "Hair Care",
+            purpose: "Shampoo for routine hair and scalp cleansing.",
+            price: 210,
+            rating: "4.7",
+            symptoms: "Hair cleansing and hair-care needs.",
+            benefits: "Helps keep hair clean and manageable.",
+            uses: "Regular hair-care routine.",
+            howToUse: "Use as directed on the package.",
+            precautions: "It is not a guaranteed treatment for hair loss.",
+            suitable: "Follow product label instructions.",
+            storage: "Store away from direct sunlight."
+        },
+
+        {
+            name: "Moisturizing Shampoo",
+            image: "images/hairskin/moisturizing.jpg",
+            type: "Shampoo",
+            category: "Hair Care",
+            purpose: "Cleansing shampoo for dry-feeling hair.",
+            price: 195,
+            rating: "4.7",
+            symptoms: "Dry or rough-feeling hair.",
+            benefits: "Helps condition hair during washing.",
+            uses: "Routine hair cleansing.",
+            howToUse: "Apply to wet hair and rinse well.",
+            precautions: "Avoid eye contact.",
+            suitable: "Check the product label before use.",
+            storage: "Keep container closed."
+        },
+
+        {
+            name: "Sensitive Skin Soap",
+            image: "images/hairskin/sensitive.jpg",
+            type: "Soap",
+            category: "Skin Cleansing",
+            purpose: "Soap for gentle everyday skin cleansing.",
+            price: 75,
+            rating: "4.7",
+            symptoms: "Everyday cleansing for sensitive-feeling skin.",
+            benefits: "Cleanses the skin.",
+            uses: "For external skin cleansing.",
+            howToUse: "Lather with water and rinse thoroughly.",
+            precautions: "Check ingredients. Stop if irritation occurs.",
+            suitable: "Choose according to individual skin needs.",
+            storage: "Keep soap dry between uses."
+        },
+
+        {
+            name: "Fragrance-Free Soap",
+            image: "images/hairskin/fragrance.jpg",
+            type: "Soap",
+            category: "Skin Cleansing",
+            purpose: "Cleansing soap without added fragrance.",
+            price: 90,
+            rating: "4.8",
+            symptoms: "Preference for fragrance-free cleansing.",
+            benefits: "Provides everyday skin cleansing.",
+            uses: "For external use.",
+            howToUse: "Lather gently and rinse with water.",
+            precautions: "Fragrance-free does not guarantee allergy-free. Check ingredients.",
+            suitable: "For people who prefer fragrance-free products.",
+            storage: "Keep in a dry place."
+        },
+
+        {
+            name: "Gentle Cleansing Soap",
+            image: "images/hairskin/gentle.jpg",
+            type: "Soap",
+            category: "Bath Care",
+            purpose: "Soap for everyday bathing and cleansing.",
+            price: 60,
+            rating: "4.6",
+            symptoms: "Daily bathing needs.",
+            benefits: "Helps remove dirt from the skin.",
+            uses: "Daily external cleansing.",
+            howToUse: "Use with water and rinse thoroughly.",
+            precautions: "Avoid eyes and irritated skin.",
+            suitable: "Follow the product label.",
+            storage: "Store in a dry soap dish."
+        },
+
+        {
+            name: "Antibacterial Cleansing Soap",
+            image: "images/hairskin/antibacterial.jpg",
+            type: "Soap",
+            category: "Skin Cleansing",
+            purpose: "Cleansing soap labelled for antibacterial use.",
+            price: 85,
+            rating: "4.6",
+            symptoms: "Everyday hand and body cleansing needs.",
+            benefits: "Cleanses skin when used as directed.",
+            uses: "Use only as indicated on the label.",
+            howToUse: "Follow package directions.",
+            precautions: "Not a substitute for medical treatment of skin infections.",
+            suitable: "Follow label instructions.",
+            storage: "Keep dry between uses."
+        },
+
+        {
+            name: "Regular Sanitary Napkins",
+            image: "images/hairskin/regularpads.jpg",
+            type: "Sanitary Napkins",
+            category: "Menstrual Care",
+            purpose: "Absorbent pads for menstrual flow.",
+            price: 55,
+            rating: "4.8",
+            symptoms: "Menstrual hygiene needs.",
+            benefits: "Provides menstrual-flow absorption.",
+            uses: "For external menstrual protection.",
+            howToUse: "Attach to underwear and change regularly.",
+            precautions: "Dispose of used pads hygienically.",
+            suitable: "Choose a suitable size and absorbency.",
+            storage: "Store in a clean, dry place."
+        },
+
+        {
+            name: "XL Overnight Sanitary Napkins",
+            image: "images/hairskin/xl.jpg",
+            type: "Sanitary Napkins",
+            category: "Overnight Menstrual Care",
+            purpose: "Longer pads designed for overnight menstrual protection.",
+            price: 110,
+            rating: "4.8",
+            symptoms: "Overnight menstrual protection needs.",
+            benefits: "Provides extended pad coverage.",
+            uses: "For overnight menstrual hygiene.",
+            howToUse: "Position securely and change as needed.",
+            precautions: "Change regularly; overnight use does not mean unlimited wear.",
+            suitable: "Choose based on personal flow and comfort.",
+            storage: "Keep sealed and dry."
+        },
+
+        {
+            name: "Extra-Absorbent Sanitary Napkins",
+            image: "images/hairskin/heavy.jpg",
+            type: "Sanitary Napkins",
+            category: "Menstrual Care",
+            purpose: "Absorbent pads for heavier menstrual flow.",
+            price: 95,
+            rating: "4.7",
+            symptoms: "Heavier menstrual flow.",
+            benefits: "Offers higher absorbency according to product design.",
+            uses: "For menstrual protection.",
+            howToUse: "Choose suitable absorbency and change regularly.",
+            precautions: "Seek medical advice if bleeding is unusually heavy.",
+            suitable: "Choose according to personal needs.",
+            storage: "Store in a clean, dry place."
+        },
+
+        {
+            name: "Panty Liners",
+            image: "images/hairskin/panty-liners.jpg",
+            type: "Panty Liners",
+            category: "Personal Hygiene",
+            purpose: "Thin liners for light everyday discharge or spotting.",
+            price: 65,
+            rating: "4.6",
+            symptoms: "Light discharge or spotting.",
+            benefits: "Provides light absorbent protection.",
+            uses: "For external underwear protection.",
+            howToUse: "Attach to underwear and change regularly.",
+            precautions: "Stop use if irritation occurs.",
+            suitable: "Choose fragrance-free options if preferred.",
+            storage: "Keep sealed and dry."
+        }
+
+    ]
+},
+
+
+/* =========================================================
+   10. FIRST AID
+========================================================= */
+
+{
+    icon:"🩹",
+    title:"First Aid",
+    description:"Essential first-aid and healthcare accessories.",
+
+    products:[
+
+        {
+            name:"Adhesive Bandage",
+            image:"images/firstaid/adhesive.jpg",
+            type:"Bandage",
+            category:"Wound Care",
+            purpose:"Covers minor superficial wounds.",
+            price:50,
+            rating:"4.8",
+            symptoms:"Minor cuts and scratches.",
+            benefits:"Helps protect minor wounds from dirt.",
+            uses:"For minor wound covering.",
+            howToUse:"Clean and dry the area before application.",
+            precautions:"Change when wet or dirty.",
+            suitable:"General first-aid use.",
+            storage:"Keep sealed and dry."
+        },
+
+        {
+            name:"Sterile Gauze",
+            image:"images/firstaid/sterile.jpg",
+            type:"Gauze",
+            category:"Wound Dressing",
+            purpose:"Sterile dressing material for wound care.",
+            price:70,
+            rating:"4.7",
+            symptoms:"Minor wound dressing needs.",
+            benefits:"Provides a clean dressing layer.",
+            uses:"Used for suitable wound dressing.",
+            howToUse:"Apply according to first-aid instructions.",
+            precautions:"Use sterile packaging only if intact.",
+            suitable:"General first-aid use.",
+            storage:"Keep sealed and dry."
+        },
+
+        {
+            name:"Medical Cotton",
+            image:"images/firstaid/medical.jpg",
+            type:"Cotton",
+            category:"First Aid",
+            purpose:"Cotton material for general first-aid cleaning.",
+            price:60,
+            rating:"4.6",
+            symptoms:"Basic first-aid cleaning needs.",
+            benefits:"Provides soft absorbent material.",
+            uses:"Used for suitable external cleaning.",
+            howToUse:"Use clean cotton for each application.",
+            precautions:"Avoid placing loose cotton inside deep wounds.",
+            suitable:"General first-aid use.",
+            storage:"Keep clean and dry."
+        },
+
+        {
+            name:"Digital Thermometer",
+            image:"images/firstaid/thermometer.jpg",
+            type:"Device",
+            category:"Temperature Check",
+            purpose:"Measures body temperature.",
+            price:180,
+            rating:"4.8",
+            symptoms:"Temperature monitoring requirement.",
+            benefits:"Provides quick temperature readings.",
+            uses:"Used for body temperature measurement.",
+            howToUse:"Follow device instructions.",
+            precautions:"Clean according to manufacturer instructions.",
+            suitable:"General household use.",
+            storage:"Keep safely stored."
+        },
+
+        {
+            name:"Antiseptic Solution",
+            image:"images/firstaid/antiseptic.jpg",
+            type:"Solution",
+            category:"Wound Cleaning",
+            purpose:"Antiseptic solution for suitable external first-aid use.",
+            price:95,
+            rating:"4.7",
+            symptoms:"Minor wound-cleaning needs.",
+            benefits:"Supports external wound cleaning.",
+            uses:"Used according to product instructions.",
+            howToUse:"Follow label directions.",
+            precautions:"Do not use internally unless specifically labeled.",
+            suitable:"Follow product instructions.",
+            storage:"Keep bottle closed."
+        },
+
+        {
+            name:"Medical Tape",
+            image:"images/firstaid/tape.jpg",
+            type:"Tape",
+            category:"Dressing Support",
+            purpose:"Secures suitable dressings and bandages.",
+            price:55,
+            rating:"4.6",
+            symptoms:"Dressing fixation requirement.",
+            benefits:"Helps hold dressings in place.",
+            uses:"For securing medical dressings.",
+            howToUse:"Apply gently to clean dry surrounding skin.",
+            precautions:"Remove carefully if skin is sensitive.",
+            suitable:"General first-aid use.",
+            storage:"Keep roll clean and dry."
+        },
+
+        {
+            name:"Elastic Bandage",
+            image:"images/firstaid/elastic.jpg",
+            type:"Bandage",
+            category:"Support",
+            purpose:"Provides supportive wrapping for suitable minor injuries.",
+            price:90,
+            rating:"4.7",
+            symptoms:"Need for light external support.",
+            benefits:"Provides adjustable wrapping support.",
+            uses:"Used according to first-aid guidance.",
+            howToUse:"Wrap comfortably without excessive tightness.",
+            precautions:"Loosen if numbness or color change occurs.",
+            suitable:"Use with appropriate guidance.",
+            storage:"Keep clean and dry."
+        },
+
+        {
+            name:"Instant Cold Pack",
+            image:"images/firstaid/cold.jpg",
+            type:"Cold Pack",
+            category:"First Aid",
+            purpose:"Provides cold compress support.",
+            price:110,
+            rating:"4.8",
+            symptoms:"Minor swelling or discomfort.",
+            benefits:"Provides temporary cooling support.",
+            uses:"External cold application.",
+            howToUse:"Activate and wrap before applying if instructed.",
+            precautions:"Do not apply directly for prolonged periods.",
+            suitable:"General first-aid use.",
+            storage:"Store according to package instructions."
+        },
+
+        {
+            name:"First Aid Scissors",
+            image:"images/firstaid/scissors.jpg",
+            type:"Accessory",
+            category:"First Aid Tool",
+            purpose:"Scissors designed for first-aid tasks.",
+            price:100,
+            rating:"4.6",
+            symptoms:"First-aid cutting requirement.",
+            benefits:"Provides a convenient cutting tool.",
+            uses:"For cutting tape, gauze or dressings.",
+            howToUse:"Use carefully.",
+            precautions:"Keep away from children.",
+            suitable:"Adult use.",
+            storage:"Store safely."
+        },
+
+        {
+            name:"Disposable Gloves",
+            image:"images/firstaid/disposal.jpg",
+            type:"Gloves",
+            category:"Protection",
+            purpose:"Provides hand protection during suitable first-aid tasks.",
+            price:85,
+            rating:"4.7",
+            symptoms:"Need for hygienic first-aid handling.",
+            benefits:"Provides a protective barrier.",
+            uses:"Used during wound-care tasks.",
+            howToUse:"Wear correctly and dispose after use.",
+            precautions:"Use a new pair for each task.",
+            suitable:"General first-aid use.",
+            storage:"Keep packaging dry."
+        },
+
+        {
+            name:"Safety Pins",
+            image:"images/firstaid/pins.jpg",
+            type:"Accessory",
+            category:"First Aid Tool",
+            purpose:"Useful accessory for securing suitable bandages.",
+            price:40,
+            rating:"4.5",
+            symptoms:"Bandage securing requirement.",
+            benefits:"Provides simple securing support.",
+            uses:"For suitable first-aid applications.",
+            howToUse:"Use carefully.",
+            precautions:"Keep away from children.",
+            suitable:"Adult use.",
+            storage:"Store safely."
+        },
+
+        {
+            name:"Eye Pad",
+            image:"images/firstaid/eyepad.jpg",
+            type:"Eye Dressing",
+            category:"Eye Care",
+            purpose:"Provides protective covering for the eye area when appropriate.",
+            price:75,
+            rating:"4.6",
+            symptoms:"Eye covering requirement.",
+            benefits:"Provides protective dressing support.",
+            uses:"Use according to first-aid guidance.",
+            howToUse:"Apply gently without pressure.",
+            precautions:"Seek professional care for eye injuries.",
+            suitable:"Use with appropriate guidance.",
+            storage:"Keep sealed."
+        },
+
+        {
+            name:"Wound Dressing Pad",
+            image:"images/firstaid/wounds.jpg",
+            type:"Dressing",
+            category:"Wound Care",
+            purpose:"Absorbent dressing for suitable minor wounds.",
+            price:80,
+            rating:"4.7",
+            symptoms:"Minor wound dressing needs.",
+            benefits:"Provides protective wound covering.",
+            uses:"For suitable minor wound care.",
+            howToUse:"Apply to clean wound and secure appropriately.",
+            precautions:"Change according to wound-care guidance.",
+            suitable:"General first-aid use.",
+            storage:"Keep sterile pack sealed."
+        },
+
+        {
+            name:"First Aid Pouch",
+            image:"images/firstaid/pouch.jpg",
+            type:"Kit",
+            category:"First Aid",
+            purpose:"Compact pouch for storing first-aid supplies.",
+            price:250,
+            rating:"4.8",
+            symptoms:"Need for organized first-aid supplies.",
+            benefits:"Keeps basic supplies together.",
+            uses:"Used for storing first-aid products.",
+            howToUse:"Organize supplies inside the pouch.",
+            precautions:"Check expiry dates of stored products.",
+            suitable:"Household and travel use.",
+            storage:"Keep pouch clean and dry."
+        },
+
+        {
+            name:"Complete First Aid Kit",
+            image:"images/firstaid/complete.jpg",
+            type:"First Aid Kit",
+            category:"Emergency Preparedness",
+            purpose:"Collection of basic first-aid supplies.",
+            price:450,
+            rating:"4.9",
+            symptoms:"General first-aid preparedness needs.",
+            benefits:"Provides convenient access to essential supplies.",
+            uses:"For suitable basic first-aid situations.",
+            howToUse:"Use individual items according to their instructions.",
+            precautions:"Seek professional medical care for serious injuries.",
+            suitable:"Household, office and travel use.",
+            storage:"Keep kit clean, dry and accessible."
+        },
+
+    ]
+}
+];
+
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+const productsContainer =
+    document.getElementById("productsContainer");
+
+
+function renderProducts(searchText = ""){
+
+    productsContainer.innerHTML = "";
+
+    let foundAny = false;
+
+    categories.forEach((category) => {
+
+        const filteredProducts =
+            category.products.filter(product => {
+
+                const text = (
+
+                    product.name + " " +
+                    product.type + " " +
+                    product.category + " " +
+                    product.purpose + " " +
+                    product.uses + " " +
+                    product.symptoms
+
+                ).toLowerCase();
+
+                return text.includes(searchText.toLowerCase());
+
+            });
+
+
+        if(filteredProducts.length === 0){
+            return;
+        }
+
+        foundAny = true;
+
+
+        const section =
+            document.createElement("section");
+
+        section.className = "medicine-section";
+
+
+        section.innerHTML = `
+
+            <div class="section-heading">
+
+                <h2>
+                    ${category.icon} ${category.title}
+                </h2>
+
+                <p>
+                    ${category.description}
+                </p>
+
+            </div>
+
+            <div class="products"></div>
+
+        `;
+
+
+        const productsDiv =
+            section.querySelector(".products");
+
+        productsDiv.tabIndex = 0;
+        productsDiv.setAttribute("aria-label", `${category.title} products`);
+
+
+        filteredProducts.forEach((product,index) => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "product-card";
+
+            card.style.animationDelay =
+                `${index * 0.05}s`;
+
+
+            card.innerHTML = `
+
+                <div class="product-image">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        onerror="this.onerror=null;this.src='images/medbg.jpg';"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <span class="product-type">
+                        ${product.type}
+                    </span>
+
+                    <p>
+                        ${product.purpose}
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            ₹${product.price}
+                        </span>
+
+                        <span class="rating">
+                            ⭐ ${product.rating}
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button class="view-btn" type="button">
+                            👁️ View
+                        </button>
+
+                        <button class="card-cart-btn" type="button">
+                            🛒 Add Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            const viewBtn =
+                card.querySelector(".view-btn");
+
+            const cardCartBtn =
+                card.querySelector(".card-cart-btn");
+
+            viewBtn.addEventListener("click", (event) => {
+
+                event.stopPropagation();
+                openMedicine(product);
+
+            });
+
+            cardCartBtn.addEventListener("click", (event) => {
+
+                event.stopPropagation();
+                addProductToCart(product, cardCartBtn);
+
+            });
+
+            card.addEventListener("click", () => {
+
+                openMedicine(product);
+
+            });
+
+
+            productsDiv.appendChild(card);
+
+        });
+
+
+        productsContainer.appendChild(section);
+
+        enableHorizontalProductScroll(productsDiv);
+
+    });
+
+
+    if(!foundAny){
+
+        productsContainer.innerHTML = `
+
+            <div class="no-result">
+
+                <h2>🔎 No medicine found</h2>
+
+                <p>
+                    Try another medicine name or category.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   MODAL ELEMENTS
+========================================================= */
+
+const modal =
+    document.getElementById("medicineModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const modalImage =
+    document.getElementById("modalImage");
+
+const modalName =
+    document.getElementById("modalName");
+
+const modalType =
+    document.getElementById("modalType");
+
+const modalCategory =
+    document.getElementById("modalCategory");
+
+const modalPurpose =
+    document.getElementById("modalPurpose");
+
+const modalPrice =
+    document.getElementById("modalPrice");
+
+const modalPriceBottom =
+    document.getElementById("modalPriceBottom");
+
+const modalSymptoms =
+    document.getElementById("modalSymptoms");
+
+const modalBenefits =
+    document.getElementById("modalBenefits");
+
+const modalUses =
+    document.getElementById("modalUses");
+
+const modalHowToUse =
+    document.getElementById("modalHowToUse");
+
+const modalPrecautions =
+    document.getElementById("modalPrecautions");
+
+const modalSuitable =
+    document.getElementById("modalSuitable");
+
+const modalStorage =
+    document.getElementById("modalStorage");
+
+
+/* =========================================================
+   OPEN MODAL
+========================================================= */
+
+let selectedProduct = null;
+
+
+function openMedicine(product){
+
+    selectedProduct = product;
+
+    modalImage.src = product.image;
+
+    modalImage.onerror = function(){
+
+        this.onerror = null;
+
+        this.src = "images/medbg.jpg";
+
+    };
+
+
+    modalName.textContent =
+        product.name;
+
+    modalType.textContent =
+        product.type;
+
+    modalCategory.textContent =
+        product.category;
+
+    modalPurpose.textContent =
+        product.purpose;
+
+    modalPrice.textContent =
+        product.price;
+
+    modalPriceBottom.textContent =
+        product.price;
+
+    modalSymptoms.textContent =
+        product.symptoms;
+
+    modalBenefits.textContent =
+        product.benefits;
+
+    modalUses.textContent =
+        product.uses;
+
+    modalHowToUse.textContent =
+        product.howToUse;
+
+    modalPrecautions.textContent =
+        product.precautions;
+
+    modalSuitable.textContent =
+        product.suitable;
+
+    modalStorage.textContent =
+        product.storage;
+
+
+    modal.classList.add("active");
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeMedicineModal(){
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    closeMedicineModal
+);
+
+
+modal.addEventListener("click",(event)=>{
+
+    if(event.target === modal){
+
+        closeMedicineModal();
+
+    }
+
+});
+
+
+document.addEventListener("keydown",(event)=>{
+
+    if(event.key === "Escape"){
+
+        closeMedicineModal();
+
+    }
+
+});
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const searchInput =
+    document.getElementById("searchInput");
+
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        renderProducts(
+            searchInput.value.trim()
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ADD PRODUCT TO CART
+========================================================= */
+
+function addProductToCart(product, button = null){
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("medicareCart")
+        ) || [];
+
+    const existing =
+        cart.find(
+            item => item.name === product.name
+        );
+
+    if(existing){
+
+        existing.quantity =
+            (existing.quantity || 1) + 1;
+
+    }
+    else{
+
+        cart.push({
+
+            name:product.name,
+            price:product.price,
+            image:product.image,
+            type:product.type,
+            quantity:1
+
+        });
+
+    }
+
+    localStorage.setItem(
+        "medicareCart",
+        JSON.stringify(cart)
+    );
+
+    if(button){
+
+        const oldText = button.innerHTML;
+
+        button.innerHTML = "✅ Added";
+        button.classList.add("added");
+
+        setTimeout(() => {
+
+            button.innerHTML = oldText;
+            button.classList.remove("added");
+
+        },1500);
+
+    }
+}
+
+
+/* =========================================================
+   HORIZONTAL PRODUCT SCROLL
+========================================================= */
+
+function enableHorizontalProductScroll(scroller){
+
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+    let moved = false;
+
+    scroller.addEventListener("pointerdown", (event) => {
+
+        if(event.pointerType === "mouse" && event.button !== 0){
+            return;
+        }
+
+        isDragging = true;
+        moved = false;
+        startX = event.clientX;
+        startScrollLeft = scroller.scrollLeft;
+
+        scroller.classList.add("is-dragging");
+        scroller.setPointerCapture(event.pointerId);
+
+    });
+
+    scroller.addEventListener("pointermove", (event) => {
+
+        if(!isDragging){
+            return;
+        }
+
+        const distance = event.clientX - startX;
+
+        if(Math.abs(distance) > 4){
+            moved = true;
+        }
+
+        scroller.scrollLeft =
+            startScrollLeft - distance;
+
+    });
+
+    const stopDragging = (event) => {
+
+        if(!isDragging){
+            return;
+        }
+
+        isDragging = false;
+        scroller.classList.remove("is-dragging");
+
+        if(event && scroller.hasPointerCapture(event.pointerId)){
+            scroller.releasePointerCapture(event.pointerId);
+        }
+
+        if(moved){
+
+            scroller.dataset.justDragged = "true";
+
+            setTimeout(() => {
+                scroller.dataset.justDragged = "false";
+            },80);
+
+        }
+
+    };
+
+    scroller.addEventListener("pointerup", stopDragging);
+    scroller.addEventListener("pointercancel", stopDragging);
+
+    scroller.addEventListener("lostpointercapture", () => {
+        isDragging = false;
+        scroller.classList.remove("is-dragging");
+    });
+
+    scroller.addEventListener("wheel", (event) => {
+
+        if(event.shiftKey && Math.abs(event.deltaY) > 0){
+
+            event.preventDefault();
+            scroller.scrollLeft += event.deltaY;
+
+        }
+
+    }, {passive:false});
+
+    scroller.addEventListener("keydown", (event) => {
+
+        if(event.key === "ArrowRight"){
+            event.preventDefault();
+            scroller.scrollBy({left:274, behavior:"smooth"});
+        }
+
+        if(event.key === "ArrowLeft"){
+            event.preventDefault();
+            scroller.scrollBy({left:-274, behavior:"smooth"});
+        }
+
+        if(event.key === "Home"){
+            event.preventDefault();
+            scroller.scrollTo({left:0, behavior:"smooth"});
+        }
+
+        if(event.key === "End"){
+            event.preventDefault();
+            scroller.scrollTo({
+                left:scroller.scrollWidth,
+                behavior:"smooth"
+            });
+        }
+
+    });
+
+    scroller.addEventListener("click", (event) => {
+
+        if(scroller.dataset.justDragged === "true"){
+
+            event.preventDefault();
+            event.stopPropagation();
+            scroller.dataset.justDragged = "false";
+
+        }
+
+    }, true);
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+const addCartBtn =
+    document.getElementById("addCartBtn");
+
+
+addCartBtn.addEventListener(
+    "click",
+    () => {
+
+        if(!selectedProduct){
+            return;
+        }
+
+        addProductToCart(
+            selectedProduct,
+            addCartBtn
+        );
+
+        addCartBtn.innerHTML =
+            "✅ Added to Cart";
+
+        setTimeout(()=>{
+
+            if(selectedProduct){
+                addCartBtn.innerHTML =
+                    `🛒 Add to Cart — ₹${selectedProduct.price}`;
+            }
+
+        },1500);
+
+    }
+);
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+renderProducts();
+
+</script>
+
+<script>
+
+/* =====================================================
+   FIX VIEW + ADD CART BUTTONS
+   ===================================================== */
+
+document.addEventListener("click", function(event) {
+
+    /* VIEW BUTTON */
+
+    const viewButton =
+        event.target.closest(".view-btn");
+
+    if (viewButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        /*
+           Product card-la irukkura product data
+           existing render code-la irundhu edukkum.
+        */
+
+        const card =
+            viewButton.closest(".product-card");
+
+        if (!card) return;
+
+
+        /*
+           Existing card click handler irundhaalum
+           View button click separate-ah work aagum.
+        */
+
+        card.click();
+
+        return;
+    }
+
+
+    /* ADD CART BUTTON */
+
+    const cartButton =
+        event.target.closest(".card-cart-btn");
+
+    if (cartButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+
+        const card =
+            cartButton.closest(".product-card");
+
+        if (!card) return;
+
+
+        /*
+           Product name edukkum
+        */
+
+        const nameElement =
+            card.querySelector("h3");
+
+        if (!nameElement) return;
+
+
+        const productName =
+            nameElement.textContent.trim();
+
+
+        /*
+           Existing categories array-la
+           product-a find pannum
+        */
+
+        let selectedProduct = null;
+
+
+        if (typeof categories !== "undefined") {
+
+            for (
+                const category of categories
+            ) {
+
+                if (!category.products) continue;
+
+
+                const found =
+                    category.products.find(
+                        product =>
+                            product.name.trim() ===
+                            productName
+                    );
+
+
+                if (found) {
+
+                    selectedProduct = found;
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        /* Product found */
+
+        if (selectedProduct) {
+
+            if (
+                typeof addProductToCart ===
+                "function"
+            ) {
+
+                addProductToCart(
+                    selectedProduct,
+                    cartButton
+                );
+
+            }
+
+            else {
+
+                /* Backup cart system */
+
+                let cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "medicareCart"
+                        )
+                    ) || [];
+
+
+                const existing =
+                    cart.find(
+                        item =>
+                            item.name ===
+                            selectedProduct.name
+                    );
+
+
+                if (existing) {
+
+                    existing.quantity =
+                        (existing.quantity || 1) + 1;
+
+                }
+
+                else {
+
+                    cart.push({
+
+                        name:
+                            selectedProduct.name,
+
+                        price:
+                            selectedProduct.price,
+
+                        image:
+                            selectedProduct.image,
+
+                        type:
+                            selectedProduct.type,
+
+                        quantity: 1
+
+                    });
+
+                }
+
+
+                localStorage.setItem(
+                    "medicareCart",
+                    JSON.stringify(cart)
+                );
+                updateMedicineCartCount();
+
+
+                cartButton.innerHTML =
+                    "✅ Added";
+
+
+                setTimeout(
+                    function() {
+
+                        cartButton.innerHTML =
+                            "🛒 Add Cart";
+
+                    },
+                    1500
+                );
+
+            }
+
+        }
+
+        return;
+    }
+
+});
+
+
+/* =====================================================
+   STOP HORIZONTAL DRAG ON BUTTONS
+   ===================================================== */
+
+document.addEventListener(
+    "pointerdown",
+    function(event) {
+
+        if (
+            event.target.closest(
+                ".product-actions"
+            )
+        ) {
+
+            event.stopPropagation();
+
+        }
+
+    },
+    true
+);
+
+
+/* =====================================================
+   BUTTON CSS FIX
+   ===================================================== */
+
+const buttonFixStyle =
+document.createElement("style");
+
+
+buttonFixStyle.innerHTML = `
+
+.product-actions {
+    position: relative !important;
+    z-index: 999 !important;
+    pointer-events: auto !important;
+}
+
+.product-actions button {
+    position: relative !important;
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.view-btn,
+.card-cart-btn {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+`;
+
+
+document.head.appendChild(
+    buttonFixStyle
+);
+
+</script>
+
+<script>
+async function updateAuthButton() {
+    const loginBtn = document.querySelector(".login-btn[href='login.html']");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    try {
+        const response = await fetch("/api/me");
+
+        if (response.ok) {
+            if (loginBtn) loginBtn.style.display = "none";
+            if (logoutBtn) logoutBtn.style.display = "";
+        } else {
+            if (loginBtn) loginBtn.style.display = "";
+            if (logoutBtn) logoutBtn.style.display = "none";
+        }
+    } catch (error) {
+        console.error("Login status check failed:", error);
+    }
+}
+
+async function logoutUser() {
+    try {
+        const response = await fetch("/api/logout", {
+            method: "POST"
+        });
+
+        if (response.ok) {
+            window.location.replace("/login.html");
+        } else {
+            alert("Logout failed. Please try again.");
+        }
+    } catch (error) {
+        alert("Backend connection failed.");
+    }
+}
+
+updateAuthButton();
+</script>
+</body>
+
+
+</html>

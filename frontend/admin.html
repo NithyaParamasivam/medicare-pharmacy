@@ -1,0 +1,657 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare+ | Admin Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --green: #00c99a;
+  --dark: #073e33;
+  --light: #e7fff6;
+  --bg: #f4f8f7;
+  --text: #183b35;
+  --muted: #73847f;
+  --border: #e4eeea;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 245px;
+  background: var(--dark);
+  color: white;
+  padding: 28px 18px;
+  flex-shrink: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.brand i { color: var(--green); font-size: 28px; }
+.brand small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #9bead5;
+}
+.side-label {
+  color: #9bbab1;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin: 38px 12px 12px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: 10px;
+  margin: 5px 0;
+  color: #d6ebe4;
+  font-size: 14px;
+}
+.nav-item.active {
+  background: #075e4d;
+  color: #65f5d0;
+}
+.nav-item i { width: 19px; }
+.sidebar-note {
+  margin-top: 45px;
+  padding: 15px;
+  background: #104c40;
+  border-radius: 12px;
+  color: #d7f6ed;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.main { flex: 1; min-width: 0; }
+.topbar {
+  background: white;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid var(--border);
+}
+.topbar h1 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+}
+.topbar p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.admin-tag {
+  background: var(--light);
+  color: var(--dark);
+  padding: 10px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.content { padding: 28px; }
+.notice {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.notice.error { background: #fff1f0; color: #a12d27; }
+.notice.success { background: #eafff5; color: #075e4d; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: white;
+  padding: 21px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 4px 16px #073e3307;
+}
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+.stat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: var(--light);
+  color: #009c77;
+}
+.stat-card h2 { margin: 15px 0 4px; font-size: 29px; }
+.stat-card p { margin: 0; font-size: 12px; color: var(--muted); }
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
+}
+.panel-head {
+  padding: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.panel-head h2 { margin: 0; font-size: 18px; }
+.panel-head p { margin: 5px 0 0; font-size: 12px; color: var(--muted); }
+.tools { display: flex; gap: 9px; flex-wrap: wrap; }
+.search, .filter {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 10px 12px;
+  border-radius: 9px;
+  outline-color: var(--green);
+  color: var(--text);
+}
+.search { width: 210px; }
+.btn {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: var(--green);
+  color: #003b2e;
+  font-weight: 700;
+}
+.btn:hover { filter: brightness(.96); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.table-wrap { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 780px; }
+th {
+  text-align: left;
+  background: #f8fbfa;
+  padding: 14px 17px;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+td {
+  padding: 16px 17px;
+  border-top: 1px solid #edf2ef;
+  font-size: 13px;
+  vertical-align: middle;
+}
+.order-id { font-weight: 700; color: var(--dark); }
+.customer { font-weight: 600; }
+.subtext { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.status {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #edf2f0;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status.placed { background: #fff4d9; color: #87610a; }
+.status.processing { background: #e7f0ff; color: #2858a6; }
+.status.shipped { background: #f0e8ff; color: #7041a5; }
+.status.delivered { background: #e1fff0; color: #08754d; }
+.status.cancelled { background: #ffe8e6; color: #ae3931; }
+.status-select {
+  width: 130px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+}
+.small-btn {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--dark);
+}
+.small-btn:hover { background: var(--light); }
+.empty { text-align: center; padding: 40px 15px; color: var(--muted); }
+.empty i { font-size: 30px; margin-bottom: 12px; color: #9cbab0; }
+.footer {
+  padding: 20px 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+@media(max-width: 1000px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sidebar { width: 205px; }
+}
+@media(max-width: 650px) {
+  .layout { display: block; }
+  .sidebar { width: 100%; padding: 16px; }
+  .side-label, .sidebar-note { display: none; }
+  .sidebar nav { display: flex; flex-wrap: wrap; margin-top: 15px; }
+  .nav-item { padding: 9px 11px; font-size: 12px; }
+  .topbar { padding: 18px; }
+  .topbar h1 { font-size: 21px; }
+  .content { padding: 15px; }
+  .stats { gap: 10px; }
+  .stat-card { padding: 14px; }
+  .stat-card h2 { font-size: 24px; }
+  .search { width: 100%; }
+  .tools { width: 100%; }
+  .filter { flex: 1; }
+}
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <i class="fa-solid fa-capsules"></i>
+      <div>MediCare<small>PHARMACY</small></div>
+    </div>
+
+    <div class="side-label">ADMIN MENU</div>
+    <nav>
+      <div class="nav-item active"><i class="fa-solid fa-chart-line"></i> Dashboard</div>
+      <div class="nav-item"><i class="fa-solid fa-box"></i> Orders</div>
+      <div class="nav-item"><i class="fa-solid fa-users"></i> Customers</div>
+    </nav>
+
+    <div class="sidebar-note">
+      <i class="fa-solid fa-shield-halved"></i>
+      <strong> Admin Area</strong><br>
+      This dashboard is intended for authorized administrators only.
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Manage your pharmacy orders and track deliveries.</p>
+      </div>
+      <div class="admin-tag"><i class="fa-solid fa-user-shield"></i> ADMIN PANEL</div>
+    </header>
+
+    <section class="content">
+      <div id="notice" class="notice">
+        <i class="fa-solid fa-circle-notch fa-spin"></i>
+        Checking admin access and loading orders...
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-top">Total Orders <span class="stat-icon"><i class="fa-solid fa-box"></i></span></div>
+          <h2 id="totalOrders">—</h2>
+          <p>Orders returned by the server</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">Placed <span class="stat-icon"><i class="fa-solid fa-receipt"></i></span></div>
+          <h2 id="placedOrders">—</h2>
+          <p>Awaiting processing</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">Processing <span class="stat-icon"><i class="fa-solid fa-gears"></i></span></div>
+          <h2 id="processingOrders">—</h2>
+          <p>Currently being prepared</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">Delivered <span class="stat-icon"><i class="fa-solid fa-truck-fast"></i></span></div>
+          <h2 id="deliveredOrders">—</h2>
+          <p>Successfully delivered</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2><i class="fa-solid fa-clipboard-list"></i> Order Management</h2>
+            <p>Review orders and update their delivery status.</p>
+          </div>
+          <div class="tools">
+            <input id="searchInput" class="search" type="search" placeholder="Search order or customer..." aria-label="Search orders">
+            <select id="statusFilter" class="filter" aria-label="Filter by status">
+              <option value="">All statuses</option>
+              <option>Placed</option>
+              <option>Processing</option>
+              <option>Shipped</option>
+              <option>Delivered</option>
+              <option>Cancelled</option>
+            </select>
+            <button id="refreshBtn" class="btn"><i class="fa-solid fa-rotate"></i> Refresh</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Order Date</th>
+                <th>Total</th>
+                <th>Current Status</th>
+                <th>Update Status</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody">
+              <tr><td colspan="6" class="empty">Loading orders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">MediCare Pharmacy · Admin Dashboard</footer>
+  </main>
+</div>
+
+<script>
+const ordersBody = document.getElementById("ordersBody");
+const notice = document.getElementById("notice");
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+const refreshBtn = document.getElementById("refreshBtn");
+
+const allowedStatuses = [
+  "Placed", "Processing", "Shipped", "Delivered", "Cancelled"
+];
+
+let orders = [];
+
+function showNotice(message, type = "") {
+  notice.className = "notice" + (type ? " " + type : "");
+  notice.textContent = message;
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+function getOrderStatus(order) {
+  return String(order.status || "Placed");
+}
+
+function getCustomerName(order) {
+  return order.delivery_name ||
+         order.customer_name ||
+         order.name ||
+         order.full_name ||
+         order.user_name ||
+         order.customerName ||
+         "Customer";
+}
+
+function getCustomerEmail(order) {
+  return order.customer_email ||
+         order.email ||
+         order.user_email ||
+         "";
+}
+
+
+function getOrderDate(order) {
+  const date = order.created_at || order.order_date ||
+               order.createdAt || order.date;
+  if (!date) return "—";
+
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return String(date);
+
+  return parsed.toLocaleDateString("en-IN", {
+    day: "2-digit", month: "short", year: "numeric"
+  });
+}
+
+function getOrderTotal(order) {
+  const value = order.total_amount ?? order.total ??
+               order.amount ?? order.grand_total;
+  if (value === undefined || value === null || value === "") return "—";
+
+  const number = Number(value);
+  return Number.isFinite(number)
+    ? "₹" + number.toLocaleString("en-IN", { maximumFractionDigits: 2 })
+    : escapeHTML(value);
+}
+
+function statusClass(status) {
+  return String(status).toLowerCase();
+}
+
+function updateStats() {
+  document.getElementById("totalOrders").textContent = orders.length;
+  document.getElementById("placedOrders").textContent =
+    orders.filter(o => getOrderStatus(o) === "Placed").length;
+  document.getElementById("processingOrders").textContent =
+    orders.filter(o => getOrderStatus(o) === "Processing").length;
+  document.getElementById("deliveredOrders").textContent =
+    orders.filter(o => getOrderStatus(o) === "Delivered").length;
+}
+
+function renderOrders() {
+  const query = searchInput.value.trim().toLowerCase();
+  const wantedStatus = statusFilter.value;
+
+  const filtered = orders.filter(order => {
+    const id = String(order.id ?? order.order_id ?? "");
+    const name = getCustomerName(order);
+    const email = getCustomerEmail(order);
+    const status = getOrderStatus(order);
+
+    const matchesSearch = [id, name, email]
+      .some(value => String(value).toLowerCase().includes(query));
+
+    return matchesSearch && (!wantedStatus || status === wantedStatus);
+  });
+
+  if (!filtered.length) {
+    ordersBody.innerHTML =
+      '<tr><td colspan="6"><div class="empty"><i class="fa-solid fa-box-open"></i><br>No orders found.</div></td></tr>';
+    return;
+  }
+
+  ordersBody.innerHTML = filtered.map(order => {
+    const id = order.id ?? order.order_id;
+    const status = getOrderStatus(order);
+    const name = getCustomerName(order);
+    const email = getCustomerEmail(order);
+
+    const options = allowedStatuses.map(item =>
+      `<option value="${item}" ${item === status ? "selected" : ""}>${item}</option>`
+    ).join("");
+
+    return `
+      <tr>
+        <td><span class="order-id">#${escapeHTML(id)}</span></td>
+        <td>
+          <div class="customer">${escapeHTML(name)}</div>
+          <div class="subtext">${escapeHTML(email || "Email not provided")}</div>
+        </td>
+        <td>${escapeHTML(getOrderDate(order))}</td>
+        <td>${getOrderTotal(order)}</td>
+        <td><span class="status ${statusClass(status)}">${escapeHTML(status)}</span></td>
+        <td>
+          <select class="status-select" data-status-id="${escapeHTML(id)}" aria-label="New status for order ${escapeHTML(id)}">
+            ${options}
+          </select>
+          <button class="small-btn" data-save-id="${escapeHTML(id)}" title="Save status" aria-label="Save status for order ${escapeHTML(id)}">
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </td>
+      </tr>`;
+  }).join("");
+}
+
+async function loadOrders() {
+  refreshBtn.disabled = true;
+  ordersBody.innerHTML =
+    '<tr><td colspan="6" class="empty">Loading orders...</td></tr>';
+  showNotice("Loading orders from the server...");
+
+  try {
+    // This endpoint must be protected by requireAdmin on the server.
+    const response = await fetch("/api/orders", {
+      method: "GET",
+      credentials: "same-origin",
+      headers: { "Accept": "application/json" }
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (response.status === 401) {
+      showNotice("Please log in first, then reopen the admin dashboard.", "error");
+      ordersBody.innerHTML = '<tr><td colspan="6" class="empty">Login required.</td></tr>';
+      return;
+    }
+
+    if (response.status === 403) {
+      showNotice("Admin access only. Log in with your administrator account.", "error");
+      ordersBody.innerHTML = '<tr><td colspan="6" class="empty">Access denied.</td></tr>';
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error(result.message || "Orders API returned HTTP " + response.status);
+    }
+
+    const list = Array.isArray(result)
+      ? result
+      : Array.isArray(result.orders)
+        ? result.orders
+        : Array.isArray(result.data)
+          ? result.data
+          : Array.isArray(result.data?.orders)
+            ? result.data.orders
+            : null;
+
+    if (!list) {
+      throw new Error("Orders API response format is not recognized.");
+    }
+
+    orders = list;
+    updateStats();
+    renderOrders();
+
+    showNotice("Orders loaded successfully.", "success");
+  } catch (error) {
+    orders = [];
+    updateStats();
+    ordersBody.innerHTML =
+      '<tr><td colspan="6" class="empty">Could not load orders. Check the backend GET /api/orders route.</td></tr>';
+    showNotice(error.message || "Could not connect to the server.", "error");
+  } finally {
+    refreshBtn.disabled = false;
+  }
+}
+
+async function updateOrderStatus(orderId, newStatus, button) {
+  if (!allowedStatuses.includes(newStatus)) {
+    showNotice("Invalid order status.", "error");
+    return;
+  }
+
+  const order = orders.find(item =>
+    String(item.id ?? item.order_id) === String(orderId)
+  );
+
+  if (!order) {
+    showNotice("Order not found in the current list.", "error");
+    return;
+  }
+
+  const previousStatus = getOrderStatus(order);
+
+  if (newStatus === previousStatus) {
+    showNotice("This order already has that status.");
+    return;
+  }
+
+  if (!confirm(`Change order #${orderId} from "${previousStatus}" to "${newStatus}"?`)) {
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+    const response = await fetch(
+      `/api/orders/${encodeURIComponent(orderId)}/status`,
+      {
+        method: "PUT",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus })
+      }
+    );
+
+    const result = await response.json().catch(() => ({}));
+
+    if (response.status === 401) {
+      throw new Error("Please log in first.");
+    }
+    if (response.status === 403) {
+      throw new Error("Admin access only. This account cannot update orders.");
+    }
+    if (!response.ok || result.success !== true) {
+      throw new Error(result.message || "Order update failed.");
+    }
+
+    showNotice(`Order #${orderId} updated to ${newStatus}.`, "success");
+    await loadOrders();
+  } catch (error) {
+    showNotice(error.message || "Could not update the order.", "error");
+  } finally {
+    button.disabled = false;
+  }
+}
+
+ordersBody.addEventListener("click", event => {
+  const button = event.target.closest("[data-save-id]");
+  if (!button) return;
+
+  const id = button.dataset.saveId;
+  const select = ordersBody.querySelector(`[data-status-id="${CSS.escape(id)}"]`);
+
+  if (!select) return;
+  updateOrderStatus(id, select.value, button);
+});
+
+refreshBtn.addEventListener("click", loadOrders);
+searchInput.addEventListener("input", renderOrders);
+statusFilter.addEventListener("change", renderOrders);
+
+// The server must enforce admin access. Hiding a page alone is not security.
+loadOrders();
+</script>
+</body>
+</html>

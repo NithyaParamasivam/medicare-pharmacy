@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCare Pharmacy | Medicine Categories</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  --green:#00c991; --dark:#073d32; --deep:#062d26;
+  --mint:#e9fff7; --text:#173e34; --muted:#71847d;
+  --border:#e2eee8; --white:#fff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:130px; }
+body { font-family:"DM Sans",sans-serif; color:var(--text); background:#f7faf8; font-size:16px; }
+a { text-decoration:none; color:inherit; }
+button,input { font:inherit; }
+
+/* TOP BAR */
+.topbar {
+  background:#006b54; color:white; padding:9px 5%;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; flex-wrap:wrap; font-size:12px; font-weight:800;
+}
+.top-group { display:flex; gap:22px; flex-wrap:wrap; }
+.topbar i { color:#45ffd0; margin-right:5px; }
+
+/* NAVIGATION */
+.navbar {
+  background:white; min-height:82px; padding:13px 5%;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:18px; flex-wrap:wrap; position:sticky; top:0; z-index:1000;
+  box-shadow:0 3px 16px #053c2b12;
+}
+.brand { display:flex; align-items:center; gap:11px; flex-shrink:0; }
+.brand-icon {
+  width:48px; height:48px; display:grid; place-items:center;
+  color:white; background:linear-gradient(135deg,#00e6a1,#00a97d);
+  border-radius:15px; font-size:25px; box-shadow:0 5px 15px #00c99140;
+  transform:rotate(-5deg);
+}
+.brand-name { font-family:"Playfair Display",serif; font-size:27px; font-weight:800; color:#103a31; line-height:1.1; }
+.brand-subtitle { font-size:10px; font-weight:800; letter-spacing:4px; color:#00aa80; margin-top:4px; }
+.nav-links { display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+.nav-links a {
+  display:flex; align-items:center; gap:7px; padding:12px;
+  border-radius:12px; font-size:14px; font-weight:800;
+  color:#46635a; white-space:nowrap; transition:.25s;
+}
+.nav-links a i { color:#00a980; }
+.nav-links a:hover,.nav-links a.active { background:#e9fff7; color:#007b5b; }
+.nav-links a.active { box-shadow:inset 0 -3px #00c991; }
+.nav-actions { display:flex; align-items:center; gap:9px; }
+.icon-btn,.cart-btn,.login-btn {
+  min-height:42px; border:0; border-radius:12px; padding:0 13px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  font-weight:800; cursor:pointer; white-space:nowrap; transition:.2s;
+}
+.icon-btn { width:43px; background:white; border:1px solid var(--border); color:#00a980; }
+.cart-btn { background:#e9fff7; color:#006d53; }
+.login-btn { background:#062f28; color:white; }
+.icon-btn:hover,.cart-btn:hover,.login-btn:hover { transform:translateY(-2px); }
+.cart-wrap { position:relative; }
+.cart-count {
+  position:absolute; top:-11px; right:-10px; background:#ff5573;
+  color:white; border-radius:50%; width:20px; height:20px;
+  display:grid; place-items:center; font-size:11px;
+}
+
+/* HERO */
+.hero {
+  position:relative; overflow:hidden; padding:65px 7% 60px;
+  background:radial-gradient(circle at 85% 15%,#13cda344,transparent 25%),
+  linear-gradient(120deg,#06372e,#075644 65%,#0c7960); color:white;
+}
+.hero::after {
+  content:"✚"; position:absolute; right:8%; top:0;
+  font-size:250px; color:#ffffff09; pointer-events:none;
+}
+.hero-content { position:relative; z-index:1; max-width:850px; }
+.eyebrow {
+  display:inline-flex; align-items:center; gap:8px; border:1px solid #00dca1;
+  background:#00dca11c; border-radius:30px; padding:9px 15px;
+  font-size:12px; font-weight:800; letter-spacing:1px; color:#61ffd0;
+}
+.hero h1 {
+  font-family:"Playfair Display",serif; font-size:clamp(42px,5vw,66px);
+  line-height:1.15; margin:20px 0 15px;
+}
+.hero h1 span { color:#00e8a4; }
+.hero p { color:#d1e9e0; line-height:1.9; max-width:700px; font-size:17px; }
+.hero-buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:25px; }
+.hero-btn {
+  padding:14px 19px; border-radius:12px; display:inline-flex;
+  align-items:center; gap:9px; font-weight:800; font-size:14px; transition:.25s;
+}
+.hero-btn.primary { background:#00d99c; color:#06372e; }
+.hero-btn.secondary { color:white; border:1px solid #ffffff60; background:#ffffff12; }
+.hero-btn:hover { transform:translateY(-3px); }
+
+/* QUICK LINKS */
+.quick-links {
+  width:90%; max-width:1250px; margin:-22px auto 40px;
+  background:white; position:relative; z-index:5; border:1px solid var(--border);
+  border-radius:18px; box-shadow:0 12px 35px #063d3210; padding:15px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+}
+.quick-link { display:flex; align-items:center; gap:12px; padding:13px; border-radius:13px; transition:.2s; }
+.quick-link:hover { background:var(--mint); transform:translateY(-2px); }
+.quick-icon {
+  width:45px; height:45px; flex-shrink:0; display:grid; place-items:center;
+  border-radius:13px; color:#008b67; background:#dffff1; font-size:20px;
+}
+.quick-link strong { display:block; font-size:15px; }
+.quick-link small { display:block; color:var(--muted); font-size:12px; margin-top:4px; }
+
+/* CONTENT */
+.container { width:90%; max-width:1250px; margin:auto; }
+.section { margin:55px 0; }
+.section-head {
+  display:flex; justify-content:space-between; align-items:end;
+  flex-wrap:wrap; gap:18px; margin-bottom:24px;
+}
+.section-label { color:#009b72; font-size:12px; letter-spacing:2px; font-weight:800; margin-bottom:8px; }
+.section-head h2 { font-family:"Playfair Display",serif; font-size:clamp(29px,3vw,40px); color:#103c31; }
+.section-head p { color:var(--muted); font-size:15px; margin-top:8px; max-width:700px; line-height:1.8; }
+.search-box {
+  display:flex; align-items:center; gap:12px; width:min(100%,400px);
+  padding:13px 16px; background:white; border:1px solid #dcebe4; border-radius:13px;
+}
+.search-box i { color:#00a77a; }
+.search-box input { width:100%; border:0; outline:0; background:transparent; color:var(--text); font-size:15px; }
+
+/* HORIZONTAL CARD RAIL */
+.rail-wrap { position:relative; }
+.cards {
+  display:flex; gap:18px; overflow-x:auto; overflow-y:hidden;
+  padding:7px 3px 20px; scroll-snap-type:x mandatory;
+  scroll-behavior:smooth; scrollbar-width:thin;
+  scrollbar-color:#00c991 #e7f2ec; cursor:grab;
+  -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain;
+}
+.cards.dragging { cursor:grabbing; scroll-snap-type:none; scroll-behavior:auto; user-select:none; }
+.card {
+  flex:0 0 calc((100% - 36px)/3); min-width:285px; scroll-snap-align:start;
+  background:white; border:1px solid #e1ede7; border-radius:18px;
+  padding:24px; position:relative; overflow:hidden;
+  box-shadow:0 5px 18px #103e3010; transition:transform .25s,box-shadow .25s;
+}
+.card::before {
+  content:""; height:4px; background:linear-gradient(90deg,#00c991,#8af3c9);
+  position:absolute; left:0; top:0; width:100%;
+}
+.card:hover { transform:translateY(-4px); box-shadow:0 14px 30px #103e3019; }
+.card-top { display:flex; justify-content:space-between; align-items:start; gap:10px; margin-bottom:16px; }
+.card-icon {
+  width:55px; height:55px; display:grid; place-items:center;
+  border-radius:16px; background:linear-gradient(135deg,#e4fff3,#c9f7e5);
+  color:#008762; font-size:24px; flex-shrink:0;
+}
+.card-number { font-size:12px; font-weight:800; color:#9aafa5; letter-spacing:1px; }
+.card h3 { font-size:21px; line-height:1.4; color:#123f32; margin-bottom:12px; }
+.pill {
+  display:inline-block; border-radius:20px; padding:6px 11px;
+  background:#eafff5; color:#00815e; font-size:12px; font-weight:800; margin-bottom:13px;
+}
+.info { border-top:1px solid #edf3ef; padding-top:12px; margin-top:12px; }
+.info h4 { font-size:14px; margin-bottom:5px; color:#087d5d; }
+.info h4 i { width:20px; }
+.info p { color:#697e74; font-size:14px; line-height:1.8; }
+.safety { background:#fff9e9; border:1px solid #f7e9bf; border-radius:12px; padding:12px; margin-top:15px; }
+.safety h4 { color:#94620b; font-size:13px; margin-bottom:5px; }
+.safety p { color:#78633c; font-size:13px; line-height:1.8; }
+
+/* SWIPE ARROWS */
+.rail-controls { display:flex; justify-content:flex-end; gap:9px; margin:0 0 5px; }
+.rail-btn {
+  width:42px; height:42px; border:1px solid #d7eae1; border-radius:12px;
+  background:white; color:#007d5b; cursor:pointer; transition:.2s;
+}
+.rail-btn:hover { background:#00c991; color:#06372e; transform:translateY(-2px); }
+.rail-btn:focus-visible { outline:3px solid #00c991; outline-offset:3px; }
+.empty-state {
+  display:none; text-align:center; padding:35px; color:var(--muted);
+  background:white; border:1px solid var(--border); border-radius:15px;
+}
+.notice {
+  display:flex; align-items:flex-start; gap:15px; background:#fff8e7;
+  border:1px solid #f2e1b5; border-radius:17px; padding:23px; margin:55px 0;
+}
+.notice-icon {
+  width:45px; height:45px; flex-shrink:0; display:grid; place-items:center;
+  background:#ffedbe; color:#97620a; border-radius:13px; font-size:20px;
+}
+.notice h3 { color:#76510d; font-size:18px; margin-bottom:7px; }
+.notice p { color:#7d6a46; font-size:14px; line-height:1.9; }
+
+/* FOOTER */
+.footer { background:#062f28; color:white; padding:35px 6%; text-align:center; margin-top:60px; }
+.footer .brand { justify-content:center; margin-bottom:15px; }
+.footer .brand-name { color:white; }
+.footer p { color:#b8d7cb; font-size:13px; margin:8px 0; }
+.footer-icons { color:#00d99c; font-size:21px; letter-spacing:8px; margin-bottom:12px; }
+
+/* RESPONSIVE */
+@media(max-width:1100px) {
+  .navbar { justify-content:center; }
+  .nav-links { justify-content:center; }
+  .cards .card { flex-basis:calc((100% - 18px)/2); }
+}
+@media(max-width:700px) {
+  .topbar { justify-content:center; text-align:center; }
+  .top-group { justify-content:center; gap:10px; }
+  .navbar { padding:13px 4%; gap:12px; }
+  .brand-name { font-size:24px; }
+  .nav-links { width:100%; order:3; }
+  .nav-links a { padding:9px; font-size:12px; }
+  .nav-actions { margin-left:auto; }
+  .login-btn { padding:0 10px; }
+  .hero { padding:45px 6% 48px; }
+  .hero h1 { font-size:40px; }
+  .quick-links { grid-template-columns:1fr; width:92%; }
+  .container { width:92%; }
+  .section { margin:42px 0; }
+  .section-head { align-items:stretch; }
+  .search-box { width:100%; }
+  .cards .card { flex-basis:85%; min-width:260px; }
+  .notice { padding:17px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { transition:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="top-group">
+    <span><i class="fa-solid fa-truck-fast"></i> Fast & Safe Delivery</span>
+    <span><i class="fa-solid fa-shield-heart"></i> Trusted Pharmacy</span>
+  </div>
+  <div class="top-group">
+    <span><i class="fa-solid fa-phone"></i> +91 98765 43210</span>
+    <span><i class="fa-solid fa-clock"></i> Open 24/7</span>
+  </div>
+</div>
+
+<header class="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-icon"><i class="fa-solid fa-plus"></i></div>
+    <div>
+      <div class="brand-name">MediCare</div>
+      <div class="brand-subtitle">PHARMACY</div>
+    </div>
+  </a>
+
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="medicines.html"><i class="fa-solid fa-capsules"></i> Medicines</a>
+    <a href="categories.html" class="active"><i class="fa-solid fa-layer-group"></i> Categories</a>
+    <a href="ayurvedic.html"><i class="fa-solid fa-leaf"></i> Ayurvedic</a>
+    <a href="orders.html"><i class="fa-solid fa-calendar-check"></i> Orders</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button class="icon-btn" onclick="focusSearch()" aria-label="Search categories">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <a href="cart.html" class="cart-btn">
+      <span class="cart-wrap">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </span> Cart
+    </a>
+    <a href="login.html" class="login-btn"><i class="fa-solid fa-user"></i> Login</a>
+
+<button type="button" class="login-btn" id="logoutBtn"
+        style="display:none;" onclick="logoutUser()">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+</button>
+
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow"><i class="fa-solid fa-heart"></i> YOUR HEALTH, OUR PRIORITY</div>
+    <h1>Discover Medicine<br><span>Categories 💊</span></h1>
+    <p>Explore common medicine groups, what they are used for, their potential benefits, and important safety information. Simple guidance to help you understand medicines better.</p>
+    <div class="hero-buttons">
+      <a href="#therapeutic" class="hero-btn primary"><i class="fa-solid fa-compass"></i> Explore Categories</a>
+      <a href="#safety" class="hero-btn secondary"><i class="fa-solid fa-shield-heart"></i> Medicine Safety</a>
+    </div>
+  </div>
+</section>
+
+<div class="quick-links">
+  <a href="#legal" class="quick-link">
+    <div class="quick-icon"><i class="fa-solid fa-shield-halved"></i></div>
+    <div><strong>Legal Access & Control</strong><small>How medicines may be supplied</small></div>
+  </a>
+  <a href="#therapeutic" class="quick-link">
+    <div class="quick-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+    <div><strong>Therapeutic Uses</strong><small>Categories by treatment purpose</small></div>
+  </a>
+  <a href="#dosage" class="quick-link">
+    <div class="quick-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+    <div><strong>Dosage Forms</strong><small>Tablets, liquids, creams and more</small></div>
+  </a>
+</div>
+
+<main class="container">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Find what you need</div>
+      <h2>Search Medicine Categories 🔎</h2>
+      <p>Search a category, common use, benefit or safety tip. Use the arrows or swipe across the cards.</p>
+    </div>
+    <label class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="categorySearch" type="search" placeholder="Try: allergy, fever, tablets..." oninput="filterCards()">
+    </label>
+  </div>
+
+  <!-- LEGAL ACCESS -->
+  <section class="section" id="legal">
+    <div class="section-head">
+      <div>
+        <div class="section-label">01 / Medicine supply</div>
+        <h2>🔐 Legal Access & Control</h2>
+        <p>Supply rules depend on the product and local law. Ask a qualified pharmacist about the requirements for a specific medicine.</p>
+      </div>
+    </div>
+
+    <div class="rail-wrap">
+      <div class="rail-controls">
+        <button class="rail-btn" onclick="moveRail(this,-1)" aria-label="Scroll legal categories left"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="rail-btn" onclick="moveRail(this,1)" aria-label="Scroll legal categories right"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-basket-shopping"></i></div><span class="card-number">01</span></div>
+          <span class="pill">Non-prescription where permitted</span>
+          <h3>Over-the-Counter Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Some products are used for minor pain, fever, acidity or allergy symptoms, depending on the ingredient.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-circle-check"></i> Potential Benefits</h4><p>May provide convenient relief for suitable minor symptoms when used as directed.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Read the label, check active ingredients and avoid taking duplicate products with the same ingredient.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-user-doctor"></i></div><span class="card-number">02</span></div>
+          <span class="pill">Professional Guidance</span>
+          <h3>Pharmacist-Guided Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>The appropriate product depends on symptoms, health history and the medicine's local supply rules.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-circle-check"></i> Potential Benefits</h4><p>A pharmacist can help explain directions, precautions and possible interactions.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Tell the pharmacist about allergies, pregnancy, ongoing conditions and other medicines you take.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-file-prescription"></i></div><span class="card-number">03</span></div>
+          <span class="pill">Prescription Required</span>
+          <h3>Prescription Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Examples include many antibiotics, insulin products and medicines for blood pressure.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-circle-check"></i> Potential Benefits</h4><p>May help treat or manage specific conditions with appropriate medical supervision.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Use only as prescribed. Do not share medicines or change the dose without professional advice.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-lock"></i></div><span class="card-number">04</span></div>
+          <span class="pill">Strict Legal Controls</span>
+          <h3>Controlled Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Some opioid pain medicines, sedatives and stimulants are used for specific medical needs.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-circle-check"></i> Potential Benefits</h4><p>Can have important treatment benefits when prescribed and carefully monitored.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Dependence, overdose and interactions can occur. Follow prescription, storage and disposal instructions.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- THERAPEUTIC USE -->
+  <section class="section" id="therapeutic">
+    <div class="section-head">
+      <div>
+        <div class="section-label">02 / Purpose of treatment</div>
+        <h2>🩺 Therapeutic Categories</h2>
+        <p>Medicines are grouped here by their general treatment purpose. The exact use depends on the individual product and patient.</p>
+      </div>
+    </div>
+    <div class="rail-wrap">
+      <div class="rail-controls">
+        <button class="rail-btn" onclick="moveRail(this,-1)" aria-label="Scroll therapeutic categories left"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="rail-btn" onclick="moveRail(this,1)" aria-label="Scroll therapeutic categories right"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-hand"></i></div><span class="card-number">01</span></div>
+          <span class="pill">Pain Management</span><h3>Analgesics — Pain Relief</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Relief of certain headaches, muscle pain and other painful conditions.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>May reduce discomfort and help with everyday activities.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Different pain medicines have different risks. Follow the label and avoid exceeding the recommended dose.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-shield-virus"></i></div><span class="card-number">02</span></div>
+          <span class="pill">Infection Treatment</span><h3>Antibiotics & Antimicrobials</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Antibiotics treat susceptible bacterial infections when prescribed appropriately.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>An appropriate antibiotic can help treat a bacterial infection.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Antibiotics do not treat viral colds or flu. Do not self-medicate or share a prescription.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-wind"></i></div><span class="card-number">03</span></div>
+          <span class="pill">Allergy Relief</span><h3>Antihistamines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Relief of selected allergy symptoms such as sneezing, itching and a runny nose.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>May reduce discomfort associated with allergic symptoms.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Some cause drowsiness. Check the product warning before driving or combining with alcohol.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-mug-hot"></i></div><span class="card-number">04</span></div>
+          <span class="pill">Digestive Health</span><h3>Antacids & GI Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Selected products help relieve heartburn, acidity and certain digestive symptoms.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>May reduce discomfort related to stomach acid, depending on the product.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Some interact with other medicines. Get advice if symptoms persist or are severe.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div><span class="card-number">05</span></div>
+          <span class="pill">Heart & Blood Pressure</span><h3>Cardiovascular Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Management of high blood pressure and selected heart or circulation conditions.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>Appropriate treatment may control blood pressure and reduce certain health risks.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Follow monitoring advice. Do not stop prescribed treatment without medical guidance.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-temperature-high"></i></div><span class="card-number">06</span></div>
+          <span class="pill">Temperature Relief</span><h3>Antipyretics — Fever Relief</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Help reduce fever and may ease related discomfort.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>May improve comfort while the cause of the fever is addressed.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Fever has many causes. Seek medical care for severe symptoms or persistent fever.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-droplet"></i></div><span class="card-number">07</span></div>
+          <span class="pill">Blood Clot Management</span><h3>Anticoagulants</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Prevent or treat certain harmful blood clots under medical supervision.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>Can reduce specific clot-related complications when appropriately used.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Bleeding is an important risk. Report unusual bleeding promptly and follow monitoring advice.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOSAGE FORMS -->
+  <section class="section" id="dosage">
+    <div class="section-head">
+      <div>
+        <div class="section-label">03 / Medicine formats</div>
+        <h2>💊 Dosage Forms</h2>
+        <p>A dosage form is the physical form in which a medicine is prepared. Instructions vary by product.</p>
+      </div>
+    </div>
+    <div class="rail-wrap">
+      <div class="rail-controls">
+        <button class="rail-btn" onclick="moveRail(this,-1)" aria-label="Scroll dosage forms left"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="rail-btn" onclick="moveRail(this,1)" aria-label="Scroll dosage forms right"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-capsules"></i></div><span class="card-number">01</span></div>
+          <span class="pill">Oral Solid Forms</span><h3>Tablets, Capsules & Chewables</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Oral medicines for many different conditions, depending on the active ingredient.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>Often convenient to carry, store and take according to directions.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Do not crush, split or open a medicine unless its instructions say it is safe.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-prescription-bottle"></i></div><span class="card-number">02</span></div>
+          <span class="pill">Oral Liquid Forms</span><h3>Syrups & Suspensions</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Liquid medicines designed to be taken by mouth.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>May be easier for people who have difficulty swallowing tablets.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Shake a suspension if directed and measure with the correct dosing device.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-hand-sparkles"></i></div><span class="card-number">03</span></div>
+          <span class="pill">Topical Forms</span><h3>Creams, Ointments & Gels</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Applied to the skin for selected skin conditions or specific purposes.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>Some formulations deliver treatment directly to the affected area.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Follow the label and avoid eyes or sensitive areas unless the product is intended for them.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-lungs"></i></div><span class="card-number">04</span></div>
+          <span class="pill">Inhaled / Nasal Forms</span><h3>Inhalers & Sprays</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Some inhalers deliver medicine to the airways; nasal sprays are designed for the nose.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>The delivery method can target a particular area of the body.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Correct technique matters. Follow instructions and ask a healthcare professional for help.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-syringe"></i></div><span class="card-number">05</span></div>
+          <span class="pill">Parenteral Forms</span><h3>Injectable Medicines</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Medicines given by injection when that route is medically appropriate.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>May be useful when a medicine needs to be given by a non-oral route.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Injections require appropriate training, sterile equipment and professional guidance.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><div class="card-icon"><i class="fa-solid fa-bandage"></i></div><span class="card-number">06</span></div>
+          <span class="pill">Transdermal Forms</span><h3>Patches</h3>
+          <div class="info"><h4><i class="fa-solid fa-stethoscope"></i> Common Uses</h4><p>Some patches deliver a specific medicine through the skin over a period of time.</p></div>
+          <div class="info"><h4><i class="fa-solid fa-heart"></i> Potential Benefits</h4><p>Selected products can provide a steady delivery method.</p></div>
+          <div class="safety"><h4>⚠️ Safety Tips</h4><p>Follow application and disposal instructions. Do not cut a patch unless specifically permitted.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="notice" id="safety">
+    <div class="notice-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+    <div>
+      <h3>Important Medicine Safety Notice</h3>
+      <p>This page is for educational purposes only and is not a substitute for professional medical advice. Legal supply classifications vary by location and product. Use medicines according to their labels and advice from a qualified healthcare professional. Do not self-medicate with antibiotics, prescription medicines or controlled medicines. Seek urgent medical care in an emergency.</p>
+    </div>
+  </section>
+
+  <div class="empty-state" id="emptyState">
+    <i class="fa-solid fa-magnifying-glass" style="font-size:30px;color:#00a980"></i>
+    <h3 style="margin:12px 0">No categories found</h3>
+    <p>Try searching with another keyword.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-icons">
+    <i class="fa-solid fa-heart-pulse"></i>
+    <i class="fa-solid fa-plus"></i>
+    <i class="fa-solid fa-leaf"></i>
+  </div>
+  <a href="index.html" class="brand">
+    <div class="brand-icon"><i class="fa-solid fa-plus"></i></div>
+    <div><div class="brand-name">MediCare</div><div class="brand-subtitle">PHARMACY</div></div>
+  </a>
+  <p>Your health, our priority. 💚</p>
+  <p>For medical advice, consult a qualified healthcare professional.</p>
+  <p>© 2026 MediCare Pharmacy. All rights reserved.</p>
+</footer>
+
+<script>
+/* SEARCH: filters category cards across all sections */
+function filterCards() {
+  const query = document.getElementById("categorySearch").value.toLowerCase().trim();
+  const cards = document.querySelectorAll(".card");
+  const sections = document.querySelectorAll("main .section");
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const match = card.innerText.toLowerCase().includes(query);
+    card.style.display = match ? "" : "none";
+    if (match) visibleCount++;
+  });
+
+  sections.forEach(section => {
+    if (section.id === "safety") return;
+    const sectionCards = section.querySelectorAll(".card");
+    const hasVisible = Array.from(sectionCards).some(card => card.style.display !== "none");
+    section.style.display = hasVisible ? "" : "none";
+  });
+
+  document.getElementById("emptyState").style.display = visibleCount ? "none" : "block";
+}
+
+/* NAV SEARCH ICON */
+function focusSearch() {
+  const search = document.getElementById("categorySearch");
+  search.scrollIntoView({behavior:"smooth", block:"center"});
+  search.focus({preventScroll:true});
+}
+
+/* LEFT / RIGHT ARROWS */
+function moveRail(button, direction) {
+  const rail = button.closest(".rail-wrap").querySelector(".cards");
+  const card = rail.querySelector(".card");
+  const distance = card ? card.getBoundingClientRect().width + 18 : 320;
+  rail.scrollBy({left:direction * distance, behavior:"smooth"});
+}
+
+/* MOUSE DRAG. Touch and trackpad keep their native scrolling. */
+document.querySelectorAll(".cards").forEach(rail => {
+  let down = false;
+  let startX = 0;
+  let startScroll = 0;
+  let dragged = false;
+
+  rail.addEventListener("mousedown", event => {
+    if (event.button !== 0) return;
+    down = true;
+    dragged = false;
+    startX = event.pageX;
+    startScroll = rail.scrollLeft;
+    rail.classList.add("dragging");
+  });
+
+  window.addEventListener("mousemove", event => {
+    if (!down) return;
+    const distance = event.pageX - startX;
+    if (Math.abs(distance) > 4) dragged = true;
+    rail.scrollLeft = startScroll - distance;
+  });
+
+  window.addEventListener("mouseup", () => {
+    down = false;
+    rail.classList.remove("dragging");
+  });
+
+  rail.addEventListener("click", event => {
+    if (dragged) {
+      event.preventDefault();
+      event.stopPropagation();
+      dragged = false;
+    }
+  }, true);
+
+  /* Convert mouse wheel vertical movement to horizontal card scrolling */
+  rail.addEventListener("wheel", event => {
+    if (Math.abs(event.deltaY) > Math.abs(event.deltaX) && rail.scrollWidth > rail.clientWidth) {
+      rail.scrollLeft += event.deltaY;
+      event.preventDefault();
+    }
+  }, {passive:false});
+});
+
+/* CART COUNT */
+try {
+  const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = savedCart.reduce((total, item) => total + (Number(item.quantity) || 1), 0);
+  document.getElementById("cartCount").textContent = count;
+} catch (error) {
+  document.getElementById("cartCount").textContent = "0";
+}
+</script>
+
+<script>
+async function updateAuthButton() {
+    const loginBtn = document.querySelector(".login-btn[href='login.html']");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    try {
+        const response = await fetch("/api/me");
+
+        if (response.ok) {
+            if (loginBtn) loginBtn.style.display = "none";
+            if (logoutBtn) logoutBtn.style.display = "";
+        } else {
+            if (loginBtn) loginBtn.style.display = "";
+            if (logoutBtn) logoutBtn.style.display = "none";
+        }
+    } catch (error) {
+        console.error("Login status check failed:", error);
+    }
+}
+
+async function logoutUser() {
+    try {
+        const response = await fetch("/api/logout", {
+            method: "POST"
+        });
+
+        if (response.ok) {
+            window.location.replace("/login.html");
+        } else {
+            alert("Logout failed. Please try again.");
+        }
+    } catch (error) {
+        alert("Backend connection failed.");
+    }
+}
+
+updateAuthButton();
+</script>
+
+
+
+</body>
+</html>
